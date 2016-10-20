@@ -1,0 +1,456 @@
+/*** commun ***/
+body {
+    background-color: #81e8f1;
+}
+
+#listeErreur {
+    width: 100%;
+    float: left;
+    background-color: #3cdbea;
+    color: red;
+    text-align: center;
+    vertical-align: middle;
+}
+
+#enTete {
+    width: 100%;
+    height: 40px;
+    float: left;
+    background-color: #3cdbea;
+    text-align: center;
+    vertical-align: middle;
+}
+
+#Corps {
+    width: 100%;
+    float: left;
+    text-align: center;
+    vertical-align: middle;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+.row {
+    margin: 0px;
+}
+
+/*** admin ***/
+#messageDesJoueur {
+    height: 100%;
+    float: left;
+    background-color: #3ca1ea;
+    padding: 0 10px;
+    cursor: pointer;
+}
+
+#messageDesJoueur.danger {
+    background-color: #880000;
+}
+
+#messageDesJoueur:hover {
+    background-color: #3cbeea;
+}
+
+#uploadFichier{
+    width: 125px;
+    height: 22px;
+    margin-right: 10px;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    background-color: #DDF;
+}
+#uploadFichier #file{
+    cursor: pointer;
+    height: 100%;
+    position:absolute;
+    top: 0;
+    right: 0;
+    font-size:50px;
+    opacity: 0;
+    -moz-opacity: 0;
+    filter:progid:DXImageTransform.Microsoft.Alpha(opacity=0)
+}
+
+/*** perso ***/
+#messageDuMJ {
+    height: 100%;
+    float: left;
+    background-color: #3ca1ea;
+    padding: 0 10px;
+    cursor: pointer;
+}
+
+#messageDuMJ.danger {
+    background-color: #880000;
+}
+
+#messageDuMJ:hover {
+    background-color: #3cbeea;
+}
+
+#messageNonLue {
+    height: 100%;
+    display: inline;
+    padding: 8px;
+    float: left;
+    color: #fff;
+}
+
+#voirMessage {
+    height: 100%;
+    display: inline;
+    padding: 8px;
+    float: left;
+    color: #fff;
+}
+
+#versFichePersonnage {
+    height: 100%;
+    float: left;
+    background-color: #3ca1ea;
+    padding: 0 10px;
+}
+
+#versFichePersonnage:hover {
+    background-color: #3cbeea;
+}
+
+#lienVersFichePersonnage {
+    height: 100%;
+    display: block;
+    padding: 8px;
+    float: left;
+    color: #fff;
+}
+
+#versCarte {
+    height: 100%;
+    float: right;
+    background-color: #3ca1ea;
+    padding: 0 10px;
+}
+
+#versCarte:hover {
+    background-color: #3cbeea;
+}
+
+#lienVersCarte {
+    height: 100%;
+    display: block;
+    padding: 8px;
+    float: right;
+    color: #fff;
+}
+
+#versPerso {
+    height: 100%;
+    float: left;
+    background-color: #3ca1ea;
+    padding: 0 10px;
+}
+
+#versPerso:hover {
+    background-color: #3cbeea;
+}
+
+#lienVersPerso {
+    height: 100%;
+    display: block;
+    padding: 8px;
+    float: left;
+    color: #fff;
+}
+
+#versManagerSon {
+    height: 100%;
+    float: right;
+    background-color: #3ca1ea;
+    padding: 0 10px;
+}
+
+#versManagerSon:hover {
+    background-color: #3cbeea;
+}
+
+#lienVersManagerSon {
+    height: 100%;
+    display: block;
+    padding: 8px;
+    float: right;
+    color: #fff;
+}
+
+#versBestiaire {
+    height: 100%;
+    float: right;
+    background-color: #3ca1ea;
+    padding: 0 10px;
+}
+
+#versBestiaire:hover {
+    background-color: #3cbeea;
+}
+
+#lienVersBestiaire {
+    height: 100%;
+    display: block;
+    padding: 8px;
+    float: right;
+    color: #fff;
+}
+
+/*** fiche Personnage ***/
+.fichePersonnage .row {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.fichePersonnage .listeAction {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.fichePersonnage .column .input-group {
+    width: 85%;
+    float: left;
+}
+
+.fichePersonnage .column button {
+    width: 85%;
+    float: left;
+}
+
+.fichePersonnage .column input {
+    width: 85%;
+    float: left;
+}
+
+.fichePersonnage .column textarea {
+    width: 85%;
+    float: left;
+}
+
+.fichePersonnage .column {
+    text-align: left;
+}
+
+.fichePersonnage .column #po {
+    max-width: 100px;
+    float: left;
+}
+
+.glyphicon:before {
+    padding-right: 10px;
+    float: left;
+}
+
+.glyphicon-lvl:before {
+    content: url(icone/Level.jpg) " ";
+}
+
+.glyphicon-classe:before {
+    content: url(icone/Classe.jpg) " ";
+}
+
+.glyphicon-metier:before {
+    content: url(icone/Métier.jpg) " ";
+}
+
+.glyphicon-vie:before {
+    content: url(icone/vie.jpg) " ";
+}
+
+.glyphicon-mana:before {
+    content: url(icone/mana.jpg) " ";
+}
+
+.glyphicon-force:before {
+    content: url(icone/Force.jpg) " ";
+}
+
+.glyphicon-charisme:before {
+    content: url(icone/Charisme.jpg) " ";
+}
+
+.glyphicon-education:before {
+    content: url(icone/education.jpg) " ";
+}
+
+.glyphicon-dexterite:before {
+    content: url(icone/dexterite.jpg) " ";
+}
+
+.glyphicon-perception:before {
+    content: url(icone/perception.jpg) " ";
+}
+
+.glyphicon-constitution:before {
+    content: url(icone/constitution.jpg) " ";
+}
+
+.glyphicon-chance:before {
+    content: url(icone/chance.jpg) " ";
+}
+
+.glyphicon-competence:before {
+    content: url(icone/competence.jpg) " ";
+}
+
+.glyphicon-sort:before {
+    content: url(icone/sort.jpg) " ";
+}
+
+.glyphicon-equipement:before {
+    content: url(icone/equipement.jpg) " ";
+}
+
+.glyphicon-inventaire:before {
+    content: url(icone/inventaire.jpg) " ";
+}
+
+.glyphicon-po:before {
+    content: url(icone/gold.jpg) " ";
+}
+
+/*** message ***/
+.listeMessages {
+    padding-top: 10px;
+}
+
+.listeMessages .column {
+    padding: 15px;
+    text-align: left;
+}
+
+.listeMessages .column.dateUnMessage {
+    text-align: right;
+}
+
+/*** carte ***/
+.liste-img {
+    padding: 0;
+    height: 100%;
+    display: inline-flex;
+    vertical-align: middle;
+}
+
+.liste-img img {
+    height: auto;
+    max-width: 100%;
+    max-height: 100%;
+    margin: auto;
+}
+
+#carte {
+	padding: 0;
+    width: 100%;
+    height: 100%;
+    display: inline-flex;
+    vertical-align: middle;
+}
+
+#carteEnCour {
+    height: auto;
+    max-width: 100%;
+    max-height: 100%;
+    margin: auto;
+}
+
+.masqueCarte {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 2;
+}
+
+.adminCarte .listeAction .column {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.adminCarte .column .input-group {
+    width: 100%;
+    float: left;
+}
+
+.adminCarte .column button {
+    width: 100%;
+    float: left;
+}
+
+.adminCarte .column input {
+    width: 100%;
+    float: left;
+}
+
+.caseMasqueCarte {
+    float: left;
+}
+
+.adminCarte .caseMasqueCarte {
+    border-style: solid;
+    border-width: 1px;
+}
+
+.cacherCaseCarte {
+    background-color: #000;
+}
+
+.caseCarteAfficher {
+    background-image: url(./afficher.png);
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+}
+
+.caseCarteCacher {
+    background-image: url(./cacher.png);
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+}
+
+/*** manager Son ***/
+.managerSon .listeAction .column {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+/*** lanceur de dés ***/
+#versLancerDes {
+    height: 100%;
+    float: right;
+    background-color: #3ca1ea;
+    padding: 0 10px;
+}
+
+#versLancerDes:hover {
+    background-color: #3cbeea;
+}
+
+#lienVersLancerDes {
+    height: 100%;
+    display: block;
+    padding: 8px;
+    float: right;
+    color: #fff;
+}
+
+.lanceurDeDes .listeAction {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.unDes {
+    height: 52px;
+    width: 52px;
+    padding: 15px;
+    margin: auto;
+    background: #fff;
+    border-radius: 10px;
+    border: 2px solid #000;
+    margin-bottom: 5px;
+}
