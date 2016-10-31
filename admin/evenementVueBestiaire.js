@@ -193,8 +193,8 @@ function modifierValeurMonstre(IDMonstre, champ, valeur){
             },
             success: function(data){
                 if (data != ""){
-                    console.error("modifierValeurMonstre : " + e + "(" + data + ")");
-                    afficherMessage(4, "modifierValeurMonstre : " + e + "(" + data + ")", 0);
+                    console.error("modifierValeurMonstre : (" + data + ")");
+                    afficherMessage(4, "modifierValeurMonstre : (" + data + ")", 0);
                 }
             },
             error: function(){

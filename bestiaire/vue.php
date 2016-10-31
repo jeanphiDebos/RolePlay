@@ -3,8 +3,8 @@
     </div>
     <div id="enTete">
         <?php if (isset($personnage)){ ?>
-            <div id="versFichePersonnage">
-                <a id="lienVersFichePersonnage" href="../personnage/index.php?perso=<?php echo $personnage; ?>">Retour à la fiche du perso</a>
+            <div id="versFichePersonnage" class="vers">
+                <a id="lienVersFichePersonnage" class="lienVers" href="../personnage/index.php?perso=<?php echo $personnage; ?>">Retour à la fiche du perso</a>
             </div>
         <?php } ?>
     </div>

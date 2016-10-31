@@ -14,18 +14,18 @@ function affichageCarte(){
 
                         $(".masqueCarte").addClass("cacherCaseCarte");
                         $("#carte").empty().append("<img src=\"./image/" + uneCarte.image + "\" id=\"carteEnCour\"><div class=\"masqueCarte\"></div>");
-
-                        redimensionnerCarte();
+                        $("#carte img").load(function(){
+                            redimensionnerCarte();
+                        });
                     }
 
                     if (uneCarte.typeAffichage == "mapper") elementACacher(uneCarte);
                     else if (uneCarte.typeAffichage == "cacher") toutCacher();
                     else if (uneCarte.typeAffichage == "visible") toutAfficher();
                 }else{
-                    console.error("id affichageCarte : " + uneCarte.id);
+                    console.error("id affichageCarte : " + uneCarte);
                 }
 
-                redimensionnerCarte();
                 setTimeout("affichageCarte()", 5000);
             }catch (e){
                 console.error("affichageCarte : " + e + "(" + data + ")");
@@ -40,8 +40,6 @@ function affichageCarte(){
 }
 
 function elementACacher(uneCarte){
-    $(".masqueCarte").removeClass("cacherCaseCarte");
-
     if ($(".masqueCarte").attr('id') != uneCarte.axeVertical + "" + uneCarte.axeHorizontal){
         $(".masqueCarte").empty();
         $(".masqueCarte").attr('id', uneCarte.axeVertical + "" + uneCarte.axeHorizontal);
@@ -88,6 +86,8 @@ function elementACacher(uneCarte){
             });
         }
     }
+
+    $(".masqueCarte").removeClass("cacherCaseCarte");
 }
 
 function toutCacher(){

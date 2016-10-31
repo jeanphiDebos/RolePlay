@@ -5,17 +5,17 @@
                     <span class="input-group-addon">liste Monstres</span>
                     <select class="form-control" id="listeMonstres">
                         <option value="" class="defautValue" <?php if ($monstre == "" && !isset($_SESSION['monstre'])){ ?>selected="selected"<?php } ?>>selectionner un Monstre</option>
-                        <?php foreach ($listebestiaire as $unMonstre){ ?>
+                        <?php foreach ($listeBestiaire as $unMonstre){ ?>
                             <option value="<?php echo $unMonstre['id']; ?>" class="unMonstreOption" <?php if (!empty($_SESSION['monstre']) && $_SESSION['monstre'] == $unMonstre['id']){ ?>selected="selected"<?php } ?>><?php echo $unMonstre['nom']; ?></option>
                         <?php } ?>
                     </select>
                 </div>
             </div>
             <div class="col-md-2 column">
-                <button type="button" id="addMonstre">ajouter un Monstre</button>
+                <button type="button" id="addMonstre" class="btn btn-default">ajouter un Monstre</button>
             </div>
             <div class="col-md-2 column">
-                <button type="button" id="deletMonstre">supprimer le Monstre</button>
+                <button type="button" id="deletMonstre" class="btn btn-default">supprimer le Monstre</button>
             </div>
             <div class="col-md-2 column">
                 <?php include("../model/uploadFichier.php"); ?>
@@ -39,7 +39,7 @@
         </div>
         <div class="row clearfix">
             <div class="col-md-3 column glyphicon glyphicon-attaque">
-                <input type="number" name="attaque" min="0" max="100" id="attaque" class="inputDescriptionMonstre">/100
+                <input type="number" name="attaque" min="0" max="100" id="attaque" class="inputDescriptionMonstre">
             </div>
             <div class="col-md-3 column glyphicon glyphicon-bonusDegat">
                 <input type="text" name="bonusDegat" id="bonusDegat" class="inputDescriptionMonstre"></div>
@@ -50,16 +50,16 @@
         </div>
         <div class="row clearfix">
             <div class="col-md-3 column glyphicon glyphicon-parade">
-                <input type="number" name="parade" min="0" max="100" id="parade" class="inputDescriptionMonstre">/100
+                <input type="number" name="parade" min="0" max="100" id="parade" class="inputDescriptionMonstre">
             </div>
             <div class="col-md-3 column glyphicon glyphicon-esquive">
-                <input type="number" name="esquive" min="0" max="100" id="esquive" class="inputDescriptionMonstre">/100
+                <input type="number" name="esquive" min="0" max="100" id="esquive" class="inputDescriptionMonstre">
             </div>
             <div class="col-md-3 column glyphicon glyphicon-blocage">
-                <input type="number" name="blocage" min="0" max="100" id="blocage" class="inputDescriptionMonstre">/100
+                <input type="number" name="blocage" min="0" max="100" id="blocage" class="inputDescriptionMonstre">
             </div>
             <div class="col-md-3 column glyphicon glyphicon-contreAttaque">
-                <input type="number" name="contreAttaque" min="0" max="100" id="contreAttaque" class="inputDescriptionMonstre">/100
+                <input type="number" name="contreAttaque" min="0" max="100" id="contreAttaque" class="inputDescriptionMonstre">
             </div>
         </div>
         <div class="row clearfix">

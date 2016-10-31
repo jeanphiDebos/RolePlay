@@ -18,7 +18,7 @@
                 </div>
             </div>
             <div class="col-md-3 column">
-                <button id="playSon">lancer son</button>
+                <button id="playSon" class="btn btn-default">lancer son</button>
             </div>
             <div class="col-md-3 column">
                 <?php include("../model/uploadFichier.php"); ?>

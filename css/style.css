@@ -36,24 +36,18 @@ a:hover {
     margin: 0px;
 }
 
-/*** admin ***/
-#messageDesJoueur {
-    height: 100%;
+.listeAction {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.glyphicon:before {
+    padding-right: 10px;
     float: left;
-    background-color: #3ca1ea;
-    padding: 0 10px;
-    cursor: pointer;
 }
 
-#messageDesJoueur.danger {
-    background-color: #880000;
-}
-
-#messageDesJoueur:hover {
-    background-color: #3cbeea;
-}
-
-#uploadFichier{
+/*** admin ***/
+#uploadFichier {
     width: 125px;
     height: 22px;
     margin-right: 10px;
@@ -62,144 +56,51 @@ a:hover {
     cursor: pointer;
     background-color: #DDF;
 }
-#uploadFichier #file{
+
+#uploadFichier #file {
     cursor: pointer;
     height: 100%;
-    position:absolute;
+    position: absolute;
     top: 0;
     right: 0;
-    font-size:50px;
+    font-size: 50px;
     opacity: 0;
     -moz-opacity: 0;
-    filter:progid:DXImageTransform.Microsoft.Alpha(opacity=0)
+    filter: progid:DXImageTransform.Microsoft.Alpha(opacity=0)
 }
 
-/*** perso ***/
-#messageDuMJ {
-    height: 100%;
-    float: left;
-    background-color: #3ca1ea;
-    padding: 0 10px;
-    cursor: pointer;
-}
+/*** lien ***/
+.vers {
+     height: 100%;
+     float: left;
+     background-color: #3ca1ea;
+     padding: 0 10px;
+ }
 
-#messageDuMJ.danger {
-    background-color: #880000;
-}
-
-#messageDuMJ:hover {
+.vers:hover {
     background-color: #3cbeea;
 }
 
-#messageNonLue {
+.lienVers {
     height: 100%;
-    display: inline;
+    display: block;
     padding: 8px;
     float: left;
     color: #fff;
 }
 
 #voirMessage {
-    height: 100%;
+    padding-left: 5px;
     display: inline;
-    padding: 8px;
+}
+
+#messageNonLue {
     float: left;
-    color: #fff;
+    display: inline;
 }
 
-#versFichePersonnage {
-    height: 100%;
-    float: left;
-    background-color: #3ca1ea;
-    padding: 0 10px;
-}
-
-#versFichePersonnage:hover {
-    background-color: #3cbeea;
-}
-
-#lienVersFichePersonnage {
-    height: 100%;
-    display: block;
-    padding: 8px;
-    float: left;
-    color: #fff;
-}
-
-#versCarte {
-    height: 100%;
-    float: right;
-    background-color: #3ca1ea;
-    padding: 0 10px;
-}
-
-#versCarte:hover {
-    background-color: #3cbeea;
-}
-
-#lienVersCarte {
-    height: 100%;
-    display: block;
-    padding: 8px;
-    float: right;
-    color: #fff;
-}
-
-#versPerso {
-    height: 100%;
-    float: left;
-    background-color: #3ca1ea;
-    padding: 0 10px;
-}
-
-#versPerso:hover {
-    background-color: #3cbeea;
-}
-
-#lienVersPerso {
-    height: 100%;
-    display: block;
-    padding: 8px;
-    float: left;
-    color: #fff;
-}
-
-#versManagerSon {
-    height: 100%;
-    float: right;
-    background-color: #3ca1ea;
-    padding: 0 10px;
-}
-
-#versManagerSon:hover {
-    background-color: #3cbeea;
-}
-
-#lienVersManagerSon {
-    height: 100%;
-    display: block;
-    padding: 8px;
-    float: right;
-    color: #fff;
-}
-
-#versBestiaire {
-    height: 100%;
-    float: right;
-    background-color: #3ca1ea;
-    padding: 0 10px;
-}
-
-#versBestiaire:hover {
-    background-color: #3cbeea;
-}
-
-#lienVersBestiaire {
-    height: 100%;
-    display: block;
-    padding: 8px;
-    float: right;
-    color: #fff;
+#messageDuMJ.danger, #messageDesJoueur.danger {
+    background-color: #880000;
 }
 
 /*** fiche Personnage ***/
@@ -208,28 +109,23 @@ a:hover {
     margin-bottom: 10px;
 }
 
-.fichePersonnage .listeAction {
-    margin-top: 20px;
-    margin-bottom: 20px;
-}
-
 .fichePersonnage .column .input-group {
-    width: 85%;
+    width: 100%;
     float: left;
 }
 
 .fichePersonnage .column button {
-    width: 85%;
+    width: 100%;
     float: left;
 }
 
 .fichePersonnage .column input {
-    width: 85%;
+    width: 100%;
     float: left;
 }
 
 .fichePersonnage .column textarea {
-    width: 85%;
+    width: 100%;
     float: left;
 }
 
@@ -242,77 +138,72 @@ a:hover {
     float: left;
 }
 
-.glyphicon:before {
-    padding-right: 10px;
-    float: left;
-}
-
 .glyphicon-lvl:before {
-    content: url(icone/Level.jpg) " ";
+    content: url(icone/Level.jpg) " Level ";
 }
 
 .glyphicon-classe:before {
-    content: url(icone/Classe.jpg) " ";
+    content: url(icone/Classe.jpg) " Classe ";
 }
 
 .glyphicon-metier:before {
-    content: url(icone/Métier.jpg) " ";
+    content: url(icone/Métier.jpg) " Métier ";
 }
 
 .glyphicon-vie:before {
-    content: url(icone/vie.jpg) " ";
+    content: url(icone/vie.jpg) " vie ";
 }
 
 .glyphicon-mana:before {
-    content: url(icone/mana.jpg) " ";
+    content: url(icone/mana.jpg) " Mana ";
 }
 
 .glyphicon-force:before {
-    content: url(icone/Force.jpg) " ";
+    content: url(icone/Force.jpg) " Force ";
 }
 
 .glyphicon-charisme:before {
-    content: url(icone/Charisme.jpg) " ";
+    content: url(icone/Charisme.jpg) " Charisme ";
 }
 
 .glyphicon-education:before {
-    content: url(icone/education.jpg) " ";
+    content: url(icone/education.jpg) " Education ";
 }
 
 .glyphicon-dexterite:before {
-    content: url(icone/dexterite.jpg) " ";
+    content: url(icone/dexterite.jpg) " Dexterite ";
 }
 
 .glyphicon-perception:before {
-    content: url(icone/perception.jpg) " ";
+    content: url(icone/perception.jpg) " Perception ";
 }
 
 .glyphicon-constitution:before {
-    content: url(icone/constitution.jpg) " ";
+    content: url(icone/constitution.jpg) " Constitution ";
 }
 
 .glyphicon-chance:before {
-    content: url(icone/chance.jpg) " ";
+    content: url(icone/chance.jpg) " Chance ";
 }
 
 .glyphicon-competence:before {
-    content: url(icone/competence.jpg) " ";
+    content: url(icone/competence.jpg) " Competence ";
 }
 
 .glyphicon-sort:before {
-    content: url(icone/sort.jpg) " ";
+    content: url(icone/sort.jpg) " Sort ";
 }
 
 .glyphicon-equipement:before {
-    content: url(icone/equipement.jpg) " ";
+    content: url(icone/equipement.jpg) " Equipement ";
 }
 
 .glyphicon-inventaire:before {
-    content: url(icone/inventaire.jpg) " ";
+    content: url(icone/inventaire.jpg) " Inventaire ";
 }
 
 .glyphicon-po:before {
-    content: url(icone/gold.jpg) " ";
+    content: url(icone/gold.jpg) " Gold ";
 }
 
 /*** message ***/
@@ -345,7 +236,7 @@ a:hover {
 }
 
 #carte {
-	padding: 0;
+    padding: 0;
     width: 100%;
     height: 100%;
     display: inline-flex;
@@ -366,11 +257,6 @@ a:hover {
     top: 0px;
     left: 0px;
     z-index: 2;
-}
-
-.adminCarte .listeAction .column {
-    margin-top: 20px;
-    margin-bottom: 20px;
 }
 
 .adminCarte .column .input-group {
@@ -413,37 +299,86 @@ a:hover {
     background-position: 50% 50%;
 }
 
-/*** manager Son ***/
-.managerSon .listeAction .column {
-    margin-top: 20px;
-    margin-bottom: 20px;
+/*** fiche monster ***/
+.ficheMonstre .column .input-group {
+    width: 100%;
+    float: left;
 }
+
+.ficheMonstre .column button {
+    width: 100%;
+    float: left;
+}
+
+.ficheMonstre .column input {
+    width: 100%;
+    float: left;
+}
+
+.ficheMonstre .column textarea {
+    width: 100%;
+    float: left;
+}
+
+.ficheMonstre .column select {
+    width: 100%;
+    float: left;
+}
+
+#listeBestiaire img{
+    height: auto;
+    max-width: 100%;
+    max-height: 100%;
+    margin: auto;
+}
+
+.glyphicon-nom:before {
+    content: "Nom ";
+}
+
+.glyphicon-image:before {
+    content: "Image ";
+}
+
+.glyphicon-isCacher:before {
+    content: "Cacher ";
+}
+
+.glyphicon-attaque:before {
+    content: "Attaque ";
+}
+
+.glyphicon-bonusDegat:before {
+    content: "Bonus Degat ";
+}
+
+.glyphicon-reductionDegat:before {
+    content: "Reduction Degat ";
+}
+
+.glyphicon-parade:before {
+    content: "Parade ";
+}
+
+.glyphicon-esquive:before {
+    content: "Esquive ";
+}
+
+.glyphicon-blocage:before {
+    content: "Blocage ";
+}
+
+.glyphicon-contreAttaque:before {
+    content: "Contre Attaque ";
+}
+
+.glyphicon-faiblesse:before {
+    content: "Faiblesse ";
+}
+
+/*** manager Son ***/
 
 /*** lanceur de dés ***/
-#versLancerDes {
-    height: 100%;
-    float: right;
-    background-color: #3ca1ea;
-    padding: 0 10px;
-}
-
-#versLancerDes:hover {
-    background-color: #3cbeea;
-}
-
-#lienVersLancerDes {
-    height: 100%;
-    display: block;
-    padding: 8px;
-    float: right;
-    color: #fff;
-}
-
-.lanceurDeDes .listeAction {
-    margin-top: 20px;
-    margin-bottom: 20px;
-}
-
 .unDes {
     height: 52px;
     width: 52px;
@@ -454,3 +389,5 @@ a:hover {
     border: 2px solid #000;
     margin-bottom: 5px;
 }
+
+/*** manager navire ***/

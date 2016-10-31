@@ -2,17 +2,17 @@
         <?php if ($erreur != "") echo $erreur; ?>
     </div>
     <div id="enTete">
-        <div id="versFichePersonnage">
-            <a id="lienVersFichePersonnage" href="./index.php?perso=<?php echo $personnage; ?>&action=fichePerso">Retour à la fiche du perso</a>
+        <div id="versFichePersonnage" class="vers">
+            <a id="lienVersFichePersonnage" class="lienVers" href="./index.php?perso=<?php echo $personnage; ?>&action=fichePerso">Retour à la fiche du perso</a>
         </div>
-        <div id="versBestiaire">
-            <a id="lienVersBestiaire" href="../bestiaire/index.php">Voir la Bestiaire</a>
+        <div id="versBestiaire" class="vers">
+            <a id="lienVersBestiaire"  class="lienVers" href="../bestiaire/index.php">Voir la Bestiaire</a>
         </div>
-        <div id="versCarte">
-            <a id="lienVersCarte" href="../carte/index.php">Voir la Carte</a>
+        <div id="versCarte" class="vers">
+            <a id="lienVersCarte" class="lienVers" href="../carte/index.php">Voir la Carte</a>
         </div>
-        <div id="versLancerDes">
-            <a id="lienVersLancerDes" href="../lancerDes/index.php">Dés Virtuel</a>
+        <div id="versLancerDes" class="vers">
+            <a id="lienVersLancerDes" class="lienVers" href="../lancerDes/index.php">Dés Virtuel</a>
         </div>
     </div>
     <div id="Corps" class="listeMessages">

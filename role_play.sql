@@ -3,18 +3,12 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Mar 26 Juillet 2016 à 14:41
+-- Généré le :  Ven 28 Octobre 2016 à 10:46
 -- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
 
 --
 -- Base de données :  `role_play`
@@ -111,6 +105,26 @@ CREATE TABLE IF NOT EXISTS `message` (
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `navire`
+--
+
+DROP TABLE IF EXISTS `navire`;
+CREATE TABLE IF NOT EXISTS `navire` (
+  `id` int(12) NOT NULL AUTO_INCREMENT,
+  `nom` varchar(255) NOT NULL,
+  `forPlayer` enum('oui','non') NOT NULL,
+  `type` varchar(255) NOT NULL DEFAULT 'Schooner',
+  `equipage` int(12) NOT NULL DEFAULT '10',
+  `coque` int(12) NOT NULL DEFAULT '10',
+  `voile` int(12) NOT NULL DEFAULT '5',
+  `canon` int(12) NOT NULL DEFAULT '10',
+  `bouletCanon` int(12) NOT NULL DEFAULT '10',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `personnage`
 --
 
@@ -152,7 +166,3 @@ CREATE TABLE IF NOT EXISTS `sonajouer` (
   `idPerso` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

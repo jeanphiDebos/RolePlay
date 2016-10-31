@@ -12,7 +12,7 @@
                 </div>
             </div>
             <div class="col-md-2 column">
-                <button type="button" id="addCarte">ajouter une carte</button>
+                <button type="button" id="addCarte" class="btn btn-default">ajouter une carte</button>
             </div>
             <div class="col-md-2 column">
                 <div class="input-group">

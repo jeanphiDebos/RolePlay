@@ -44,12 +44,20 @@ if ($action == "fichePerso"){
     include("./vueManagerSon.php");
 }else if ($action == "bestiaire"){
     $pathUploadFichier = "../bestiaire/image";
-    $listebestiaire = $requeteurSQL->getListebestiaire();
+    $listeBestiaire = $requeteurSQL->getListeBestiaire();
 
     if ($requeteurSQL->getErreur()){
         $erreur = $requeteurSQL->getMessageErreur();
     }
 
     include("./vueBestiaire.php");
+}else if ($action == "navire"){
+    $listeNavire = $requeteurSQL->getListeNavire();
+
+    if ($requeteurSQL->getErreur()){
+        $erreur = $requeteurSQL->getMessageErreur();
+    }
+
+    include("./vueNavire.php");
 }
 ?>

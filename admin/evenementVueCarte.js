@@ -1,4 +1,4 @@
-function affichageCarte(idCarte){
+function affichageCarte(idCarte) {
     jQuery.ajax({
         type: "GET",
         url: "../model/requeteAJAX.php",
@@ -6,31 +6,31 @@ function affichageCarte(idCarte){
             action: "getCarteID",
             idCarte: idCarte
         },
-        success: function(data){
-            try{
+        success: function (data) {
+            try {
                 var uneCarte = JSON.parse(data);
-                if (uneCarte.id !== undefined && uneCarte.id != ""){
+                if (uneCarte.id !== undefined && uneCarte.id != "") {
                     afficherCarte(uneCarte);
                     afficherAxe(uneCarte);
                     afficherTypeAffichage(uneCarte);
                     afficherActiverAfficher(uneCarte);
-                }else{
+                } else {
                     console.error("id affichageCarte : " + uneCarte.id);
                 }
-            }catch (e){
+            } catch (e) {
                 console.error("affichageCarte : " + e + "(" + data + ")");
                 afficherMessage(4, "affichageCarte : " + e + "(" + data + ")", 0);
             }
         },
-        error: function(){
+        error: function () {
             console.error("erreur sur la fonction JQuery affichageCarte");
             afficherMessage(4, "erreur sur la fonction JQuery affichageCarte", 0);
         }
     });
 }
 
-function evenButtonAddCarteClick(pathUploadFichier){
-    $("#addCarte").click(function(){
+function evenButtonAddCarteClick(pathUploadFichier) {
+    $("#addCarte").click(function () {
         jQuery.ajax({
             type: "GET",
             url: "../model/requeteAJAX.php",
@@ -38,12 +38,12 @@ function evenButtonAddCarteClick(pathUploadFichier){
                 action: "listingElementsDossier",
                 dossierElement: pathUploadFichier
             },
-            success: function(data){
-                try{
+            success: function (data) {
+                try {
                     var optionForImageCarte = "";
                     var listeImageCarte = JSON.parse(data);
 
-                    for (var i = 0; i <listeImageCarte.length; i++){
+                    for (var i = 0; i < listeImageCarte.length; i++) {
                         optionForImageCarte += "<option value='" + listeImageCarte[i] + "'>" + listeImageCarte[i].substr(0, listeImageCarte[i].indexOf(".")) + "</option>";
                     }
 
@@ -54,24 +54,24 @@ function evenButtonAddCarteClick(pathUploadFichier){
                             success: {
                                 label: "ajouter",
                                 className: "btn-success",
-                                callback: function(){
+                                callback: function () {
                                     var nomCarte = $('#nomCarte').val();
                                     var imageCarte = $('#imageCarte').find(":selected").val();
-                                    if (nomCarte != "" && imageCarte != ""){
+                                    if (nomCarte != "" && imageCarte != "") {
                                         ajouterUneCarte(nomCarte, imageCarte);
-                                    }else{
+                                    } else {
                                         afficherMessage(4, "nom de la carte ou image de la carte vide", 0);
                                     }
                                 }
                             }
                         }
                     });
-                }catch (e){
+                } catch (e) {
                     console.error("evenButtonAddCarteClick : " + e + "(" + data + ")");
                     afficherMessage(4, "evenButtonAddCarteClick : " + e + "(" + data + ")", 0);
                 }
             },
-            error: function(){
+            error: function () {
                 console.error("erreur sur la fonction JQuery evenButtonAddCarteClick");
                 afficherMessage(4, "erreur sur la fonction JQuery evenButtonAddCarteClick", 0);
             }
@@ -79,15 +79,15 @@ function evenButtonAddCarteClick(pathUploadFichier){
     });
 }
 
-function evenSelectCarteChange(){
-    $("#listeCarte").change(function(){
+function evenSelectCarteChange() {
+    $("#listeCarte").change(function () {
         var idCarte = $(this).val();
         $(location).attr('href', "./index.php?action=carte&carte=" + idCarte);
     });
 }
 
-function evenDivCaseMasqueCarteClick(uneCarte){
-    $(".caseMasqueCarte").click(function(){
+function evenDivCaseMasqueCarteClick(uneCarte) {
+    $(".caseMasqueCarte").click(function () {
         var donnees = $(this).attr('id').split("~");
         var action = donnees[0];
         var axeHorizontal = donnees[1];
@@ -102,17 +102,17 @@ function evenDivCaseMasqueCarteClick(uneCarte){
                 axeHorizontal: axeHorizontal,
                 axeVertical: axeVertical
             },
-            success: function(data){
-                if (data == "cacher"){
+            success: function (data) {
+                if (data == "cacher") {
                     $(".caseHorizontal" + axeHorizontal + ".caseVertical" + axeVertical).removeClass("caseCarteAfficher").addClass("caseCarteCacher").attr("id", "afficherCase~" + axeHorizontal + "~" + axeVertical)
-                }else if (data == "afficher"){
+                } else if (data == "afficher") {
                     $(".caseHorizontal" + axeHorizontal + ".caseVertical" + axeVertical).removeClass("caseCarteCacher").addClass("caseCarteAfficher").attr("id", "cacherCase~" + axeHorizontal + "~" + axeVertical)
-                }else{
+                } else {
                     console.error("evenDivCaseMasqueCarteClick : " + e + "(" + data + ")");
                     afficherMessage(4, "evenDivCaseMasqueCarteClick : " + e + "(" + data + ")", 0);
                 }
             },
-            error: function(){
+            error: function () {
                 console.error("erreur sur la fonction JQuery evenDivCaseMasqueCarteClick");
                 afficherMessage(4, "erreur sur la fonction JQuery evenDivCaseMasqueCarteClick", 0);
             }
@@ -120,10 +120,10 @@ function evenDivCaseMasqueCarteClick(uneCarte){
     });
 }
 
-function evenInputAxeVerticalChange(uneCarte){
-    $("#axeVertical").change(function(){
+function evenInputAxeVerticalChange(uneCarte) {
+    $("#axeVertical").change(function () {
         var axeVertical = $(this).val();
-        if (axeVertical != "" && !isNaN(Number(axeVertical))){
+        if (axeVertical != "" && !isNaN(Number(axeVertical))) {
             jQuery.ajax({
                 type: "GET",
                 url: "../model/requeteAJAX.php",
@@ -132,30 +132,30 @@ function evenInputAxeVerticalChange(uneCarte){
                     idCarte: uneCarte.id,
                     axeVertical: axeVertical
                 },
-                success: function(data){
-                    if (data == ""){
+                success: function (data) {
+                    if (data == "") {
                         uneCarte.axeVertical = axeVertical;
                         afficherCarte(uneCarte);
-                    }else{
+                    } else {
                         console.error("evenInputAxeVerticalChange : " + e + "(" + data + ")");
                         afficherMessage(4, "evenInputAxeVerticalChange : " + e + "(" + data + ")", 0);
                     }
                 },
-                error: function(){
+                error: function () {
                     console.error("erreur sur la fonction JQuery evenInputAxeVerticalChange");
                     afficherMessage(4, "erreur sur la fonction JQuery evenInputAxeVerticalChange", 0);
                 }
             });
-        }else{
+        } else {
             console.error("erreur sur la fonction evenInputAxeHorizontalChange, axeHorizontal n'est pas un entier");
         }
     });
 }
 
-function evenInputAxeHorizontalChange(uneCarte){
-    $("#axeHorizontal").change(function(){
+function evenInputAxeHorizontalChange(uneCarte) {
+    $("#axeHorizontal").change(function () {
         var axeHorizontal = $(this).val();
-        if (axeHorizontal != "" && !isNaN(Number(axeHorizontal))){
+        if (axeHorizontal != "" && !isNaN(Number(axeHorizontal))) {
             jQuery.ajax({
                 type: "GET",
                 url: "../model/requeteAJAX.php",
@@ -164,28 +164,28 @@ function evenInputAxeHorizontalChange(uneCarte){
                     idCarte: uneCarte.id,
                     axeHorizontal: axeHorizontal
                 },
-                success: function(data){
-                    if (data == ""){
+                success: function (data) {
+                    if (data == "") {
                         uneCarte.axeHorizontal = axeHorizontal;
                         afficherCarte(uneCarte);
-                    }else{
+                    } else {
                         console.error("evenInputAxeHorizontalChange : " + e + "(" + data + ")");
                         afficherMessage(4, "evenInputAxeHorizontalChange : " + e + "(" + data + ")", 0);
                     }
                 },
-                error: function(){
+                error: function () {
                     console.error("erreur sur la fonction JQuery evenInputAxeHorizontalChange");
                     afficherMessage(4, "erreur sur la fonction JQuery evenInputAxeHorizontalChange", 0);
                 }
             });
-        }else{
+        } else {
             console.error("erreur sur la fonction evenInputAxeHorizontalChange, axeHorizontal n'est pas un entier");
         }
     });
 }
 
-function evenInputTypeAffichageChange(uneCarte){
-    $("#typeAffichage").change(function(){
+function evenInputTypeAffichageChange(uneCarte) {
+    $("#typeAffichage").change(function () {
         var typeAffichage = $(this).val();
         jQuery.ajax({
             type: "GET",
@@ -195,13 +195,13 @@ function evenInputTypeAffichageChange(uneCarte){
                 idCarte: uneCarte.id,
                 typeAffichage: typeAffichage
             },
-            success: function(data){
-                if (data != ""){
+            success: function (data) {
+                if (data != "") {
                     console.error("evenInputTypeAffichageChange : " + e + "(" + data + ")");
                     afficherMessage(4, "evenInputTypeAffichageChange : " + e + "(" + data + ")", 0);
                 }
             },
-            error: function(){
+            error: function () {
                 console.error("erreur sur la fonction JQuery evenInputTypeAffichageChange");
                 afficherMessage(4, "erreur sur la fonction JQuery evenInputTypeAffichageChange", 0);
             }
@@ -209,10 +209,10 @@ function evenInputTypeAffichageChange(uneCarte){
     });
 }
 
-function evenInputActiverAfficherChange(uneCarte){
-    $("#activerAfficher").on("switchChange.bootstrapSwitch", function(event, state){
+function evenInputActiverAfficherChange(uneCarte) {
+    $("#activerAfficher").on("switchChange.bootstrapSwitch", function (event, state) {
         var stateSwitch = $(this).bootstrapSwitch('state');
-        if (stateSwitch){
+        if (stateSwitch) {
             jQuery.ajax({
                 type: "GET",
                 url: "../model/requeteAJAX.php",
@@ -220,31 +220,31 @@ function evenInputActiverAfficherChange(uneCarte){
                     action: "afficherCarte",
                     idCarte: uneCarte.id
                 },
-                success: function(data){
-                    if (data != ""){
+                success: function (data) {
+                    if (data != "") {
                         console.error("evenInputActiverAfficherChange : " + e + "(" + data + ")");
                         afficherMessage(4, "evenInputActiverAfficherChange : " + e + "(" + data + ")", 0);
                     }
                 },
-                error: function(){
+                error: function () {
                     console.error("erreur sur la fonction JQuery evenInputActiverAfficherChange");
                     afficherMessage(4, "erreur sur la fonction JQuery evenInputActiverAfficherChange", 0);
                 }
             });
-        }else{
+        } else {
             jQuery.ajax({
                 type: "GET",
                 url: "../model/requeteAJAX.php",
                 data: {
                     action: "notAfficherCarte",
                 },
-                success: function(data){
-                    if (data != ""){
+                success: function (data) {
+                    if (data != "") {
                         console.error("evenInputActiverAfficherChange : " + e + "(" + data + ")");
                         afficherMessage(4, "evenInputActiverAfficherChange : " + e + "(" + data + ")", 0);
                     }
                 },
-                error: function(){
+                error: function () {
                     console.error("erreur sur la fonction JQuery evenInputActiverAfficherChange");
                     afficherMessage(4, "erreur sur la fonction JQuery evenInputActiverAfficherChange", 0);
                 }
@@ -253,13 +253,15 @@ function evenInputActiverAfficherChange(uneCarte){
     });
 }
 
-function afficherCarte(uneCarte){
+function afficherCarte(uneCarte) {
     $("#carte").empty().append("<img src=\"../carte/image/" + uneCarte.image + "\" id=\"carteEnCour\"><div class=\"masqueCarte\"></div>");
+    $("#carte img").load(function(){
+        redimensionnerCarte();
+    });
 
-	redimensionnerCarte();
     $(".masqueCarte").empty();
-    for (i = 0; i < uneCarte.axeHorizontal; i++){
-        for (y = 0; y < uneCarte.axeVertical; y++){
+    for (i = 0; i < uneCarte.axeHorizontal; i++) {
+        for (y = 0; y < uneCarte.axeVertical; y++) {
             if (i == uneCarte.axeHorizontal - 1 && y == uneCarte.axeVertical - 1) $(".masqueCarte").append("<div class=\"caseMasqueCarte LastVertical LastHorizontal caseHorizontal" + i + " caseVertical" + y + "\"></div>");
             else if (i == uneCarte.axeHorizontal - 1) $(".masqueCarte").append("<div class=\"caseMasqueCarte LastHorizontal caseHorizontal" + i + " caseVertical" + y + "\"></div>");
             else if (y == uneCarte.axeVertical - 1) $(".masqueCarte").append("<div class=\"caseMasqueCarte LastVertical caseHorizontal" + i + " caseVertical" + y + "\"></div>");
@@ -272,8 +274,8 @@ function afficherCarte(uneCarte){
     $(".caseMasqueCarte.LastVertical").css("width", (Math.round(100 / uneCarte.axeVertical)) + (100 - (Math.round(100 / uneCarte.axeVertical) * uneCarte.axeVertical)) + "%");
     $(".caseMasqueCarte.LastHorizontal").css("height", (Math.round(100 / uneCarte.axeHorizontal)) + (100 - (Math.round(100 / uneCarte.axeHorizontal) * uneCarte.axeHorizontal)) + "%");
 
-    for (i = 0; i < uneCarte.axeHorizontal; i++){
-        for (y = 0; y < uneCarte.axeVertical; y++){
+    for (i = 0; i < uneCarte.axeHorizontal; i++) {
+        for (y = 0; y < uneCarte.axeVertical; y++) {
             jQuery.ajax({
                 type: "GET",
                 url: "../model/requeteAJAX.php",
@@ -283,17 +285,17 @@ function afficherCarte(uneCarte){
                     axeHorizontal: i,
                     axeVertical: y
                 },
-                success: function(data){
+                success: function (data) {
                     var unAffichage = JSON.parse(data);
-                    try{
+                    try {
                         if (unAffichage.aCaher == false) $(".caseHorizontal" + unAffichage.axeHorizontal + ".caseVertical" + unAffichage.axeVertical).addClass("caseCarteAfficher").attr("id", "cacherCase~" + unAffichage.axeHorizontal + "~" + unAffichage.axeVertical);
                         if (unAffichage.aCaher == true) $(".caseHorizontal" + unAffichage.axeHorizontal + ".caseVertical" + unAffichage.axeVertical).addClass("caseCarteCacher").attr("id", "afficherCase~" + unAffichage.axeHorizontal + "~" + unAffichage.axeVertical);
-                    }catch (e){
+                    } catch (e) {
                         console.error("elementACacher : " + e + "(" + data + ")");
                         afficherMessage(4, "elementACacher : " + e + "(" + data + ")", 0);
                     }
                 },
-                error: function(){
+                error: function () {
                     console.error("erreur sur la fonction JQuery elementACacher");
                     afficherMessage(4, "erreur sur la fonction JQuery elementACacher", 0);
                 }
@@ -304,25 +306,25 @@ function afficherCarte(uneCarte){
     evenDivCaseMasqueCarteClick(uneCarte);
 }
 
-function afficherAxe(uneCarte){
+function afficherAxe(uneCarte) {
     $("#axeVertical").val(uneCarte.axeVertical);
     $("#axeHorizontal").val(uneCarte.axeHorizontal);
     evenInputAxeVerticalChange(uneCarte);
     evenInputAxeHorizontalChange(uneCarte);
 }
 
-function afficherTypeAffichage(uneCarte){
+function afficherTypeAffichage(uneCarte) {
     $("#" + uneCarte.typeAffichage).attr("selected", "selected");
     evenInputTypeAffichageChange(uneCarte);
 }
 
-function afficherActiverAfficher(uneCarte){
+function afficherActiverAfficher(uneCarte) {
     if (uneCarte.afficher == "oui") $("#activerAfficher").bootstrapSwitch('state', true);
     else $("#activerAfficher").bootstrapSwitch('state', false);
     evenInputActiverAfficherChange(uneCarte);
 }
 
-function ajouterUneCarte(nomCarte, imageCarte){
+function ajouterUneCarte(nomCarte, imageCarte) {
     jQuery.ajax({
         type: "GET",
         url: "../model/requeteAJAX.php",
@@ -331,27 +333,27 @@ function ajouterUneCarte(nomCarte, imageCarte){
             nomCarte: nomCarte,
             imageCarte: imageCarte
         },
-        success: function(data){
-            try{
+        success: function (data) {
+            try {
                 var newCarte = JSON.parse(data);
-                if (newCarte.id !== newCarte && newCarte.id != ""){
+                if (newCarte.id !== newCarte && newCarte.id != "") {
                     $("#listeCarte").append($("<option></option>").attr("value", newCarte.id).attr("class", "uneCarteOption").text(newCarte.nom));
-                }else{
+                } else {
                     console.error("id ajouterUneCarte : " + newCarte.id);
                 }
-            }catch (e){
+            } catch (e) {
                 console.error("ajouterUneCarte : " + e + "(" + data + ")");
                 afficherMessage(4, "ajouterUneCarte : " + e + "(" + data + ")", 0);
             }
         },
-        error: function(){
+        error: function () {
             console.error("erreur sur la fonction JQuery ajouterUneCarte");
             afficherMessage(4, "erreur sur la fonction JQuery ajouterUneCarte", 0);
         }
     });
 }
 
-function redimensionnerCarte(){
+function redimensionnerCarte() {
     $("#carteEnCour").css("max-height", $(window).height() - $("#enTete").height() - $(".listeAction").height());
     $(".masqueCarte").css("margin", $("#carteEnCour").css("margin")).css("height", $("#carteEnCour").height() + "px").css("width", $("#carteEnCour").width() + "px");
 }

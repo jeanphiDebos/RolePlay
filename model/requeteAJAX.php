@@ -24,6 +24,10 @@ $IDMonstre = isset($_GET['IDMonstre']) ? addslashes($_GET['IDMonstre']) : "";
 $nomMonstre = isset($_GET['nomMonstre']) ? addslashes($_GET['nomMonstre']) : "";
 $champMonstre = isset($_GET['champMonstre']) ? addslashes($_GET['champMonstre']) : "";
 $valeurMonstre = isset($_GET['valeurMonstre']) ? addslashes($_GET['valeurMonstre']) : "";
+$IDNavire = isset($_GET['IDNavire']) ? addslashes($_GET['IDNavire']) : "";
+$nomNavire = isset($_GET['nomNavire']) ? addslashes($_GET['nomNavire']) : "";
+$champNavire = isset($_GET['champNavire']) ? addslashes($_GET['champNavire']) : "";
+$valeurNavire = isset($_GET['valeurNavire']) ? addslashes($_GET['valeurNavire']) : "";
 $isCacher = isset($_GET['isCacher']) ? addslashes($_GET['isCacher']) : "0";
 $dossierElements = isset($_GET['dossierElement']) ? addslashes($_GET['dossierElement']) : "";
 
@@ -129,6 +133,18 @@ if (!$requeteurSQL->getErreur()){
             break;
         case "cacherMonstre":
             cacherMonstre($IDMonstre, $isCacher, $requeteurSQL);
+            break;
+        case "getNavireID":
+            getNavireID($IDNavire, $requeteurSQL);
+            break;
+        case "addNavire":
+            addNavire($nomNavire, $requeteurSQL);
+            break;
+        case "deleteNavire":
+            deleteNavire($IDNavire, $requeteurSQL);
+            break;
+        case "modifierValeurNavire":
+            modifierValeurNavire($IDNavire, $champNavire, $valeurNavire, $requeteurSQL);
             break;
         case "listingElementsDossier":
             listingElementsDossier($dossierElements);
@@ -597,6 +613,74 @@ function modifierValeurMonstre($IDMonstre, $champMonstre, $valeurMonstre, $reque
  */
 function cacherMonstre($IDMonstre, $isCacher, $requeteurSQL){
     $requeteurSQL->cacherMonstre($IDMonstre, $isCacher);
+
+    if ($requeteurSQL->getErreur()){
+        echo $requeteurSQL->getMessageErreur();
+    }
+}
+
+/**
+ * @param $IDNavire
+ * @param requeteurSQL $requeteurSQL
+ */
+function getNavireID($IDNavire, $requeteurSQL){
+    $unNavire = $requeteurSQL->getNavireID($IDNavire);
+
+    if ($requeteurSQL->getErreur()){
+        echo $requeteurSQL->getMessageErreur();
+    }else{
+        echo json_encode($unNavire);
+    }
+}
+
+/**
+ * @param $nomNavire
+ * @param requeteurSQL $requeteurSQL
+ */
+function addNavire($nomNavire, $requeteurSQL){
+    $unNavire = $requeteurSQL->getNavireNom($nomNavire);
+
+    if ($requeteurSQL->getErreur()){
+        echo $requeteurSQL->getMessageErreur();
+    }else if (count($unNavire) != 0){
+        echo "non Navire deja utilisé";
+    }else{
+        $requeteurSQL->addNavire($nomNavire);
+
+        if ($requeteurSQL->getErreur()){
+            echo $requeteurSQL->getMessageErreur();
+        }else{
+            $unNavire = $requeteurSQL->getNavireNom($nomNavire);
+
+            if ($requeteurSQL->getErreur()){
+                echo $requeteurSQL->getMessageErreur();
+            }else{
+                echo json_encode($unNavire);
+            }
+        }
+    }
+}
+
+/**
+ * @param $IDNavire
+ * @param requeteurSQL $requeteurSQL
+ */
+function deleteNavire($IDNavire, $requeteurSQL){
+    $requeteurSQL->deleteNavire($IDNavire);
+
+    if ($requeteurSQL->getErreur()){
+        echo $requeteurSQL->getMessageErreur();
+    }
+}
+
+/**
+ * @param $IDNavire
+ * @param $champNavire
+ * @param $valeurNavire
+ * @param requeteurSQL $requeteurSQL
+ */
+function modifierValeurNavire($IDNavire, $champNavire, $valeurNavire, $requeteurSQL){
+    $requeteurSQL->modifierValeurNavire($IDNavire, $champNavire, $valeurNavire);
 
     if ($requeteurSQL->getErreur()){
         echo $requeteurSQL->getMessageErreur();

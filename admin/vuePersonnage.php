@@ -12,13 +12,13 @@
                 </div>
             </div>
             <div class="col-md-2 column">
-                <button type="button" id="addPersonnage">ajouter un perso</button>
+                <button type="button" id="addPersonnage" class="btn btn-default">ajouter un perso</button>
             </div>
             <div class="col-md-2 column">
-                <button type="button" id="deletPersonnage">supprimer le perso</button>
+                <button type="button" id="deletPersonnage" class="btn btn-default">supprimer le perso</button>
             </div>
             <div class="col-md-4 column">
-                <button type="button" id="sendMessagePersonnage">envoyer un message</button>
+                <button type="button" id="sendMessagePersonnage" class="btn btn-default">envoyer un message</button>
             </div>
         </div>
         <div class="row clearfix">
@@ -35,25 +35,25 @@
         </div>
         <div class="row clearfix">
             <div class="col-md-2 column glyphicon glyphicon-force">
-                <input type="number" name="force" id="force" class="inputDescriptionPersonnage">/100
+                <input type="number" name="force" id="force" class="inputDescriptionPersonnage">
             </div>
             <div class="col-md-2 column glyphicon glyphicon-education">
-                <input type="number" name="education" id="education" class="inputDescriptionPersonnage">/100
+                <input type="number" name="education" id="education" class="inputDescriptionPersonnage">
             </div>
             <div class="col-md-2 column glyphicon glyphicon-dexterite">
-                <input type="number" name="dexterite" id="dexterite" class="inputDescriptionPersonnage">/100
+                <input type="number" name="dexterite" id="dexterite" class="inputDescriptionPersonnage">
             </div>
             <div class="col-md-2 column glyphicon glyphicon-perception">
-                <input type="number" name="perception" id="perception" class="inputDescriptionPersonnage">/100
+                <input type="number" name="perception" id="perception" class="inputDescriptionPersonnage">
             </div>
             <div class="col-md-2 column glyphicon glyphicon-constitution">
-                <input type="number" name="constitution" id="constitution" class="inputDescriptionPersonnage">/100
+                <input type="number" name="constitution" id="constitution" class="inputDescriptionPersonnage">
             </div>
             <div class="col-md-1 column glyphicon glyphicon-charisme">
-                <input type="number" name="charisme" id="charisme" class="inputDescriptionPersonnage">/100
+                <input type="number" name="charisme" id="charisme" class="inputDescriptionPersonnage">
             </div>
             <div class="col-md-1 column glyphicon glyphicon-chance">
-                <input type="number" name="chance" id="chance" class="inputDescriptionPersonnage">/100
+                <input type="number" name="chance" id="chance" class="inputDescriptionPersonnage">
             </div>
         </div>
         <div class="row clearfix">

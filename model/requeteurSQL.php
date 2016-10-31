@@ -548,13 +548,13 @@ class requeteurSQL{
     /**
      * @return array|string
      */
-    public function getListebestiaire(){
+    public function getListeBestiaire(){
         $requete = "SELECT * FROM `bestiaire` ORDER BY `nom` ASC";
 
         $result = $this->PDOBDD->ExecuterRequete($requete);
         if ($this->PDOBDD->getErrorRequete()){
             $this->erreur = true;
-            $this->MessageErreur = "erreur sur getListebestiaire, ".$this->PDOBDD->getMessageError();
+            $this->MessageErreur = "erreur sur getListeBestiaire, ".$this->PDOBDD->getMessageError();
 
             return array();
         }else{
@@ -672,6 +672,104 @@ class requeteurSQL{
         if ($this->PDOBDD->getErrorRequete()){
             $this->erreur = true;
             $this->MessageErreur = "erreur sur modifierValeurMonstre, ".$this->PDOBDD->getMessageError();
+        }
+    }
+
+    /**
+     * @return array|string
+     */
+    public function getListeNavire(){
+        $requete = "SELECT * FROM `navire` ORDER BY `nom` ASC";
+
+        $result = $this->PDOBDD->ExecuterRequete($requete);
+        if ($this->PDOBDD->getErrorRequete()){
+            $this->erreur = true;
+            $this->MessageErreur = "erreur sur getListeNavire, ".$this->PDOBDD->getMessageError();
+
+            return array();
+        }else{
+            return $result;
+        }
+    }
+
+    /**
+     * @param $IDNavire
+     * @return array
+     */
+    public function getNavireID($IDNavire){
+        $requete = "SELECT * FROM `navire` WHERE `id` like '".$IDNavire."'";
+
+        $result = $this->PDOBDD->ExecuterRequete($requete);
+        if ($this->PDOBDD->getErrorRequete()){
+            $this->erreur = true;
+            $this->MessageErreur = "erreur sur getNavireID, ".$this->PDOBDD->getMessageError();
+
+            return array();
+        }else if (count($result) != 0){
+            return $result[0];
+        }else{
+            return array();
+        }
+    }
+
+    /**
+     * @param $nomNavire
+     * @return array
+     */
+    public function getNavireNom($nomNavire){
+        $requete = "SELECT * FROM `navire` WHERE `nom` like '".$nomNavire."'";
+
+        $result = $this->PDOBDD->ExecuterRequete($requete);
+        if ($this->PDOBDD->getErrorRequete()){
+            $this->erreur = true;
+            $this->MessageErreur = "erreur sur getNavireNom, ".$this->PDOBDD->getMessageError();
+
+            return array();
+        }else if (count($result) != 0){
+            return $result[0];
+        }else{
+            return array();
+        }
+    }
+
+    /**
+     * @param $nomNavire
+     */
+    public function addNavire($nomNavire){
+        $requete = "INSERT INTO `navire` (`nom`) VALUES ('".$nomNavire."')";
+
+        $this->PDOBDD->ExecuterRequeteNoReturn($requete);
+        if ($this->PDOBDD->getErrorRequete()){
+            $this->erreur = true;
+            $this->MessageErreur = "erreur sur addNavire, ".$this->PDOBDD->getMessageError();
+        }
+    }
+
+    /**
+     * @param $IDNavire
+     */
+    public function deleteNavire($IDNavire){
+        $requete = "DELETE FROM `navire` WHERE `id` = '".$IDNavire."'";
+
+        $this->PDOBDD->ExecuterRequeteNoReturn($requete);
+        if ($this->PDOBDD->getErrorRequete()){
+            $this->erreur = true;
+            $this->MessageErreur = "erreur sur deleteNavire, ".$this->PDOBDD->getMessageError();
+        }
+    }
+
+    /**
+     * @param $IDNavire
+     * @param $champNavire
+     * @param $valeurNavire
+     */
+    public function modifierValeurNavire($IDNavire, $champNavire, $valeurNavire){
+        $requete = "UPDATE `navire` SET `".$champNavire."` = '".$valeurNavire."' WHERE `id` = '".$IDNavire."'";
+
+        $this->PDOBDD->ExecuterRequeteNoReturn($requete);
+        if ($this->PDOBDD->getErrorRequete()){
+            $this->erreur = true;
+            $this->MessageErreur = "erreur sur modifierValeurNavire, ".$this->PDOBDD->getMessageError();
         }
     }
 
