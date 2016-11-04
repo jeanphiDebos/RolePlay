@@ -6,29 +6,21 @@ require_once("./requeteurSQL.php");
  * parametres d'entrer du model
  */
 $action = isset($_GET['action']) ? addslashes($_GET['action']) : "";
-$nomPersonnage = isset($_GET['nomPersonnage']) ? addslashes($_GET['nomPersonnage']) : "";
-$IDPersonnage = isset($_GET['IDPersonnage']) ? addslashes($_GET['IDPersonnage']) : "";
-$champPersonnage = isset($_GET['champPersonnage']) ? addslashes($_GET['champPersonnage']) : "";
-$valeurPersonnage = isset($_GET['valeurPersonnage']) ? addslashes($_GET['valeurPersonnage']) : "";
+$table = isset($_GET['table']) ? addslashes($_GET['table']) : "";
+$id = isset($_GET['id']) ? addslashes($_GET['id']) : "";
+$champ = isset($_GET['champ']) ? addslashes($_GET['champ']) : "";
+$valeur = isset($_GET['valeur']) ? addslashes($_GET['valeur']) : "";
+$champWhere = isset($_GET['champWhere']) ? addslashes($_GET['champWhere']) : "";
+$valeurWhere = isset($_GET['valeurWhere']) ? addslashes($_GET['valeurWhere']) : "";
+$champValeur = isset($_GET['champValeur']) ? addslashes($_GET['champValeur']) : "";
+$order = isset($_GET['order']) ? addslashes($_GET['order']) : "";
+
 $message = isset($_GET['message']) ? addslashes($_GET['message']) : "";
-$idCarte = isset($_GET['idCarte']) ? addslashes($_GET['idCarte']) : "";
-$nomCarte = isset($_GET['nomCarte']) ? addslashes($_GET['nomCarte']) : "";
-$imageCarte = isset($_GET['imageCarte']) ? addslashes($_GET['imageCarte']) : "";
 $axeVertical = isset($_GET['axeVertical']) ? addslashes($_GET['axeVertical']) : "";
 $axeHorizontal = isset($_GET['axeHorizontal']) ? addslashes($_GET['axeHorizontal']) : "";
-$typeAffichage = isset($_GET['typeAffichage']) ? addslashes($_GET['typeAffichage']) : "";
 $cheminSon = isset($_GET['cheminSon']) ? addslashes($_GET['cheminSon']) : "";
 $dateLancementClient = isset($_GET['dateLancementClient']) ? addslashes($_GET['dateLancementClient']) : "";
 $idSession = isset($_GET['idSession']) ? addslashes($_GET['idSession']) : "";
-$IDMonstre = isset($_GET['IDMonstre']) ? addslashes($_GET['IDMonstre']) : "";
-$nomMonstre = isset($_GET['nomMonstre']) ? addslashes($_GET['nomMonstre']) : "";
-$champMonstre = isset($_GET['champMonstre']) ? addslashes($_GET['champMonstre']) : "";
-$valeurMonstre = isset($_GET['valeurMonstre']) ? addslashes($_GET['valeurMonstre']) : "";
-$IDNavire = isset($_GET['IDNavire']) ? addslashes($_GET['IDNavire']) : "";
-$nomNavire = isset($_GET['nomNavire']) ? addslashes($_GET['nomNavire']) : "";
-$champNavire = isset($_GET['champNavire']) ? addslashes($_GET['champNavire']) : "";
-$valeurNavire = isset($_GET['valeurNavire']) ? addslashes($_GET['valeurNavire']) : "";
-$isCacher = isset($_GET['isCacher']) ? addslashes($_GET['isCacher']) : "0";
 $dossierElements = isset($_GET['dossierElement']) ? addslashes($_GET['dossierElement']) : "";
 
 /**
@@ -39,225 +31,305 @@ $requeteurSQL = new requeteurSQL();
 /**
  * selection des requetes sql à effectuer
  */
-if (!$requeteurSQL->getErreur()){
-    switch ($action){
-        case "getPersonnage":
-            getPersonnage($nomPersonnage, $requeteurSQL);
+if (!$requeteurSQL->getErreur()) {
+    switch ($action) {
+        case "getDonneeById":
+            getDonneeById($table, $id, $order, $requeteurSQL);
             break;
-        case "getPersonnageID":
-            getPersonnageID($IDPersonnage, $requeteurSQL);
+        case "getDonneeByChamp":
+            getDonneeByChamp($table, $champWhere, $valeurWhere, $order, $requeteurSQL);
             break;
-        case "addPersonnage":
-            addPersonnage($nomPersonnage, $requeteurSQL);
+        case "getDonneesById":
+            getDonneesById($table, $id, $order, $requeteurSQL);
             break;
-        case "deletePersonnage":
-            deletePersonnage($IDPersonnage, $requeteurSQL);
+        case "getDonneesByChamp":
+            getDonneesByChamp($table, $champWhere, $valeurWhere, $order, $requeteurSQL);
             break;
-        case "modifierValeurPersonnage":
-            modifierValeurPersonnage($IDPersonnage, $champPersonnage, $valeurPersonnage, $requeteurSQL);
+        case "getDonnees":
+            getDonnees($table, $order, $requeteurSQL);
             break;
-        case "modifierValeurNomPersonnage":
-            modifierValeurNomPersonnage($nomPersonnage, $champPersonnage, $valeurPersonnage, $requeteurSQL);
+        case "insertValeur":
+            insertValeur($table, $champ, $valeur, $requeteurSQL);
+            break;
+        case "insertValeurMultiple":
+            insertValeurMultiple($table, $champValeur, $requeteurSQL);
+            break;
+        case "deleteDonneeById":
+            deleteDonneeById($table, $id, $requeteurSQL);
+            break;
+        case "deleteDonneeByChamp":
+            deleteDonneeByChamp($table, $champWhere, $valeurWhere, $requeteurSQL);
+            break;
+        case "updateValeurDonnee":
+            updateValeurDonnee($table, $id, $champ, $valeur, $requeteurSQL);
+            break;
+        case "updateValeurDonneeByChamp":
+            updateValeurDonneeByChamp($table, $champ, $valeur, $champWhere, $valeurWhere, $requeteurSQL);
+            break;
+        case "addDonneeByValeur":
+            addDonneeByValeur($table, $champ, $valeur, $order, $requeteurSQL);
             break;
         case "countMessageMJ":
-            countMessageMJ($nomPersonnage, $requeteurSQL);
+            countMessageMJ($valeur, $requeteurSQL);
             break;
         case "countMessageJoueur":
             countMessageJoueur($requeteurSQL);
             break;
         case "getMessages":
-            getMessages($nomPersonnage, $requeteurSQL);
+            getMessages($valeur, $requeteurSQL);
             break;
         case "addMessage":
-            addMessage($IDPersonnage, $message, $requeteurSQL);
+            addMessage($id, $message, $requeteurSQL);
             break;
         case "allMessagesLue":
-            allMessagesLue($nomPersonnage, $requeteurSQL);
+            allMessagesLue($valeur, $requeteurSQL);
             break;
         case "allMessagesJoueurLue":
             allMessagesJoueurLue($requeteurSQL);
             break;
-        case "getCarte":
-            getCarte($requeteurSQL);
-            break;
-        case "getCarteID":
-            getCarteID($idCarte, $requeteurSQL);
-            break;
-        case "addCarte":
-            addCarte($nomCarte, $imageCarte, $requeteurSQL);
-            break;
         case "aCacher":
-            aCacher($idCarte, $axeHorizontal, $axeVertical, $requeteurSQL);
+            aCacher($id, $axeHorizontal, $axeVertical, $requeteurSQL);
             break;
         case "afficherCase":
-            afficherCase($idCarte, $axeHorizontal, $axeVertical, $requeteurSQL);
+            afficherCase($id, $axeHorizontal, $axeVertical, $requeteurSQL);
             break;
         case "cacherCase":
-            cacherCase($idCarte, $axeHorizontal, $axeVertical, $requeteurSQL);
-            break;
-        case "modifierAxeVertical":
-            modifierAxeVertical($idCarte, $axeVertical, $requeteurSQL);
-            break;
-        case "modifierAxeHorizontal":
-            modifierAxeHorizontal($idCarte, $axeHorizontal, $requeteurSQL);
-            break;
-        case "afficherCarte":
-            afficherCarte($idCarte, $requeteurSQL);
-            break;
-        case "notAfficherCarte":
-            notAfficherCarte($requeteurSQL);
-            break;
-        case "modifierTypeAffichage":
-            modifierTypeAffichage($idCarte, $typeAffichage, $requeteurSQL);
+            cacherCase($id, $axeHorizontal, $axeVertical, $requeteurSQL);
             break;
         case "jouerSon":
-            jouerSon($cheminSon, $IDPersonnage, $requeteurSQL);
+            jouerSon($cheminSon, $id, $requeteurSQL);
             break;
         case "doitjouerSon":
-            doitjouerSon($dateLancementClient, $idSession, $nomPersonnage, $requeteurSQL);
-            break;
-        case "getBestiaire":
-            getBestiaire($isCacher, $requeteurSQL);
-            break;
-        case "getMonstreID":
-            getMonstreID($IDMonstre, $requeteurSQL);
-            break;
-        case "addMonstre":
-            addMonstre($nomMonstre, $requeteurSQL);
-            break;
-        case "deleteMonstre":
-            deleteMonstre($IDMonstre, $requeteurSQL);
-            break;
-        case "modifierValeurMonstre":
-            modifierValeurMonstre($IDMonstre, $champMonstre, $valeurMonstre, $requeteurSQL);
-            break;
-        case "cacherMonstre":
-            cacherMonstre($IDMonstre, $isCacher, $requeteurSQL);
-            break;
-        case "getNavireID":
-            getNavireID($IDNavire, $requeteurSQL);
-            break;
-        case "addNavire":
-            addNavire($nomNavire, $requeteurSQL);
-            break;
-        case "deleteNavire":
-            deleteNavire($IDNavire, $requeteurSQL);
-            break;
-        case "modifierValeurNavire":
-            modifierValeurNavire($IDNavire, $champNavire, $valeurNavire, $requeteurSQL);
+            doitjouerSon($dateLancementClient, $idSession, $valeur, $requeteurSQL);
             break;
         case "listingElementsDossier":
             listingElementsDossier($dossierElements);
             break;
     }
+} else {
+    echo $requeteurSQL->getMessageErreur();
 }
 
 /**
- * @param $nomPersonnage
+ * @param string $table
+ * @param string $id
+ * @param string $order
  * @param requeteurSQL $requeteurSQL
  */
-function getPersonnage($nomPersonnage, $requeteurSQL){
-    $unPersonnage = $requeteurSQL->getPersonnage($nomPersonnage);
+function getDonneeById($table, $id, $order, $requeteurSQL)
+{
+    $donnee = $requeteurSQL->getDonneeById($table, $id, $order);
 
-    if ($requeteurSQL->getErreur()){
+    if ($requeteurSQL->getErreur()) {
         echo $requeteurSQL->getMessageErreur();
-    }else{
-        echo json_encode($unPersonnage);
+    } else {
+        echo json_encode($donnee);
     }
 }
 
 /**
- * @param $IDPersonnage
+ * @param string $table
+ * @param string $champWhere
+ * @param string $valeurWhere
+ * @param string $order
  * @param requeteurSQL $requeteurSQL
  */
-function getPersonnageID($IDPersonnage, $requeteurSQL){
-    $unPersonnage = $requeteurSQL->getPersonnageID($IDPersonnage);
+function getDonneeByChamp($table, $champWhere, $valeurWhere, $order, $requeteurSQL)
+{
+    $donnee = $requeteurSQL->getDonneeByChamp($table, $champWhere, $valeurWhere, $order);
 
-    if ($requeteurSQL->getErreur()){
+    if ($requeteurSQL->getErreur()) {
         echo $requeteurSQL->getMessageErreur();
-    }else{
-        echo json_encode($unPersonnage);
+    } else {
+        echo json_encode($donnee);
     }
 }
 
 /**
- * @param $nomPersonnage
+ * @param string $table
+ * @param string $id
+ * @param string $order
  * @param requeteurSQL $requeteurSQL
  */
-function addPersonnage($nomPersonnage, $requeteurSQL){
-    $unPersonnage = $requeteurSQL->getPersonnage($nomPersonnage);
+function getDonneesById($table, $id, $order, $requeteurSQL)
+{
+    $donnees = $requeteurSQL->getDonneesById($table, $id, $order);
 
-    if ($requeteurSQL->getErreur()){
+    if ($requeteurSQL->getErreur()) {
         echo $requeteurSQL->getMessageErreur();
-    }else if (count($unPersonnage) != 0){
-        echo "non Personnage deja utilisé";
-    }else{
-        $requeteurSQL->addPersonnage($nomPersonnage);
+    } else {
+        echo json_encode($donnees);
+    }
+}
 
-        if ($requeteurSQL->getErreur()){
+/**
+ * @param string $table
+ * @param string $champWhere
+ * @param string $valeurWhere
+ * @param string $order
+ * @param requeteurSQL $requeteurSQL
+ */
+function getDonneesByChamp($table, $champWhere, $valeurWhere, $order, $requeteurSQL)
+{
+    $donnees = $requeteurSQL->getDonneesByChamp($table, $champWhere, $valeurWhere, $order);
+
+    if ($requeteurSQL->getErreur()) {
+        echo $requeteurSQL->getMessageErreur();
+    } else {
+        echo json_encode($donnees);
+    }
+}
+
+/**
+ * @param string $table
+ * @param string $order
+ * @param requeteurSQL $requeteurSQL
+ */
+function getDonnees($table, $order, $requeteurSQL)
+{
+    $donnees = $requeteurSQL->getDonnees($table, $order);
+
+    if ($requeteurSQL->getErreur()) {
+        echo $requeteurSQL->getMessageErreur();
+    } else {
+        echo json_encode($donnees);
+    }
+}
+
+/**
+ * @param string $table
+ * @param string $champ
+ * @param string $valeur
+ * @param requeteurSQL $requeteurSQL
+ */
+function insertValeur($table, $champ, $valeur, $requeteurSQL)
+{
+    $requeteurSQL->insertValeur($table, $champ, $valeur);
+
+    if ($requeteurSQL->getErreur()) {
+        echo $requeteurSQL->getMessageErreur();
+    }
+}
+
+/**
+ * @param string $table
+ * @param string $champValeur
+ * @param requeteurSQL $requeteurSQL
+ */
+function insertValeurMultiple($table, $champValeur, $requeteurSQL)
+{
+    $requeteurSQL->insertValeurMultiple($table, $champValeur);
+
+    if ($requeteurSQL->getErreur()) {
+        echo $requeteurSQL->getMessageErreur();
+    }
+}
+
+/**
+ * @param string $table
+ * @param string $id
+ * @param requeteurSQL $requeteurSQL
+ */
+function deleteDonneeById($table, $id, $requeteurSQL)
+{
+    $requeteurSQL->deleteDonneeById($table, $id);
+
+    if ($requeteurSQL->getErreur()) {
+        echo $requeteurSQL->getMessageErreur();
+    }
+}
+
+/**
+ * @param string $table
+ * @param string $champWhere
+ * @param string $valeurWhere
+ * @param requeteurSQL $requeteurSQL
+ */
+function deleteDonneeByChamp($table, $champWhere, $valeurWhere, $requeteurSQL)
+{
+    $requeteurSQL->deleteDonneeByChamp($table, $champWhere, $valeurWhere);
+
+    if ($requeteurSQL->getErreur()) {
+        echo $requeteurSQL->getMessageErreur();
+    }
+}
+
+/**
+ * @param string $table
+ * @param string $id
+ * @param string $champ
+ * @param string $valeur
+ * @param requeteurSQL $requeteurSQL
+ */
+function updateValeurDonnee($table, $id, $champ, $valeur, $requeteurSQL)
+{
+    $requeteurSQL->updateValeurDonnee($table, $id, $champ, $valeur);
+
+    if ($requeteurSQL->getErreur()) {
+        echo $requeteurSQL->getMessageErreur();
+    }
+}
+
+/**
+ * @param string $table
+ * @param string $champ
+ * @param string $valeur
+ * @param string $champWhere
+ * @param string $valeurWhere
+ * @param requeteurSQL $requeteurSQL
+ */
+function updateValeurDonneeByChamp($table, $champ, $valeur, $champWhere, $valeurWhere, $requeteurSQL)
+{
+    $requeteurSQL->updateValeurDonneeByChamp($table, $champ, $valeur, $champWhere, $valeurWhere);
+
+    if ($requeteurSQL->getErreur()) {
+        echo $requeteurSQL->getMessageErreur();
+    }
+}
+
+/**
+ * @param string $table
+ * @param string $champ
+ * @param string $valeur
+ * @param string $order
+ * @param requeteurSQL $requeteurSQL
+ */
+function addDonneeByValeur($table, $champ, $valeur, $order, $requeteurSQL)
+{
+    $donnee = $requeteurSQL->getDonneeByChamp($table, $champ, $valeur, $order);
+
+    if ($requeteurSQL->getErreur()) {
+        echo $requeteurSQL->getMessageErreur();
+    } else if (count($donnee) != 0) {
+        echo "donnée deja utilisé";
+    } else {
+        $requeteurSQL->insertValeur($table, $champ, $valeur);
+
+        if ($requeteurSQL->getErreur()) {
             echo $requeteurSQL->getMessageErreur();
-        }else{
-            $unPersonnage = $requeteurSQL->getPersonnage($nomPersonnage);
+        } else {
+            $donnee = $requeteurSQL->getDonneeByChamp($table, $champ, $valeur, $order);
 
-            if ($requeteurSQL->getErreur()){
+            if ($requeteurSQL->getErreur()) {
                 echo $requeteurSQL->getMessageErreur();
-            }else{
-                echo json_encode($unPersonnage);
+            } else {
+                echo json_encode($donnee);
             }
         }
     }
 }
 
 /**
- * @param $IDPersonnage
+ * @param string $nomPersonnage
  * @param requeteurSQL $requeteurSQL
  */
-function deletePersonnage($IDPersonnage, $requeteurSQL){
-    $requeteurSQL->deletePersonnage($IDPersonnage);
-
-    if ($requeteurSQL->getErreur()){
-        echo $requeteurSQL->getMessageErreur();
-    }
-}
-
-/**
- * @param $IDPersonnage
- * @param $champPersonnage
- * @param $valeurPersonnage
- * @param requeteurSQL $requeteurSQL
- */
-function modifierValeurPersonnage($IDPersonnage, $champPersonnage, $valeurPersonnage, $requeteurSQL){
-    $requeteurSQL->modifierValeurPersonnage($IDPersonnage, $champPersonnage, $valeurPersonnage);
-
-    if ($requeteurSQL->getErreur()){
-        echo $requeteurSQL->getMessageErreur();
-    }
-}
-
-/**
- * @param $nomPersonnage
- * @param $champPersonnage
- * @param $valeurPersonnage
- * @param requeteurSQL $requeteurSQL
- */
-function modifierValeurNomPersonnage($nomPersonnage, $champPersonnage, $valeurPersonnage, $requeteurSQL){
-    $requeteurSQL->modifierValeurNomPersonnage($nomPersonnage, $champPersonnage, $valeurPersonnage);
-
-    if ($requeteurSQL->getErreur()){
-        echo $requeteurSQL->getMessageErreur();
-    }
-}
-
-/**
- * @param $nomPersonnage
- * @param requeteurSQL $requeteurSQL
- */
-function countMessageMJ($nomPersonnage, $requeteurSQL){
+function countMessageMJ($nomPersonnage, $requeteurSQL)
+{
     $nombreMessage = $requeteurSQL->countMessageMJ($nomPersonnage);
 
-    if ($requeteurSQL->getErreur()){
+    if ($requeteurSQL->getErreur()) {
         echo $requeteurSQL->getMessageErreur();
-    }else{
+    } else {
         echo json_encode($nombreMessage);
     }
 }
@@ -265,119 +337,71 @@ function countMessageMJ($nomPersonnage, $requeteurSQL){
 /**
  * @param requeteurSQL $requeteurSQL
  */
-function countMessageJoueur($requeteurSQL){
+function countMessageJoueur($requeteurSQL)
+{
     $nombreMessage = $requeteurSQL->countMessageJoueur();
 
-    if ($requeteurSQL->getErreur()){
+    if ($requeteurSQL->getErreur()) {
         echo $requeteurSQL->getMessageErreur();
-    }else{
+    } else {
         echo json_encode($nombreMessage);
     }
 }
 
 /**
- * @param $nomPersonnage
+ * @param string $nomPersonnage
  * @param requeteurSQL $requeteurSQL
  */
-function getMessages($nomPersonnage, $requeteurSQL){
+function getMessages($nomPersonnage, $requeteurSQL)
+{
     $listeMessage = $requeteurSQL->getMessages($nomPersonnage);
 
-    if ($requeteurSQL->getErreur()){
+    if ($requeteurSQL->getErreur()) {
         echo $requeteurSQL->getMessageErreur();
-    }else{
+    } else {
         echo json_encode($listeMessage);
     }
 }
 
 /**
- * @param $IDPersonnage
- * @param $message
+ * @param string $IDPersonnage
+ * @param string $message
  * @param requeteurSQL $requeteurSQL
  */
-function addMessage($IDPersonnage, $message, $requeteurSQL){
+function addMessage($IDPersonnage, $message, $requeteurSQL)
+{
     $requeteurSQL->addMessage($IDPersonnage, $message);
 
-    if ($requeteurSQL->getErreur()){
+    if ($requeteurSQL->getErreur()) {
         echo $requeteurSQL->getMessageErreur();
     }
 }
 
 /**
- * @param $nomPersonnage
+ * @param string $nomPersonnage
  * @param requeteurSQL $requeteurSQL
  */
-function allMessagesLue($nomPersonnage, $requeteurSQL){
-    $requeteurSQL->allMessagesLue($nomPersonnage);
+function allMessagesLue($nomPersonnage, $requeteurSQL)
+{
+    $donnee = $requeteurSQL->getDonneeByChamp("personnage", "nom", $nomPersonnage);
+    if ($donnee['id']) {
+        $requeteurSQL->allMessagesLue($donnee['id']);
 
-    if ($requeteurSQL->getErreur()){
-        echo $requeteurSQL->getMessageErreur();
-    }
-}
-
-/**
- * @param requeteurSQL $requeteurSQL
- */
-function allMessagesJoueurLue($requeteurSQL){
-    $requeteurSQL->allMessagesJoueurLue();
-
-    if ($requeteurSQL->getErreur()){
-        echo $requeteurSQL->getMessageErreur();
-    }
-}
-
-/**
- * @param requeteurSQL $requeteurSQL
- */
-function getCarte($requeteurSQL){
-    $uneCarte = $requeteurSQL->getCarte();
-
-    if ($requeteurSQL->getErreur()){
-        echo $requeteurSQL->getMessageErreur();
-    }else{
-        echo json_encode($uneCarte);
-    }
-}
-
-/**
- * @param $idCarte
- * @param requeteurSQL $requeteurSQL
- */
-function getCarteID($idCarte, $requeteurSQL){
-    $uneCarte = $requeteurSQL->getCarteID($idCarte);
-
-    if ($requeteurSQL->getErreur()){
-        echo $requeteurSQL->getMessageErreur();
-    }else{
-        echo json_encode($uneCarte);
-    }
-}
-
-/**
- * @param $nomCarte
- * @param $imageCarte
- * @param requeteurSQL $requeteurSQL
- */
-function addCarte($nomCarte, $imageCarte, $requeteurSQL){
-    $uneCarte = $requeteurSQL->getCarteNom($nomCarte);
-
-    if ($requeteurSQL->getErreur()){
-        echo $requeteurSQL->getMessageErreur();
-    }else if (count($uneCarte) != 0){
-        echo "non Carte deja utilisé";
-    }else{
-        $requeteurSQL->addCarte($nomCarte, $imageCarte);
-
-        if ($requeteurSQL->getErreur()){
+        if ($requeteurSQL->getErreur()) {
             echo $requeteurSQL->getMessageErreur();
-        }else{
-            $uneCarte = $requeteurSQL->getCarteNom($nomCarte);
-
-            if ($requeteurSQL->getErreur()){
-                echo $requeteurSQL->getMessageErreur();
-            }else{
-                echo json_encode($uneCarte);
-            }
         }
+    }
+}
+
+/**
+ * @param requeteurSQL $requeteurSQL
+ */
+function allMessagesJoueurLue($requeteurSQL)
+{
+    $requeteurSQL->allMessagesLue(0);
+
+    if ($requeteurSQL->getErreur()) {
+        echo $requeteurSQL->getMessageErreur();
     }
 }
 
@@ -387,13 +411,14 @@ function addCarte($nomCarte, $imageCarte, $requeteurSQL){
  * @param $axeVertical
  * @param requeteurSQL $requeteurSQL
  */
-function aCacher($idCarte, $axeHorizontal, $axeVertical, $requeteurSQL){
+function aCacher($idCarte, $axeHorizontal, $axeVertical, $requeteurSQL)
+{
     $uneCaseCarte = array();
     $unBoolean = $requeteurSQL->booleanACacher($idCarte, $axeHorizontal, $axeVertical);
 
-    if ($requeteurSQL->getErreur()){
+    if ($requeteurSQL->getErreur()) {
         echo $requeteurSQL->getMessageErreur();
-    }else{
+    } else {
         $uneCaseCarte['axeHorizontal'] = $axeHorizontal;
         $uneCaseCarte['axeVertical'] = $axeVertical;
         $uneCaseCarte['aCaher'] = $unBoolean;
@@ -407,12 +432,13 @@ function aCacher($idCarte, $axeHorizontal, $axeVertical, $requeteurSQL){
  * @param $axeVertical
  * @param requeteurSQL $requeteurSQL
  */
-function afficherCase($idCarte, $axeHorizontal, $axeVertical, $requeteurSQL){
+function afficherCase($idCarte, $axeHorizontal, $axeVertical, $requeteurSQL)
+{
     $requeteurSQL->afficherCase($idCarte, $axeHorizontal, $axeVertical);
 
-    if ($requeteurSQL->getErreur()){
+    if ($requeteurSQL->getErreur()) {
         echo $requeteurSQL->getMessageErreur();
-    }else{
+    } else {
         echo "afficher";
     }
 }
@@ -423,75 +449,14 @@ function afficherCase($idCarte, $axeHorizontal, $axeVertical, $requeteurSQL){
  * @param $axeVertical
  * @param requeteurSQL $requeteurSQL
  */
-function cacherCase($idCarte, $axeHorizontal, $axeVertical, $requeteurSQL){
+function cacherCase($idCarte, $axeHorizontal, $axeVertical, $requeteurSQL)
+{
     $requeteurSQL->cacherCase($idCarte, $axeHorizontal, $axeVertical);
 
-    if ($requeteurSQL->getErreur()){
+    if ($requeteurSQL->getErreur()) {
         echo $requeteurSQL->getMessageErreur();
-    }else{
+    } else {
         echo "cacher";
-    }
-}
-
-/**
- * @param $idCarte
- * @param $axeVertical
- * @param requeteurSQL $requeteurSQL
- */
-function modifierAxeVertical($idCarte, $axeVertical, $requeteurSQL){
-    $requeteurSQL->modifierAxeVertical($idCarte, $axeVertical);
-
-    if ($requeteurSQL->getErreur()){
-        echo $requeteurSQL->getMessageErreur();
-    }
-}
-
-/**
- * @param $idCarte
- * @param $axeHorizontal
- * @param requeteurSQL $requeteurSQL
- */
-function modifierAxeHorizontal($idCarte, $axeHorizontal, $requeteurSQL){
-    $requeteurSQL->modifierAxeHorizontal($idCarte, $axeHorizontal);
-
-    if ($requeteurSQL->getErreur()){
-        echo $requeteurSQL->getMessageErreur();
-    }
-}
-
-/**
- * @param $idCarte
- * @param requeteurSQL $requeteurSQL
- */
-function afficherCarte($idCarte, $requeteurSQL){
-    $requeteurSQL->afficherCarte($idCarte);
-
-    if ($requeteurSQL->getErreur()){
-        echo $requeteurSQL->getMessageErreur();
-    }
-}
-
-/**
- * @param requeteurSQL $requeteurSQL
- */
-function notAfficherCarte($requeteurSQL){
-    $requeteurSQL->notAfficherCarte();
-
-    if ($requeteurSQL->getErreur()){
-        echo $requeteurSQL->getMessageErreur();
-    }
-}
-
-/**
- * @param $idCarte
- * @param $typeAffichage
- * @param requeteurSQL $requeteurSQL
- */
-function modifierTypeAffichage($idCarte, $typeAffichage, $requeteurSQL){
-    $requeteurSQL->modifierTypeAffichage($idCarte, $typeAffichage);
-
-    if ($requeteurSQL->getErreur()){
-        echo $requeteurSQL->getMessageErreur();
     }
 }
 
@@ -500,10 +465,11 @@ function modifierTypeAffichage($idCarte, $typeAffichage, $requeteurSQL){
  * @param $IDPersonnage
  * @param requeteurSQL $requeteurSQL
  */
-function jouerSon($cheminSon, $IDPersonnage, $requeteurSQL){
+function jouerSon($cheminSon, $IDPersonnage, $requeteurSQL)
+{
     $requeteurSQL->jouerSon($cheminSon, $IDPersonnage);
 
-    if ($requeteurSQL->getErreur()){
+    if ($requeteurSQL->getErreur()) {
         echo $requeteurSQL->getMessageErreur();
     }
 }
@@ -514,198 +480,37 @@ function jouerSon($cheminSon, $IDPersonnage, $requeteurSQL){
  * @param $nomPersonnage
  * @param requeteurSQL $requeteurSQL
  */
-function doitjouerSon($dateLancementClient, $idSession, $nomPersonnage, $requeteurSQL){
+function doitjouerSon($dateLancementClient, $idSession, $nomPersonnage, $requeteurSQL)
+{
     $cheminSon = $requeteurSQL->doitjouerSon($dateLancementClient, $idSession, $nomPersonnage);
 
-    if ($requeteurSQL->getErreur()){
+    if ($requeteurSQL->getErreur()) {
         echo $requeteurSQL->getMessageErreur();
-    }else{
+    } else {
         echo json_encode($cheminSon);
-    }
-}
-
-/**
- * @param $isCacher
- * @param requeteurSQL $requeteurSQL
- */
-function getBestiaire($isCacher, $requeteurSQL){
-    $listBestiaire = $requeteurSQL->getBestiaire($isCacher);
-
-    if ($requeteurSQL->getErreur()){
-        echo $requeteurSQL->getMessageErreur();
-    }else{
-        echo json_encode($listBestiaire);
-    }
-}
-
-/**
- * @param $IDMonstre
- * @param requeteurSQL $requeteurSQL
- */
-function getMonstreID($IDMonstre, $requeteurSQL){
-    $uneMonstre = $requeteurSQL->getMonstreID($IDMonstre);
-
-    if ($requeteurSQL->getErreur()){
-        echo $requeteurSQL->getMessageErreur();
-    }else{
-        echo json_encode($uneMonstre);
-    }
-}
-
-/**
- * @param $nomMonstre
- * @param requeteurSQL $requeteurSQL
- */
-function addMonstre($nomMonstre, $requeteurSQL){
-    $uneMonstre = $requeteurSQL->getMonstreNom($nomMonstre);
-
-    if ($requeteurSQL->getErreur()){
-        echo $requeteurSQL->getMessageErreur();
-    }else if (count($uneMonstre) != 0){
-        echo "non Monstre deja utilisé";
-    }else{
-        $requeteurSQL->addMonstre($nomMonstre);
-
-        if ($requeteurSQL->getErreur()){
-            echo $requeteurSQL->getMessageErreur();
-        }else{
-            $uneMonstre = $requeteurSQL->getMonstreNom($nomMonstre);
-
-            if ($requeteurSQL->getErreur()){
-                echo $requeteurSQL->getMessageErreur();
-            }else{
-                echo json_encode($uneMonstre);
-            }
-        }
-    }
-}
-
-/**
- * @param $IDMonstre
- * @param requeteurSQL $requeteurSQL
- */
-function deleteMonstre($IDMonstre, $requeteurSQL){
-    $requeteurSQL->deleteMonstre($IDMonstre);
-
-    if ($requeteurSQL->getErreur()){
-        echo $requeteurSQL->getMessageErreur();
-    }
-}
-
-/**
- * @param $IDMonstre
- * @param $champMonstre
- * @param $valeurMonstre
- * @param requeteurSQL $requeteurSQL
- */
-function modifierValeurMonstre($IDMonstre, $champMonstre, $valeurMonstre, $requeteurSQL){
-    $requeteurSQL->modifierValeurMonstre($IDMonstre, $champMonstre, $valeurMonstre);
-
-    if ($requeteurSQL->getErreur()){
-        echo $requeteurSQL->getMessageErreur();
-    }
-}
-
-/**
- * @param $IDMonstre
- * @param $isCacher
- * @param requeteurSQL $requeteurSQL
- */
-function cacherMonstre($IDMonstre, $isCacher, $requeteurSQL){
-    $requeteurSQL->cacherMonstre($IDMonstre, $isCacher);
-
-    if ($requeteurSQL->getErreur()){
-        echo $requeteurSQL->getMessageErreur();
-    }
-}
-
-/**
- * @param $IDNavire
- * @param requeteurSQL $requeteurSQL
- */
-function getNavireID($IDNavire, $requeteurSQL){
-    $unNavire = $requeteurSQL->getNavireID($IDNavire);
-
-    if ($requeteurSQL->getErreur()){
-        echo $requeteurSQL->getMessageErreur();
-    }else{
-        echo json_encode($unNavire);
-    }
-}
-
-/**
- * @param $nomNavire
- * @param requeteurSQL $requeteurSQL
- */
-function addNavire($nomNavire, $requeteurSQL){
-    $unNavire = $requeteurSQL->getNavireNom($nomNavire);
-
-    if ($requeteurSQL->getErreur()){
-        echo $requeteurSQL->getMessageErreur();
-    }else if (count($unNavire) != 0){
-        echo "non Navire deja utilisé";
-    }else{
-        $requeteurSQL->addNavire($nomNavire);
-
-        if ($requeteurSQL->getErreur()){
-            echo $requeteurSQL->getMessageErreur();
-        }else{
-            $unNavire = $requeteurSQL->getNavireNom($nomNavire);
-
-            if ($requeteurSQL->getErreur()){
-                echo $requeteurSQL->getMessageErreur();
-            }else{
-                echo json_encode($unNavire);
-            }
-        }
-    }
-}
-
-/**
- * @param $IDNavire
- * @param requeteurSQL $requeteurSQL
- */
-function deleteNavire($IDNavire, $requeteurSQL){
-    $requeteurSQL->deleteNavire($IDNavire);
-
-    if ($requeteurSQL->getErreur()){
-        echo $requeteurSQL->getMessageErreur();
-    }
-}
-
-/**
- * @param $IDNavire
- * @param $champNavire
- * @param $valeurNavire
- * @param requeteurSQL $requeteurSQL
- */
-function modifierValeurNavire($IDNavire, $champNavire, $valeurNavire, $requeteurSQL){
-    $requeteurSQL->modifierValeurNavire($IDNavire, $champNavire, $valeurNavire);
-
-    if ($requeteurSQL->getErreur()){
-        echo $requeteurSQL->getMessageErreur();
     }
 }
 
 /**
  * @param $dossierElements
  */
-function listingElementsDossier($dossierElements){
+function listingElementsDossier($dossierElements)
+{
     $listeElements = array();
 
     $leDossier = @opendir($dossierElements);
-    if ($leDossier !== false){
-        while (false !== ($unElement = readdir($leDossier))){
-            if ($unElement != "." && $unElement != ".." && !is_dir($unElement)){
+    if ($leDossier !== false) {
+        while (false !== ($unElement = readdir($leDossier))) {
+            if ($unElement != "." && $unElement != ".." && !is_dir($unElement)) {
                 $listeElements[] = $unElement;
             }
         }
 
         $jSonElemnts = json_encode($listeElements);
-        if (!$jSonElemnts) echo "probleme d'encodage du json dossier '".$dossierElements."'";
+        if (!$jSonElemnts) echo "probleme d'encodage du json dossier '" . $dossierElements . "'";
         else echo $jSonElemnts;
-    }else{
-        echo "probleme d'ouverture du dossier '".$dossierElements."'";
+    } else {
+        echo "probleme d'ouverture du dossier '" . $dossierElements . "'";
     }
 
     @closedir($dossierElements);

@@ -6,58 +6,62 @@ $erreur = "";
 $requeteurSQL = new requeteurSQL();
 $pathUploadFichier = ".";
 
-include("./headerMenu.php");
+if ($action == "fichePerso") {
+    $listePersonnages = $requeteurSQL->getDonnees("personnage", "");
 
-if ($action == "fichePerso"){
-    $listePersonnages = $requeteurSQL->getListePersonnages();
-
-    if ($requeteurSQL->getErreur()){
+    if ($requeteurSQL->getErreur()) {
         $erreur = $requeteurSQL->getMessageErreur();
     }
 
+    include("./headerMenu.php");
     include("./vuePersonnage.php");
-}else if ($action == "carte"){
+} else if ($action == "carte") {
     $pathUploadFichier = "../carte/image";
-    $listeCartes = $requeteurSQL->getListeCartes();
+    $listeCartes = $requeteurSQL->getDonnees("carte", "");
 
-    if ($requeteurSQL->getErreur()){
+    if ($requeteurSQL->getErreur()) {
         $erreur = $requeteurSQL->getMessageErreur();
     }
 
+    include("./headerMenu.php");
     include("./vueCarte.php");
-}else if ($action == "listeMessage"){
-    $listeMessage = $requeteurSQL->getMessagesJoueurs();
+} else if ($action == "listeMessage") {
+    $listeMessage = $requeteurSQL->getDonneesByChamp("message", "idPerso", "0", " ORDER BY `id` ASC");
 
-    if ($requeteurSQL->getErreur()){
+    if ($requeteurSQL->getErreur()) {
         $erreur = $requeteurSQL->getMessageErreur();
     }
 
+    include("./headerMenu.php");
     include("./vueListeMessage.php");
-}else if ($action == "JouerSon"){
+} else if ($action == "JouerSon") {
     $pathUploadFichier = "../admin/son";
-    $listePersonnages = $requeteurSQL->getListePersonnages();
+    $listePersonnages = $requeteurSQL->getDonnees("personnage", "");
 
-    if ($requeteurSQL->getErreur()){
+    if ($requeteurSQL->getErreur()) {
         $erreur .= $requeteurSQL->getMessageErreur();
     }
 
+    include("./headerMenu.php");
     include("./vueManagerSon.php");
-}else if ($action == "bestiaire"){
+} else if ($action == "bestiaire") {
     $pathUploadFichier = "../bestiaire/image";
-    $listeBestiaire = $requeteurSQL->getListeBestiaire();
+    $listeBestiaire = $requeteurSQL->getDonnees("bestiaire", "");
 
-    if ($requeteurSQL->getErreur()){
+    if ($requeteurSQL->getErreur()) {
         $erreur = $requeteurSQL->getMessageErreur();
     }
 
+    include("./headerMenu.php");
     include("./vueBestiaire.php");
-}else if ($action == "navire"){
-    $listeNavire = $requeteurSQL->getListeNavire();
+} else if ($action == "navire") {
+    $listeNavire = $requeteurSQL->getDonnees("navire", "");
 
-    if ($requeteurSQL->getErreur()){
+    if ($requeteurSQL->getErreur()) {
         $erreur = $requeteurSQL->getMessageErreur();
     }
 
+    include("./headerMenu.php");
     include("./vueNavire.php");
 }
 ?>

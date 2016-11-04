@@ -1,30 +1,33 @@
-function affichageBestiaire(){
+function affichageBestiaire() {
     jQuery.ajax({
         type: "GET",
         url: "../model/requeteAJAX.php",
         data: {
-            action: "getBestiaire",
-            isCacher: "0"
+            action: "getDonneesByChamp",
+            table: "bestiaire",
+            champWhere: "isCacher",
+            valeurWhere: "0",
+            order: " ORDER BY `nom` ASC",
         },
-        success: function(data){
-            try{
-                listBestiaire = JSON.parse(data);
-                for (i = 0; i < listBestiaire.length; i++){
+        success: function (data) {
+            try {
+                var listBestiaire = JSON.parse(data);
+                for (i = 0; i < listBestiaire.length; i++) {
                     afficherUnMonstre(listBestiaire[i]);
                 }
-            }catch (e){
+            } catch (e) {
                 console.error("affichageBestiaire : " + e + "(" + data + ")");
                 afficherMessage(4, "affichageBestiaire : " + e + "(" + data + ")", 0);
             }
         },
-        error: function(){
+        error: function () {
             console.error("erreur sur la fonction JQuery affichageBestiaire");
             afficherMessage(4, "erreur sur la fonction JQuery affichageBestiaire", 0);
         }
     });
 }
 
-function afficherUnMonstre(unMonstre){
+function afficherUnMonstre(unMonstre) {
     var string = "<div class=\"col-md-12 column\">";
     string += "<div class=\"col-md-3 column\">";
     if (unMonstre.image != "") string += "<img src=\"./image/" + unMonstre.image + "\">";

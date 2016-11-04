@@ -3,7 +3,8 @@
 /**
  * Class PDOBDD
  */
-class PDOBDD{
+class PDOBDD
+{
     /**
      * @var
      */
@@ -38,23 +39,25 @@ class PDOBDD{
     private $MessageError;
 
     /**
-     * @param $serveur
-     * @param $nomBDD
-     * @param $loginBDD
-     * @param $passwordBDD
+     * @param string $serveur
+     * @param string $nomBDD
+     * @param string $loginBDD
+     * @param string $passwordBDD
      */
-    public function newConnection($serveur, $nomBDD, $loginBDD, $passwordBDD){
+    public function newConnection($serveur, $nomBDD, $loginBDD, $passwordBDD)
+    {
         $this->__construct($serveur, $nomBDD, $loginBDD, $passwordBDD);
     }
 
     /**
      * PDOBDD constructor.
-     * @param $serveur
-     * @param $nomBDD
-     * @param $loginBDD
-     * @param $passwordBDD
+     * @param string $serveur
+     * @param string $nomBDD
+     * @param string $loginBDD
+     * @param string $passwordBDD
      */
-    public function __construct($serveur, $nomBDD, $loginBDD, $passwordBDD){
+    public function __construct($serveur, $nomBDD, $loginBDD, $passwordBDD)
+    {
         $this->serveur = $serveur;
         $this->nomBDD = $nomBDD;
         $this->loginBDD = $loginBDD;
@@ -68,33 +71,35 @@ class PDOBDD{
     /**
      *
      */
-    private function ConnectionPDOBDD(){
-        try{
-            $dns = 'mysql:host='.$this->serveur.';dbname='.$this->nomBDD;
+    private function ConnectionPDOBDD()
+    {
+        try {
+            $dns = 'mysql:host=' . $this->serveur . ';dbname=' . $this->nomBDD;
             $PDOConnection = new PDO($dns, $this->loginBDD, $this->passwordBDD, array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES \'UTF8\'', PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC));
             $PDOConnection->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
             $PDOConnection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
             $this->PDOConnection = $PDOConnection;
-        }catch (PDOException $e){
+        } catch (PDOException $e) {
             $this->errorConnection = true;
             $this->MessageError = $e->getMessage();
         }
     }
 
     /**
-     * @param $requete
+     * @param string $requete
      * @return string
      */
-    public function ExecuterRequete($requete){
+    public function ExecuterRequete($requete)
+    {
         $this->errorRequete = false;
         $this->MessageError = "";
 
-        try{
+        try {
             $resultatRequete = $this->PDOConnection->query($requete)->fetchAll();
 
             return $resultatRequete;
-        }catch (PDOException $e){
+        } catch (PDOException $e) {
             $this->errorRequete = true;
             $this->MessageError = $e->getMessage();
 
@@ -103,15 +108,16 @@ class PDOBDD{
     }
 
     /**
-     * @param $requete
+     * @param string $requete
      */
-    public function ExecuterRequeteNoReturn($requete){
+    public function ExecuterRequeteNoReturn($requete)
+    {
         $this->errorRequete = false;
         $this->MessageError = "";
 
-        try{
+        try {
             $this->PDOConnection->query($requete);
-        }catch (PDOException $e){
+        } catch (PDOException $e) {
             $this->errorRequete = true;
             $this->MessageError = $e->getMessage();
         }
@@ -120,35 +126,40 @@ class PDOBDD{
     /**
      * @return mixed
      */
-    public function getPDOConnection(){
+    public function getPDOConnection()
+    {
         return $this->PDOConnection;
     }
 
     /**
      * @return bool
      */
-    public function getErrorConnection(){
+    public function getErrorConnection()
+    {
         return $this->errorConnection;
     }
 
     /**
      * @return bool
      */
-    public function getErrorRequete(){
+    public function getErrorRequete()
+    {
         return $this->errorRequete;
     }
 
     /**
      * @return string
      */
-    public function getMessageError(){
+    public function getMessageError()
+    {
         return $this->MessageError;
     }
 
     /**
      *
      */
-    public function __destruct(){
+    public function __destruct()
+    {
 
     }
 }

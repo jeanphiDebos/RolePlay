@@ -1,9 +1,10 @@
 <?php
-function generateurSession(){
+function generateurSession()
+{
     $possible = "azertyupqsdfghjkmwxcvbn0123456789AZERTYUPQSDFGHJKMWXCVBN";
     $session = "";
 
-    for ($i = 0; $i < 15; $i++){
+    for ($i = 0; $i < 15; $i++) {
         $alea = mt_rand(0, strlen($possible) - 1);
         $caractere = substr($possible, $alea, 1);
         $session .= $caractere;
@@ -14,7 +15,7 @@ function generateurSession(){
 
 $erreur = "";
 
-if ($personnage != ""){
+if ($_SESSION['perso'] != "") {
     if (empty($_SESSION['idSession'])) $_SESSION['idSession'] = generateurSession();
     if ($action == "fichePerso") include("./vueFichePerso.php");
     else if ($action == "listeMessage") include("./vueListeMessage.php");

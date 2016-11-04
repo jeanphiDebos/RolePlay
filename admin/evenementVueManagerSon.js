@@ -1,4 +1,4 @@
-function affichageListeSon(pathUploadFichier){
+function affichageListeSon(pathUploadFichier) {
     jQuery.ajax({
         type: "GET",
         url: "../model/requeteAJAX.php",
@@ -6,29 +6,29 @@ function affichageListeSon(pathUploadFichier){
             action: "listingElementsDossier",
             dossierElement: pathUploadFichier
         },
-        success: function(data){
-            try{
+        success: function (data) {
+            try {
                 var listeSon = JSON.parse(data);
 
-                for (var i = 0; i <listeSon.length; i++){
+                for (var i = 0; i < listeSon.length; i++) {
                     $("#CheminFichierSon").append("<option value='" + listeSon[i] + "' class=\"sonOption\">" + listeSon[i].substr(0, listeSon[i].indexOf('.')) + "</option>");
                 }
-            }catch (e){
+            } catch (e) {
                 console.error("affichageListeSon : " + e + "(" + data + ")");
                 afficherMessage(4, "affichageListeSon : " + e + "(" + data + ")", 0);
             }
         },
-        error: function(){
+        error: function () {
             console.error("erreur sur la fonction JQuery affichageListeSon");
             afficherMessage(4, "erreur sur la fonction JQuery affichageListeSon", 0);
         }
     });
 }
 
-function evenButtonPlaySonClick(){
+function evenButtonPlaySonClick() {
     $("#playSon").click(
-        function(){
-            if ($("#CheminFichierSon").val() != ""){
+        function () {
+            if ($("#CheminFichierSon").val() != "") {
                 jQuery.ajax({
                     type: "GET",
                     url: "../model/requeteAJAX.php",
@@ -37,13 +37,13 @@ function evenButtonPlaySonClick(){
                         cheminSon: $("#CheminFichierSon").val(),
                         IDPersonnage: $("#listePersonnage").val()
                     },
-                    success: function(data){
-                        if (data != ""){
-                            console.error("erreur evenButtonPlaySonClick: " + e + "(" + data + ")");
-                            afficherMessage(4, "evenButtonPlaySonClick : " + e + "(" + data + ")", 0);
+                    success: function (data) {
+                        if (data != "") {
+                            console.error("erreur evenButtonPlaySonClick: (" + data + ")");
+                            afficherMessage(4, "evenButtonPlaySonClick : (" + data + ")", 0);
                         }
                     },
-                    error: function(){
+                    error: function () {
                         console.error("erreur evenButtonPlaySonClick");
                         afficherMessage(4, "erreur sur la fonction JQuery evenButtonPlaySonClick", 0);
                     }

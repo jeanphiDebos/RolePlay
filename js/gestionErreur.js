@@ -4,7 +4,7 @@
  */
 var indiceMessageAlerte = 0;
 
-function afficherMessage(typeMessage, textMessage, tempsAfficher){
+function afficherMessage(typeMessage, textMessage, tempsAfficher) {
     if (tempsAfficher == undefined) tempsAfficher = 5;
     tempsAfficher = tempsAfficher * 1000;
     var idMessage = "messageAlerte" + indiceMessageAlerte;
@@ -16,11 +16,11 @@ function afficherMessage(typeMessage, textMessage, tempsAfficher){
     else if (typeMessage == 3) classAlerte = "alert-warning";
     else if (typeMessage == 4) classAlerte = "alert-danger";
 
-    if (classAlerte != ""){
+    if (classAlerte != "") {
         messageAlerte = "<div id=\"" + idMessage + "\" class=\"alert " + classAlerte + "\" role=\"alert\">" + textMessage;
-        if (tempsAfficher != 0){
+        if (tempsAfficher != 0) {
             setTimeout("fermerMessage('" + idMessage + "')", tempsAfficher);
-        }else{
+        } else {
             messageAlerte += "<button type=\"button\" class=\"close\" data-dismiss=\"alert\" onclick=\"fermerMessage('" + idMessage + "')\"><span aria-hidden=\"true\">&times;</span></button>";
         }
         messageAlerte += "</div>";
@@ -32,7 +32,7 @@ function afficherMessage(typeMessage, textMessage, tempsAfficher){
     }
 }
 
-function fermerMessage(idMessage){
+function fermerMessage(idMessage) {
     // $("#"+idMessage).hide(1000);
     $("#" + idMessage + "").slideToggle("fast");
 }

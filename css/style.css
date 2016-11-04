@@ -71,11 +71,11 @@ a:hover {
 
 /*** lien ***/
 .vers {
-     height: 100%;
-     float: left;
-     background-color: #3ca1ea;
-     padding: 0 10px;
- }
+    height: 100%;
+    float: left;
+    background-color: #3ca1ea;
+    padding: 0 10px;
+}
 
 .vers:hover {
     background-color: #3cbeea;
@@ -325,7 +325,7 @@ a:hover {
     float: left;
 }
 
-#listeBestiaire img{
+#listeBestiaire img {
     height: auto;
     max-width: 100%;
     max-height: 100%;

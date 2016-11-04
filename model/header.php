@@ -12,8 +12,8 @@
     <link rel="stylesheet" type="text/css" href="../css/style.css">
 </head>
 <body>
-    <script type="text/javascript" src="../js/jquery-1.11.2.min.js"></script>
-    <script type="text/javascript" src="../js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="../js/bootbox.min.js"></script>
-    <script type="text/javascript" src="../js/gestionErreur.js"></script>
-    <script type="text/javascript" src="../js/utils.js"></script>
+<script type="text/javascript" src="../js/jquery-1.11.2.min.js"></script>
+<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../js/bootbox.min.js"></script>
+<script type="text/javascript" src="../js/gestionErreur.js"></script>
+<script type="text/javascript" src="../js/utils.js"></script>

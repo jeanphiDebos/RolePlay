@@ -1,25 +1,26 @@
 <?php
-if (isset($_FILES["file"]["type"]) && !empty($_POST['path'])){
-    if ($_FILES["file"]["error"] > 0){
+if (isset($_FILES["file"]["type"]) && !empty($_POST['path'])) {
+    if ($_FILES["file"]["error"] > 0) {
         echo $_FILES["file"]["error"];
-    }else{
+    } else {
         $nameFormate = formatageElement($_FILES["file"]["name"]);
-        if (file_exists($_POST['path']."/".$nameFormate)){
-            echo $nameFormate." exists";
-        }else{
+        if (file_exists($_POST['path'] . "/" . $nameFormate)) {
+            echo $nameFormate . " exists";
+        } else {
             $sourcePath = $_FILES['file']['tmp_name'];
-            if (move_uploaded_file($_FILES['file']['tmp_name'], $_POST['path']."/".$nameFormate)){
+            if (move_uploaded_file($_FILES['file']['tmp_name'], $_POST['path'] . "/" . $nameFormate)) {
                 echo json_encode($nameFormate);
-            }else{
-                echo "fail move_uploaded_file ".$_FILES['file']['tmp_name']." to ".$_POST['path']."/".$nameFormate;
+            } else {
+                echo "fail move_uploaded_file " . $_FILES['file']['tmp_name'] . " to " . $_POST['path'] . "/" . $nameFormate;
             }
         }
     }
-}else{
-   echo "file or post[past] not exists";
+} else {
+    echo "file or post[past] not exists";
 }
 
-function formatageElement($nom){
+function formatageElement($nom)
+{
     $nom = trim($nom);
     $nom = str_replace(array("á", "à", "ä", "â", "ª", "Á", "À", "Â", "Ä"), array("a", "a", "a", "a", "a", "A", "A", "A", "A"), $nom);
     $nom = str_replace(array("é", "è", "ë", "ê", "É", "È", "Ê", "Ë"), array("e", "e", "e", "e", "E", "E", "E", "E"), $nom);
@@ -34,4 +35,5 @@ function formatageElement($nom){
 
     return $nom;
 }
+
 ?>

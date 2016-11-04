@@ -1,5 +1,5 @@
-function eventUploadFichier(div, classOption){
-    $("#uploadFichier #file").change(function(){
+function eventUploadFichier(div, classOption) {
+    $("#uploadFichier #file").change(function () {
 
         jQuery.ajax({
             type: "POST",
@@ -8,17 +8,17 @@ function eventUploadFichier(div, classOption){
             contentType: false,
             cache: false,
             processData: false,
-            success: function(data){
-                try{
+            success: function (data) {
+                try {
                     var fichierUpload = JSON.parse(data);
 
                     $(div).append("<option value='" + fichierUpload + "' class=\"" + classOption + "\">" + fichierUpload.substr(0, fichierUpload.indexOf('.')) + "</option>");
-                }catch (e){
+                } catch (e) {
                     console.error("uploadFichier : " + e + "(" + data + ")");
                     afficherMessage(4, "uploadFichier : " + e + "(" + data + ")", 0);
                 }
             },
-            error: function(){
+            error: function () {
                 console.error("erreur sur la fonction JQuery uploadFichier");
                 afficherMessage(4, "erreur sur la fonction JQuery uploadFichier", 0);
             }
@@ -26,23 +26,60 @@ function eventUploadFichier(div, classOption){
     });
 }
 
-function convertirDateUSFR(dateUS){
+function verifJouerSon(nomPersonnage, dateLancementClient, idSession) {
+    if (nomPersonnage != "") {
+        jQuery.ajax({
+            type: "GET",
+            url: "../model/requeteAJAX.php",
+            data: {
+                action: "doitjouerSon",
+                valeur: nomPersonnage,
+                dateLancementClient: dateLancementClient,
+                idSession: idSession
+            },
+            success: function (data) {
+                try {
+                    var son = JSON.parse(data);
+                    if (son != "" && son.search("erreur") == -1) {
+                        console.log(son);
+                        $("#son").attr("src", "../admin/son/" + son);
+                        $("#son")[0].play();
+                    } else if (son != "" && son.search("erreur:") != 0) {
+                        console.error("erreur verifJouerSon: " + e + "(" + son + ")");
+                        afficherMessage(4, "erreur verifJouerSon: " + e + "(" + son + ")", 0);
+                    }
+                } catch (e) {
+                    console.error("verifJouerSon : " + e + "(" + data + ")");
+                    afficherMessage(4, "verifJouerSon : " + e + "(" + data + ")", 0);
+                }
+            },
+            error: function () {
+                console.error("erreur verifJouerSon");
+                afficherMessage(4, "erreur verifJouerSon", 0);
+            }
+        });
+
+        setTimeout("verifJouerSon('" + nomPersonnage + "','" + dateLancementClient + "','" + idSession + "')", 1000);
+    }
+}
+
+function convertirDateUSFR(dateUS) {
     dateUS = dateUS.split(' ');
 
     var dateValeur = dateUS[0].split('-');
     var heureValeur = dateUS[1];
 
-    if (dateValeur.length == 3){
+    if (dateValeur.length == 3) {
         var jour = dateValeur[2];
         var mois = dateValeur[1];
         var annee = dateValeur[0];
         return heureValeur + " " + jour + "/" + mois + "/" + annee;
-    }else{
+    } else {
         return "NoValidDate";
     }
 }
 
-function dateNow(){
+function dateNow() {
     var dateNow = new Date();
     var jour = dateNow.getDate();
     var mois = dateNow.getMonth();
@@ -59,6 +96,5 @@ function dateNow(){
     if (minute.toString().length == 1) minute = "0" + minute.toString();
     if (seconde.toString().length == 1) seconde = "0" + seconde.toString();
 
-    var now = annee + "-" + mois + "-" + jour + " " + heure + ":" + minute + ":" + seconde;
-    return now;
+    return annee + "-" + mois + "-" + jour + " " + heure + ":" + minute + ":" + seconde;
 }
