@@ -21,6 +21,8 @@ $axeHorizontal = isset($_GET['axeHorizontal']) ? addslashes($_GET['axeHorizontal
 $cheminSon = isset($_GET['cheminSon']) ? addslashes($_GET['cheminSon']) : "";
 $dateLancementClient = isset($_GET['dateLancementClient']) ? addslashes($_GET['dateLancementClient']) : "";
 $idSession = isset($_GET['idSession']) ? addslashes($_GET['idSession']) : "";
+$animation = isset($_GET['animation']) ? addslashes($_GET['animation']) : "";
+$pourQui = isset($_GET['pourQui']) ? addslashes($_GET['pourQui']) : "";
 $dossierElements = isset($_GET['dossierElement']) ? addslashes($_GET['dossierElement']) : "";
 
 /**
@@ -101,6 +103,9 @@ if (!$requeteurSQL->getErreur()) {
             break;
         case "doitjouerSon":
             doitjouerSon($dateLancementClient, $idSession, $valeur, $requeteurSQL);
+            break;
+        case "insertAnimation":
+            insertAnimation($animation, $pourQui, $requeteurSQL);
             break;
         case "listingElementsDossier":
             listingElementsDossier($dossierElements);
@@ -482,12 +487,34 @@ function jouerSon($cheminSon, $IDPersonnage, $requeteurSQL)
  */
 function doitjouerSon($dateLancementClient, $idSession, $nomPersonnage, $requeteurSQL)
 {
-    $cheminSon = $requeteurSQL->doitjouerSon($dateLancementClient, $idSession, $nomPersonnage);
+    $idPersonnage = $nomPersonnage;
+    $donnee = $requeteurSQL->getDonneeByChamp("personnage", "nom", $nomPersonnage, "");
 
     if ($requeteurSQL->getErreur()) {
         echo $requeteurSQL->getMessageErreur();
     } else {
-        echo json_encode($cheminSon);
+        if (!empty($donnee['id'])) $idPersonnage = $donnee['id'];
+        $cheminSon = $requeteurSQL->doitjouerSon($dateLancementClient, $idSession, $idPersonnage);
+
+        if ($requeteurSQL->getErreur()) {
+            echo $requeteurSQL->getMessageErreur();
+        } else {
+            echo json_encode($cheminSon);
+        }
+    }
+}
+
+/**
+ * @param $animation
+ * @param $pourQui
+ * @param requeteurSQL $requeteurSQL
+ */
+function insertAnimation($animation, $pourQui, $requeteurSQL)
+{
+    $requeteurSQL->insertAnimation($animation, $pourQui);
+
+    if ($requeteurSQL->getErreur()) {
+        echo $requeteurSQL->getMessageErreur();
     }
 }
 

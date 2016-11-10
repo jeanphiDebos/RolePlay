@@ -165,37 +165,7 @@ function evenButtonSendMessageMJClick(nomPersonnage, divEvent) {
 function evenInputPersonnageChange(nomPersonnage, divEvent) {
     if (nomPersonnage != "") {
         $(divEvent).change(function () {
-            var champ = $(this).attr('name');
-            var valeur = $(this).val();
-
-            modifierValeurPersonnage(nomPersonnage, champ, valeur);
-        });
-    }
-}
-
-function modifierValeurPersonnage(nomPersonnage, champ, valeur) {
-    if (nomPersonnage != "") {
-        jQuery.ajax({
-            type: "GET",
-            url: "../model/requeteAJAX.php",
-            data: {
-                action: "updateValeurDonneeByChamp",
-                table: "personnage",
-                champ: champ,
-                valeur: valeur,
-                champWhere: "nom",
-                valeurWhere: nomPersonnage
-            },
-            success: function (data) {
-                if (data != "") {
-                    console.error("modifierValeurPersonnage : " + e + "(" + data + ")");
-                    afficherMessage(4, "modifierValeurPersonnage : " + e + "(" + data + ")", 0);
-                }
-            },
-            error: function () {
-                console.error("erreur sur la fonction JQuery modifierValeurPersonnage (" + nomPersonnage + ")");
-                afficherMessage(4, "erreur sur la fonction JQuery modifierValeurPersonnage (" + nomPersonnage + ")", 0);
-            }
+            modifierValeurTableByChamp("personnage", "nom", nomPersonnage, $(this).attr('name'), $(this).val());
         });
     }
 }

@@ -72,7 +72,7 @@
             <textarea name="inventaire" id="inventaire" class="inputDescriptionPersonnage"></textarea></div>
     </div>
     <div class="row clearfix">
-        <div class="col-md-12 column glyphicon glyphicon-po"><input type="number" name="po" id="po"></div>
+        <div class="col-md-12 column glyphicon glyphicon-po"><input type="number" name="po" id="po" class="inputDescriptionPersonnage"></div>
     </div>
 </div>
 <script type="text/javascript" src="./evenementVuePersonnage.js"></script>

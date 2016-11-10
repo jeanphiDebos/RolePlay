@@ -425,7 +425,7 @@ class requeteurSQL
     public function jouerSon($cheminSon, $IDPersonnage)
     {
         if ($IDPersonnage == "") $IDPersonnage = "NULL";
-        $requete = "INSERT INTO `sonajouer` (dateTime, cheminSon,idPerso) VALUES (NOW(), '" . $cheminSon . "', " . $IDPersonnage . ")";
+        $requete = "INSERT INTO `sonajouer` (dateTime, cheminSon, idPerso) VALUES (NOW(), '" . $cheminSon . "', " . $IDPersonnage . ")";
 
         $this->PDOBDD->ExecuterRequeteNoReturn($requete);
         if ($this->PDOBDD->getErrorRequete()) {
@@ -461,6 +461,21 @@ class requeteurSQL
             }
         }
         return "";
+    }
+
+    /**
+     * @param string $animation
+     * @param string $pourQui
+     */
+    public function insertAnimation($animation, $pourQui)
+    {
+        $requete = "INSERT INTO `evenanimation` (dateTime, animation, pourQui) VALUES (NOW(), '" . $animation . "', '" . $pourQui . "')";
+
+        $this->PDOBDD->ExecuterRequeteNoReturn($requete);
+        if ($this->PDOBDD->getErrorRequete()) {
+            $this->erreur = true;
+            $this->MessageErreur = "erreur sur insertAnimation, " . $this->PDOBDD->getMessageError();
+        }
     }
 
     /**

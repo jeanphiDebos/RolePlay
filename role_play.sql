@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Ven 28 Octobre 2016 à 10:46
+-- Généré le :  Mer 09 Novembre 2016 à 16:42
 -- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
 
@@ -23,23 +23,23 @@ SET time_zone = "+00:00";
 DROP TABLE IF EXISTS `bestiaire`;
 CREATE TABLE IF NOT EXISTS `bestiaire` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nom` varchar(255) NOT NULL,
-  `image` varchar(255) NOT NULL,
+  `nom` varchar(255) NOT NULL DEFAULT '',
+  `image` varchar(255) NOT NULL DEFAULT '',
   `lvl` int(11) NOT NULL DEFAULT '1',
   `vie` int(11) NOT NULL DEFAULT '1',
   `attaque` int(11) NOT NULL DEFAULT '1',
-  `bonusDegat` text NOT NULL,
+  `bonusDegat` text NOT NULL DEFAULT '',
   `reductionDegat` int(11) NOT NULL DEFAULT '1',
-  `sort` text NOT NULL,
+  `sort` text NOT NULL DEFAULT '',
   `parade` int(11) NOT NULL DEFAULT '1',
   `esquive` int(11) NOT NULL DEFAULT '1',
   `blocage` int(11) NOT NULL DEFAULT '1',
   `contreAttaque` int(11) NOT NULL DEFAULT '1',
-  `force` text NOT NULL,
-  `faiblesse` text NOT NULL,
+  `force` text NOT NULL DEFAULT '',
+  `faiblesse` text NOT NULL DEFAULT '',
   `isCacher` int(11) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -50,12 +50,28 @@ CREATE TABLE IF NOT EXISTS `bestiaire` (
 DROP TABLE IF EXISTS `carte`;
 CREATE TABLE IF NOT EXISTS `carte` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nom` varchar(255) NOT NULL,
-  `image` varchar(255) NOT NULL,
+  `nom` varchar(255) NOT NULL DEFAULT '',
+  `image` varchar(255) NOT NULL DEFAULT '',
   `afficher` enum('oui','non') NOT NULL DEFAULT 'non',
   `typeAffichage` enum('mapper','cacher','visible') NOT NULL DEFAULT 'mapper',
   `axeVertical` int(11) NOT NULL DEFAULT '12',
   `axeHorizontal` int(11) NOT NULL DEFAULT '12',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `evenanimation`
+--
+
+DROP TABLE IF EXISTS `evenanimation`;
+CREATE TABLE IF NOT EXISTS `evenanimation` (
+  `id` int(12) NOT NULL AUTO_INCREMENT,
+  `dateTime` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `jouer` enum('oui','non') NOT NULL DEFAULT 'non',
+  `animation` varchar(255) NOT NULL DEFAULT '',
+  `pourQui` varchar(255) NOT NULL DEFAULT '',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
@@ -96,11 +112,11 @@ DROP TABLE IF EXISTS `message`;
 CREATE TABLE IF NOT EXISTS `message` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `idPerso` int(11) NOT NULL,
-  `message` text NOT NULL,
+  `message` text NOT NULL DEFAULT '',
   `lue` enum('oui','non') NOT NULL DEFAULT 'non',
-  `dateCreaction` datetime NOT NULL,
+  `dateCreaction` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -111,16 +127,17 @@ CREATE TABLE IF NOT EXISTS `message` (
 DROP TABLE IF EXISTS `navire`;
 CREATE TABLE IF NOT EXISTS `navire` (
   `id` int(12) NOT NULL AUTO_INCREMENT,
-  `nom` varchar(255) NOT NULL,
-  `forPlayer` enum('oui','non') NOT NULL,
-  `type` varchar(255) NOT NULL DEFAULT 'Schooner',
-  `equipage` int(12) NOT NULL DEFAULT '10',
-  `coque` int(12) NOT NULL DEFAULT '10',
-  `voile` int(12) NOT NULL DEFAULT '5',
-  `canon` int(12) NOT NULL DEFAULT '10',
-  `bouletCanon` int(12) NOT NULL DEFAULT '10',
+  `nom` varchar(255) NOT NULL DEFAULT '',
+  `image` varchar(255) NOT NULL DEFAULT '',
+  `forPlayer` enum('oui','non') NOT NULL DEFAULT 'non',
+  `type` varchar(255) NOT NULL DEFAULT '',
+  `equipage` int(12) NOT NULL DEFAULT '1',
+  `coque` int(12) NOT NULL DEFAULT '1',
+  `voile` int(12) NOT NULL DEFAULT '1',
+  `canon` int(12) NOT NULL DEFAULT '1',
+  `bouletCanon` int(12) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -131,10 +148,10 @@ CREATE TABLE IF NOT EXISTS `navire` (
 DROP TABLE IF EXISTS `personnage`;
 CREATE TABLE IF NOT EXISTS `personnage` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nom` varchar(255) NOT NULL,
+  `nom` varchar(255) NOT NULL DEFAULT '',
   `lvl` int(11) NOT NULL DEFAULT '1',
   `classe` varchar(255) NOT NULL DEFAULT '',
-  `metier` varchar(255) NOT NULL,
+  `metier` varchar(255) NOT NULL DEFAULT '',
   `vie` int(11) NOT NULL DEFAULT '1',
   `mana` int(11) NOT NULL DEFAULT '1',
   `force` int(11) NOT NULL DEFAULT '1',
@@ -144,13 +161,13 @@ CREATE TABLE IF NOT EXISTS `personnage` (
   `constitution` int(11) NOT NULL DEFAULT '1',
   `chance` int(11) NOT NULL DEFAULT '1',
   `charisme` int(11) NOT NULL DEFAULT '1',
-  `competence` text NOT NULL,
-  `sort` text NOT NULL,
-  `equipement` text NOT NULL,
-  `inventaire` text NOT NULL,
+  `competence` text NOT NULL DEFAULT '',
+  `sort` text NOT NULL DEFAULT '',
+  `equipement` text NOT NULL DEFAULT '',
+  `inventaire` text NOT NULL DEFAULT '',
   `po` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -161,8 +178,8 @@ CREATE TABLE IF NOT EXISTS `personnage` (
 DROP TABLE IF EXISTS `sonajouer`;
 CREATE TABLE IF NOT EXISTS `sonajouer` (
   `id` int(12) NOT NULL AUTO_INCREMENT,
-  `dateTime` datetime NOT NULL,
+  `dateTime` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `cheminSon` varchar(255) NOT NULL,
   `idPerso` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;

@@ -47,12 +47,22 @@ function afficherNavireAdverse(unNavire) {
     $("#canonAdverse").val(unNavire['canon']);
     $("#bouletCanonAdverse").val(unNavire['bouletCanon']);
 
-    evenInputNavireChange(unNavire['id'], "#equipageAdverse");
+    evenInputNavireChange(unNavire['id'], ".inputCaracteristiqueNavireAdverse");
+}
+
+function afficherDeCombat(valeurDe){
+    $("#deAuto").empty().append("<div class=\"unDes\">" + valeurDe + "</div>");
 }
 
 function evenSelectListeNavireChange(divEvent) {
     $(divEvent).change(function () {
         $(location).attr('href', "./index.php?action=navire&navire=" + $("#listeNavire").val() + "&navireAdverse=" + $("#listeNavireAdverse").val());
+    });
+}
+
+function evenButtonLancerConbatNavire(divEvent, idNavire, idNavireAdverse) {
+    $(divEvent).click(function () {
+        insertEventAnimation(idNavire + ";" + idNavireAdverse, "lanceCombatNavire");
     });
 }
 
@@ -67,12 +77,14 @@ function evenLancerCanonClick(idNavire, idNavireAdverse){
                         afficherMessage(4, "valeur du dé vide", 0);
                     } else if (result !== null) {
                         attaqueCanon(idNavire, idNavireAdverse, result, false);
+                        insertEventAnimation("navireCanonAttaque", "combatNavire");
                     }
                 }
             });
         });
         $("#lancerCanonByNavireAdverse").click(function () {
             attaqueCanon(idNavireAdverse, idNavire, Math.floor((Math.random() * 100) + 1), true);
+            insertEventAnimation("navireAdverseCanonAttaque", "combatNavire");
         });
     }
 }
@@ -88,12 +100,14 @@ function evenLancerEquipageClick(idNavire, idNavireAdverse){
                         afficherMessage(4, "valeur du dé vide", 0);
                     } else if (result !== null) {
                         attaqueEquipage(idNavire, idNavireAdverse, result, false);
+                        insertEventAnimation("navireEquipageAttaque", "combatNavire");
                     }
                 }
             });
         });
         $("#lancerEquipageByNavireAdverse").click(function () {
             attaqueEquipage(idNavireAdverse, idNavire, Math.floor((Math.random() * 100) + 1), true);
+            insertEventAnimation("navireAdverseEquipageAttaque", "combatNavire");
         });
     }
 }
@@ -104,33 +118,7 @@ function evenInputNavireChange(idNavire, divEvent) {
             var champ = $(this).attr('name');
             var valeur = $(this).val();
 
-            modifierValeurNavire(idNavire, champ, valeur);
-        });
-    }
-}
-
-function modifierValeurNavire(idNavire, champ, valeur) {
-    if (idNavire != "") {
-        jQuery.ajax({
-            type: "GET",
-            url: "../model/requeteAJAX.php",
-            data: {
-                action: "updateValeurDonnee",
-                table: "navire",
-                id: idNavire,
-                champ: champ,
-                valeur: valeur
-            },
-            success: function (data) {
-                if (data != "") {
-                    console.error("modifierValeurNavire : (" + data + ")");
-                    afficherMessage(4, "modifierValeurNavire : (" + data + ")", 0);
-                }
-            },
-            error: function () {
-                console.error("erreur sur la fonction JQuery modifierValeurNavire (" + idNavire + ")");
-                afficherMessage(4, "erreur sur la fonction JQuery modifierValeurNavire (" + idNavire + ")", 0);
-            }
+            modifierValeurTable("navire", idNavire, champ, valeur);
         });
     }
 }
@@ -156,35 +144,38 @@ function attaqueCanon(idNavire, idNavireAdverse, valeurDe, navireAdverse){
                 }
 
                 if (unNavire.id !== undefined && unNavire.id != "" && unNavire.bouletCanon > 0 && unNavire.canon > 0) {
-                    var nbCanon = unNavire['canon'];
+                    var nbCanon = parseInt(unNavire['canon']);
+                    var cibleCoque = $("#coque" + cible);
+                    var cibleEquipage = $("#equipage" + cible);
+                    var cibleCanone = $("#canon" + cible);
 
-                    if (unNavire['bouletCanon'] < unNavire['canon']){
-                        unNavire['bouletCanon'] -= unNavire['canon'];
+                    if (parseInt(unNavire['bouletCanon']) > parseInt(unNavire['canon'])){
+                        unNavire['bouletCanon'] = unNavire['bouletCanon'] - unNavire['canon'];
                     }else{
-                        nbCanon = unNavire['bouletCanon'];
+                        nbCanon = parseInt(unNavire['bouletCanon']);
                         unNavire['bouletCanon'] = 0;
                     }
 
-                    var degatCoque = Math.floor(((100-valeurDe)*nbCanon/100)*degatCanonCoque);
-                    var degatEquipage = Math.floor(((100-valeurDe)*nbCanon/100)*degatCanonEquipage);
-                    var degatCanon = Math.floor(((100-valeurDe)*nbCanon/100)*degatCanonCanon);
+                    var coque = cibleCoque.val() - Math.floor(((100-valeurDe)*nbCanon/100)*degatCanonCoque);
+                    var equipage = cibleCoque.val() - Math.floor(((100-valeurDe)*nbCanon/100)*degatCanonEquipage);
+                    var canon = cibleCoque.val() - Math.floor(((100-valeurDe)*nbCanon/100)*degatCanonCanon);
 
-                    modifierValeurNavire(idNavire, "bouletCanon", unNavire['bouletCanon']);
-                    modifierValeurNavire(idNavireAdverse, "coque", degatCoque);
-                    modifierValeurNavire(idNavireAdverse, "equipage", degatEquipage);
-                    modifierValeurNavire(idNavireAdverse, "canon", degatCanon);
+                    modifierValeurTable("navire", idNavire, "bouletCanon", unNavire['bouletCanon']);
+                    modifierValeurTable("navire", idNavireAdverse, "coque", coque);
+                    modifierValeurTable("navire", idNavireAdverse, "equipage", equipage);
+                    modifierValeurTable("navire", idNavireAdverse, "canon", canon);
 
                     $("#bouletCanon" + soi).val(unNavire['bouletCanon']);
-                    var cibleEquipage = $("#equipage" + cible);
-                    cibleEquipage.val(cibleEquipage.val() - degatEquipage);
-                    var cibleCoque = $("#coque" + cible);
-                    cibleCoque.val(cibleCoque.val() - degatCoque);
-                    var cibleCanone = $("#canon" + cible);
-                    cibleCanone.val(cibleCanone.val() - degatCanon);
+                    cibleEquipage.val(equipage);
+                    cibleCoque.val(coque);
+                    cibleCanone.val(canon);
+                    afficherDeCombat(valeurDe);
                 } else if (unNavire.bouletCanon <= 0 || unNavire.canon <= 0){
-                    console.error("plus de boulet de canon ou plus de canon : ");
+                    console.error("plus de boulet de canon ou plus de canon");
+                    afficherMessage(3, "plus de boulet de canon ou plus de canon", 0);
                 } else {
                     console.error("id attaqueCanon : " + data);
+                    afficherMessage(4, "id attaqueCanon : " + data, 0);
                 }
             } catch (e) {
                 console.error("attaqueCanon : " + e + "(" + data + ")");
@@ -215,16 +206,18 @@ function attaqueEquipage(idNavire, idNavireAdverse, valeurDe, navireAdverse){
                 if (navireAdverse) cible = "";
 
                 if (unNavire.id !== undefined && unNavire.id != "" && unNavire.equipage > 0) {
-                    var nbEquipage = unNavire['equipage'];
-
-                    var degatEquipage = Math.floor(((100-valeurDe)*nbEquipage/100)*degatEquipageEquipage);
-
-                    modifierValeurNavire(idNavireAdverse, "equipage", degatEquipage);
-
                     var cibleEquipage = $("#equipage" + cible);
-                    cibleEquipage.val(cibleEquipage.val() - degatEquipage);
+                    var equipage = cibleEquipage.val() - Math.floor(((100-valeurDe)*unNavire['equipage']/100)*degatEquipageEquipage);
+
+                    modifierValeurTable("navire", idNavireAdverse, "equipage", equipage);
+                    cibleEquipage.val(equipage);
+                    afficherDeCombat(valeurDe);
+                } else if (unNavire.equipage <= 0){
+                    console.error("plus d'équipage");
+                    afficherMessage(3, "plus d'équipage", 0);
                 } else {
                     console.error("id attaqueEquipage : " + data);
+                    afficherMessage(4, "id attaqueEquipage : " + data, 0);
                 }
             } catch (e) {
                 console.error("attaqueEquipage : " + e + "(" + data + ")");

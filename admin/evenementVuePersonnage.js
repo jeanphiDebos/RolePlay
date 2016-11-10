@@ -79,7 +79,7 @@ function evenButtonDeletPersonnageClick(idPersonnage) {
     if (idPersonnage != "") {
         $("#deletPersonnage").click(function () {
             bootbox.confirm("Are you sure?", function (result) {
-                if (result) supprimerPersonnage(idPersonnage);
+                if (result) supprimerTable("personnage", idPersonnage, "./index.php?perso=");
             });
         });
     }
@@ -109,7 +109,7 @@ function evenInputPersonnageChange(idPersonnage) {
             var champ = $(this).attr('name');
             var valeur = $(this).val();
 
-            modifierValeurPersonnage(idPersonnage, champ, valeur);
+            modifierValeurTable("personnage", idPersonnage, champ, valeur);
         });
     }
 }
@@ -142,32 +142,6 @@ function ajoutPersonnage(nomPersonnage) {
     }
 }
 
-function supprimerPersonnage(idPersonnage) {
-    if (idPersonnage != "") {
-        jQuery.ajax({
-            type: "GET",
-            url: "../model/requeteAJAX.php",
-            data: {
-                action: "deleteDonneeById",
-                table: "personnage",
-                id: idPersonnage
-            },
-            success: function (data) {
-                if (data != "") {
-                    console.error("supprimerPersonnage : (" + data + ")");
-                    afficherMessage(4, "supprimerPersonnage : (" + data + ")", 0);
-                } else {
-                    $(location).attr('href', "./index.php?perso=");
-                }
-            },
-            error: function () {
-                console.error("erreur sur la fonction JQuery supprimerPersonnage (" + idPersonnage + ")");
-                afficherMessage(4, "erreur sur la fonction JQuery supprimerPersonnage (" + idPersonnage + ")", 0);
-            }
-        });
-    }
-}
-
 function ajoutMessage(idPersonnage, message) {
     if (idPersonnage != "") {
         jQuery.ajax({
@@ -187,32 +161,6 @@ function ajoutMessage(idPersonnage, message) {
             error: function () {
                 console.error("erreur sur la fonction JQuery ajoutMessage (" + idPersonnage + ")");
                 afficherMessage(4, "erreur sur la fonction JQuery ajoutMessage (" + idPersonnage + ")", 0);
-            }
-        });
-    }
-}
-
-function modifierValeurPersonnage(idPersonnage, champ, valeur) {
-    if (idPersonnage != "") {
-        jQuery.ajax({
-            type: "GET",
-            url: "../model/requeteAJAX.php",
-            data: {
-                action: "updateValeurDonnee",
-                table: "personnage",
-                id: idPersonnage,
-                champ: champ,
-                valeur: valeur
-            },
-            success: function (data) {
-                if (data != "") {
-                    console.error("modifierValeurPersonnage : (" + data + ")");
-                    afficherMessage(4, "modifierValeurPersonnage : (" + data + ")", 0);
-                }
-            },
-            error: function () {
-                console.error("erreur sur la fonction JQuery modifierValeurPersonnage (" + idPersonnage + ")");
-                afficherMessage(4, "erreur sur la fonction JQuery modifierValeurPersonnage (" + idPersonnage + ")", 0);
             }
         });
     }

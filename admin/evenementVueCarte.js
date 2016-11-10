@@ -209,28 +209,7 @@ function evenInputAxeHorizontalChange(uneCarte) {
 
 function evenInputTypeAffichageChange(uneCarte) {
     $("#typeAffichage").change(function () {
-        var typeAffichage = $(this).val();
-        jQuery.ajax({
-            type: "GET",
-            url: "../model/requeteAJAX.php",
-            data: {
-                action: "updateValeurDonnee",
-                table: "carte",
-                champ: "typeAffichage",
-                valeur: typeAffichage,
-                id: uneCarte.id
-            },
-            success: function (data) {
-                if (data != "") {
-                    console.error("evenInputTypeAffichageChange : (" + data + ")");
-                    afficherMessage(4, "evenInputTypeAffichageChange : (" + data + ")", 0);
-                }
-            },
-            error: function () {
-                console.error("erreur sur la fonction JQuery evenInputTypeAffichageChange");
-                afficherMessage(4, "erreur sur la fonction JQuery evenInputTypeAffichageChange", 0);
-            }
-        });
+        modifierValeurTable("carte", uneCarte.id, "typeAffichage", $(this).val());
     });
 }
 
@@ -241,50 +220,9 @@ function evenInputActiverAfficherChange(uneCarte) {
         if (stateSwitch) {
             valeurAfficher = "oui";
 
-            jQuery.ajax({
-                type: "GET",
-                url: "../model/requeteAJAX.php",
-                data: {
-                    action: "updateValeurDonneeByChamp",
-                    table: "carte",
-                    champ: "afficher",
-                    valeur: "non",
-                    champWhere: "afficher",
-                    valeurWhere: valeurAfficher
-                },
-                success: function (data) {
-                    if (data != "") {
-                        console.error("evenInputActiverAfficherChange : (" + data + ")");
-                        afficherMessage(4, "evenInputActiverAfficherChange : (" + data + ")", 0);
-                    }
-                },
-                error: function () {
-                    console.error("erreur sur la fonction JQuery evenInputActiverAfficherChange");
-                    afficherMessage(4, "erreur sur la fonction JQuery evenInputActiverAfficherChange", 0);
-                }
-            });
+            modifierValeurTableByChamp("carte", "afficher", valeurAfficher, "afficher", "non");
         }
-        jQuery.ajax({
-            type: "GET",
-            url: "../model/requeteAJAX.php",
-            data: {
-                action: "updateValeurDonnee",
-                table: "carte",
-                champ: "afficher",
-                valeur: valeurAfficher,
-                id: uneCarte.id
-            },
-            success: function (data) {
-                if (data != "") {
-                    console.error("evenInputActiverAfficherChange : (" + data + ")");
-                    afficherMessage(4, "evenInputActiverAfficherChange : (" + data + ")", 0);
-                }
-            },
-            error: function () {
-                console.error("erreur sur la fonction JQuery evenInputActiverAfficherChange");
-                afficherMessage(4, "erreur sur la fonction JQuery evenInputActiverAfficherChange", 0);
-            }
-        });
+        modifierValeurTable("carte", uneCarte.id, "afficher", valeurAfficher);
     });
 }
 

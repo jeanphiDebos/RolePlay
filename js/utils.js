@@ -26,6 +26,109 @@ function eventUploadFichier(div, classOption) {
     });
 }
 
+function insertEventAnimation(animation, pourQui){
+    if (animation != "" && pourQui != "") {
+        jQuery.ajax({
+            type: "GET",
+            url: "../model/requeteAJAX.php",
+            data: {
+                action: "insertAnimation",
+                animation: animation,
+                pourQui: pourQui
+            },
+            success: function (data) {
+                if (data != "") {
+                    console.error("insertEventAnimation : (" + data + ")");
+                    afficherMessage(4, "insertEventAnimation : (" + data + ")", 0);
+                }
+            },
+            error: function () {
+                console.error("erreur sur la fonction JQuery insertEventAnimation (" + animation + ", " + pourQui + ")");
+                afficherMessage(4, "erreur sur la fonction JQuery insertEventAnimation (" + animation + ", " + pourQui + ")", 0);
+            }
+        });
+    }
+}
+
+function modifierValeurTable(table, id, champ, valeur) {
+    if (id != "") {
+        jQuery.ajax({
+            type: "GET",
+            url: "../model/requeteAJAX.php",
+            data: {
+                action: "updateValeurDonnee",
+                table: table,
+                id: id,
+                champ: champ,
+                valeur: valeur
+            },
+            success: function (data) {
+                if (data != "") {
+                    console.error("modifierValeurTable : (" + data + ")");
+                    afficherMessage(4, "modifierValeurTable : (" + data + ")", 0);
+                }
+            },
+            error: function () {
+                console.error("erreur sur la fonction JQuery modifierValeurTable (" + table + ")");
+                afficherMessage(4, "erreur sur la fonction JQuery modifierValeurTable (" + table + ")", 0);
+            }
+        });
+    }
+}
+
+function modifierValeurTableByChamp(table, champWhere, valeurWhere, champ, valeur) {
+    if (valeurWhere != "") {
+        jQuery.ajax({
+            type: "GET",
+            url: "../model/requeteAJAX.php",
+            data: {
+                action: "updateValeurDonneeByChamp",
+                table: table,
+                champ: champ,
+                valeur: valeur,
+                champWhere: champWhere,
+                valeurWhere: valeurWhere
+            },
+            success: function (data) {
+                if (data != "") {
+                    console.error("modifierValeurTableByChamp : (" + data + ")");
+                    afficherMessage(4, "modifierValeurTableByChamp : (" + data + ")", 0);
+                }
+            },
+            error: function () {
+                console.error("erreur sur la fonction JQuery modifierValeurTableByChamp (" + valeurWhere + ")");
+                afficherMessage(4, "erreur sur la fonction JQuery modifierValeurTableByChamp (" + valeurWhere + ")", 0);
+            }
+        });
+    }
+}
+
+function supprimerTable(table, id, localisation) {
+    if (id != "") {
+        jQuery.ajax({
+            type: "GET",
+            url: "../model/requeteAJAX.php",
+            data: {
+                action: "deleteDonneeById",
+                table: table,
+                id: id
+            },
+            success: function (data) {
+                if (data != "") {
+                    console.error("supprimerTable : (" + data + ")");
+                    afficherMessage(4, "supprimerTable : (" + data + ")", 0);
+                } else {
+                    $(location).attr('href', localisation);
+                }
+            },
+            error: function () {
+                console.error("erreur sur la fonction JQuery supprimerTable (" + id + ")");
+                afficherMessage(4, "erreur sur la fonction JQuery supprimerTable (" + id + ")", 0);
+            }
+        });
+    }
+}
+
 function verifJouerSon(nomPersonnage, dateLancementClient, idSession) {
     if (nomPersonnage != "") {
         jQuery.ajax({
@@ -45,8 +148,8 @@ function verifJouerSon(nomPersonnage, dateLancementClient, idSession) {
                         $("#son").attr("src", "../admin/son/" + son);
                         $("#son")[0].play();
                     } else if (son != "" && son.search("erreur:") != 0) {
-                        console.error("erreur verifJouerSon: " + e + "(" + son + ")");
-                        afficherMessage(4, "erreur verifJouerSon: " + e + "(" + son + ")", 0);
+                        console.error("erreur verifJouerSon: (" + son + ")");
+                        afficherMessage(4, "erreur verifJouerSon: (" + son + ")", 0);
                     }
                 } catch (e) {
                     console.error("verifJouerSon : " + e + "(" + data + ")");

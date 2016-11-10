@@ -91,6 +91,9 @@
             </div>
         </div>
         <div class="col-md-4 column">
+            <div class="row clearfix">
+                <div class="col-md-12 column" id="deAuto"></div>
+            </div>
         </div>
         <div class="col-md-4 column">
             <div class="row clearfix">
@@ -109,7 +112,7 @@
                 <div class="col-md-12 column">
                     <div class="input-group">
                         <span class="input-group-addon">equipage</span>
-                        <input class="form-control inputEquipageNavire" type="text" name="equipage"
+                        <input class="form-control inputCaracteristiqueNavireAdverse" type="text" name="equipage"
                                id="equipageAdverse">
                     </div>
                 </div>
@@ -118,7 +121,7 @@
                 <div class="col-md-12 column">
                     <div class="input-group">
                         <span class="input-group-addon">coque</span>
-                        <input class="form-control inputEquipageNavire" type="number" name="coque" id="coqueAdverse">
+                        <input class="form-control inputCaracteristiqueNavireAdverse" type="number" name="coque" id="coqueAdverse">
                     </div>
                 </div>
             </div>
@@ -126,7 +129,7 @@
                 <div class="col-md-12 column">
                     <div class="input-group">
                         <span class="input-group-addon">voile</span>
-                        <input class="form-control inputEquipageNavire" type="number" name="voile" id="voileAdverse">
+                        <input class="form-control inputCaracteristiqueNavireAdverse" type="number" name="voile" id="voileAdverse">
                     </div>
                 </div>
             </div>
@@ -134,7 +137,7 @@
                 <div class="col-md-12 column">
                     <div class="input-group">
                         <span class="input-group-addon">canon</span>
-                        <input class="form-control inputEquipageNavire" type="number" name="canon" id="canonAdverse">
+                        <input class="form-control inputCaracteristiqueNavireAdverse" type="number" name="canon" id="canonAdverse">
                     </div>
                 </div>
             </div>
@@ -142,7 +145,7 @@
                 <div class="col-md-12 column">
                     <div class="input-group">
                         <span class="input-group-addon">boulet de canon</span>
-                        <input class="form-control inputEquipageNavire" type="number" name="bouletCanon"
+                        <input class="form-control inputCaracteristiqueNavireAdverse" type="number" name="bouletCanon"
                                id="bouletCanonAdverse">
                     </div>
                 </div>
@@ -167,6 +170,7 @@
         }?>";
 
         evenSelectListeNavireChange(".selectNavire");
+        evenButtonLancerConbatNavire("#lancerCombatNavire", idNavire, idNavireAdverse);
         evenLancerCanonClick(idNavire, idNavireAdverse);
         evenLancerEquipageClick(idNavire, idNavireAdverse);
         affichageNavire(idNavire, false);

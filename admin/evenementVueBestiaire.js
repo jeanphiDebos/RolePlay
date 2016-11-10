@@ -108,7 +108,7 @@ function evenButtonDeleteMonstreClick(idMonstre) {
     if (idMonstre != "") {
         $("#deletMonstre").click(function () {
             bootbox.confirm("Are you sure?", function (result) {
-                if (result) supprimerMonstre(idMonstre);
+                if (result) supprimerTable("bestiaire", idMonstre, "./index.php?action=bestiaire&monstre=");
             });
         });
     }
@@ -120,7 +120,7 @@ function evenInputMonstreChange(idMonstre) {
             var champ = $(this).attr('name');
             var valeur = $(this).val();
 
-            modifierValeurMonstre(idMonstre, champ, valeur);
+            modifierValeurTable("bestiaire", idMonstre, champ, valeur);
         });
     }
 }
@@ -132,7 +132,7 @@ function evenButtonCacherMonstreChange(idMonstre) {
             var stateSwitch = $(this).bootstrapSwitch('state');
             if (stateSwitch) isCacher = 1;
 
-            cacherMonstre(idMonstre, isCacher);
+            modifierValeurTable("bestiaire", idMonstre, "isCacher", isCacher);
         });
     }
 }
@@ -163,80 +163,4 @@ function ajoutMonstre(nomMonstre) {
             }
         });
     }
-}
-
-function supprimerMonstre(idMonstre) {
-    if (idMonstre != "") {
-        jQuery.ajax({
-            type: "GET",
-            url: "../model/requeteAJAX.php",
-            data: {
-                action: "deleteDonneeById",
-                table: "bestiaire",
-                id: idMonstre
-            },
-            success: function (data) {
-                if (data != "") {
-                    console.error("supprimerMonstre : (" + data + ")");
-                    afficherMessage(4, "supprimerMonstre : (" + data + ")", 0);
-                } else {
-                    $(location).attr('href', "./index.php?action=bestiaire&monstre=");
-                }
-            },
-            error: function () {
-                console.error("erreur sur la fonction JQuery supprimerMonstre (" + idMonstre + ")");
-                afficherMessage(4, "erreur sur la fonction JQuery supprimerMonstre (" + idMonstre + ")", 0);
-            }
-        });
-    }
-}
-
-function modifierValeurMonstre(idMonstre, champ, valeur) {
-    if (idMonstre != "") {
-        jQuery.ajax({
-            type: "GET",
-            url: "../model/requeteAJAX.php",
-            data: {
-                action: "updateValeurDonnee",
-                table: "bestiaire",
-                id: idMonstre,
-                champ: champ,
-                valeur: valeur
-            },
-            success: function (data) {
-                if (data != "") {
-                    console.error("modifierValeurMonstre : (" + data + ")");
-                    afficherMessage(4, "modifierValeurMonstre : (" + data + ")", 0);
-                }
-            },
-            error: function () {
-                console.error("erreur sur la fonction JQuery modifierValeurMonstre (" + idMonstre + ")");
-                afficherMessage(4, "erreur sur la fonction JQuery modifierValeurMonstre (" + idMonstre + ")", 0);
-            }
-        });
-    }
-}
-
-function cacherMonstre(idMonstre, isCacher) {
-    jQuery.ajax({
-        type: "GET",
-        url: "../model/requeteAJAX.php",
-        data: {
-            action: "updateValeurDonnee",
-            table: "bestiaire",
-            id: idMonstre,
-            champ: "isCacher",
-            valeur: isCacher
-        },
-        success: function (data) {
-            if (data != "") {
-                console.error("CacherMonstre : (" + data + ")");
-                afficherMessage(4, "CacherMonstre : (" + data + ")", 0);
-            }
-        },
-        error: function () {
-            console.error("erreur sur la fonction JQuery cacherMonstre (" + idMonstre + ")");
-            afficherMessage(4, "erreur sur la fonction JQuery cacherMonstre (" + idMonstre + ")", 0);
-        }
-    });
 }

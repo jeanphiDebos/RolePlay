@@ -391,3 +391,13 @@ a:hover {
 }
 
 /*** manager navire ***/
+
+/*** regle ***/
+
+
+#Corps.regleJDR {
+    width: 100%;
+    float: left;
+    text-align: left;
+    vertical-align: middle;
+}

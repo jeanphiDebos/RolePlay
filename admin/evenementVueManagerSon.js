@@ -35,7 +35,7 @@ function evenButtonPlaySonClick() {
                     data: {
                         action: "jouerSon",
                         cheminSon: $("#CheminFichierSon").val(),
-                        IDPersonnage: $("#listePersonnage").val()
+                        id: $("#listePersonnage").val()
                     },
                     success: function (data) {
                         if (data != "") {
