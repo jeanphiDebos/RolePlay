@@ -33,7 +33,7 @@
             </div>
         </div>
         <div class="col-md-4 column">
-            
+            <div id="animationCombatNavire"></div>
         </div>
         <div class="col-md-4 column">
             <div class="row clearfix">
@@ -68,7 +68,12 @@
 <audio preload="none" src="" id="son"></audio>
 <script type="text/javascript" src="./evenement.js"></script>
 <script>
+    var idNavire = -1;
+    var idNavireAdverse = -1;
+
     $(document).ready(function () {
+        <?php if (!empty($_GET['idsNavire'])) { ?>getNavires("<?php echo $_GET['idsNavire']; ?>");<?php } ?>
+        waitEvenAnimationNavire(dateNow());
         verifJouerSon("0", dateNow(), "azerty123456789");
     });
 </script>

@@ -25,7 +25,8 @@
 
         affichageCarte();
         <?php if (!empty($_SESSION['perso'])){ ?>verifJouerSon("<?php echo $_SESSION['perso']; ?>", dateNow(), "<?php echo $_SESSION['idSession']?>");
-        <?php }else{ ?>verifJouerSon("0", dateNow(), "azerty123456789");<?php } ?>
+        <?php }else{ ?>verifJouerSon("0", dateNow(), "azerty123456789");
+        verifEventAnimation(dateNow());<?php } ?>
     });
 </script>
 </body>

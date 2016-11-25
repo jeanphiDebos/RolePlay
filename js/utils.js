@@ -166,6 +166,39 @@ function verifJouerSon(nomPersonnage, dateLancementClient, idSession) {
     }
 }
 
+function verifEventAnimation(dateLancementClient) {
+    jQuery.ajax({
+        type: "GET",
+        url: "../model/requeteAJAX.php",
+        data: {
+            action: "getEvenAnimation",
+            dateLancementClient: dateLancementClient
+        },
+        success: function (data) {
+            try {
+                var evenAnimations = JSON.parse(data);
+                if (evenAnimations.length && evenAnimations[0].id !== undefined && evenAnimations[0].id != "") {
+                    $.each(evenAnimations, function(i, evenAnimation) {
+                        if (evenAnimation.pourQui == "lanceCombatNavire"){
+                            modifierValeurTable("evenanimation", evenAnimation.id, "jouer", "oui");
+                            $(location).attr('href', "../navire/index.php?idsNavire=" + evenAnimation.animation);
+                        }
+                    });
+                }
+            } catch (e) {
+                console.error("verifEventAnimation : " + e + "(" + data + ")");
+                afficherMessage(4, "verifEventAnimation : " + e + "(" + data + ")", 0);
+            }
+        },
+        error: function () {
+            console.error("erreur waitEvenAnimationNavire");
+            afficherMessage(4, "erreur verifEventAnimation", 0);
+        }
+    });
+
+    setTimeout("verifEventAnimation('" + dateLancementClient + "')", 1000);
+}
+
 function convertirDateUSFR(dateUS) {
     dateUS = dateUS.split(' ');
 

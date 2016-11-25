@@ -160,15 +160,14 @@
     var degatCanonEquipage= 0.25;
     var degatCanonCanon= 0.1;
     var degatEquipageEquipage= 0.25;
+    var idNavire = "<?php if (isset($_SESSION['navire'])) {
+        echo $_SESSION['navire'];
+    }?>";
+    var idNavireAdverse = "<?php if (isset($_SESSION['navireAdverse'])) {
+        echo $_SESSION['navireAdverse'];
+    }?>";
 
     $(document).ready(function () {
-        var idNavire = "<?php if (isset($_SESSION['navire'])) {
-            echo $_SESSION['navire'];
-        }?>";
-        var idNavireAdverse = "<?php if (isset($_SESSION['navireAdverse'])) {
-            echo $_SESSION['navireAdverse'];
-        }?>";
-
         evenSelectListeNavireChange(".selectNavire");
         evenButtonLancerConbatNavire("#lancerCombatNavire", idNavire, idNavireAdverse);
         evenLancerCanonClick(idNavire, idNavireAdverse);

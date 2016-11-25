@@ -479,6 +479,27 @@ class requeteurSQL
     }
 
     /**
+     * @param string $dateLancementClient
+     * @return array
+     */
+    public function getEvenAnimation($dateLancementClient)
+    {
+        $requete = "SELECT * FROM `evenanimation` WHERE `dateTime` >= '" . $dateLancementClient . "' AND `jouer` = 'non'";
+
+        $result = $this->PDOBDD->ExecuterRequete($requete);
+        if ($this->PDOBDD->getErrorRequete()) {
+            $this->erreur = true;
+            $this->MessageErreur = "erreur sur getEvenAnimation, " . $this->PDOBDD->getMessageError();
+
+            return array();
+        } else if (count($result) != 0) {
+            return $result;
+        } else {
+            return array();
+        }
+    }
+
+    /**
      *
      */
     public function __destruct()

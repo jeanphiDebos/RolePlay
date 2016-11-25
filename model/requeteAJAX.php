@@ -107,6 +107,9 @@ if (!$requeteurSQL->getErreur()) {
         case "insertAnimation":
             insertAnimation($animation, $pourQui, $requeteurSQL);
             break;
+        case "getEvenAnimation":
+            getEvenAnimation($dateLancementClient, $requeteurSQL);
+            break;
         case "listingElementsDossier":
             listingElementsDossier($dossierElements);
             break;
@@ -515,6 +518,21 @@ function insertAnimation($animation, $pourQui, $requeteurSQL)
 
     if ($requeteurSQL->getErreur()) {
         echo $requeteurSQL->getMessageErreur();
+    }
+}
+
+/**
+ * @param $dateLancementClient
+ * @param requeteurSQL $requeteurSQL
+ */
+function getEvenAnimation($dateLancementClient, $requeteurSQL)
+{
+    $donnees = $requeteurSQL->getEvenAnimation($dateLancementClient);
+
+    if ($requeteurSQL->getErreur()) {
+        echo $requeteurSQL->getMessageErreur();
+    } else {
+        echo json_encode($donnees);
     }
 }
 
