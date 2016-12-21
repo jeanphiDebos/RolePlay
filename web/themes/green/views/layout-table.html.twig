@@ -1,0 +1,130 @@
+{% extends "@green/layout.html.twig" %}
+
+{% block theme_js %}
+    <script src="{{ asset('themes/green/js/plugins/datatables/datatables.min.js') }}"></script>
+    <script src="{{ asset('themes/green/js/plugins/datatables/extensions/responsive.min.js') }}"></script>
+{% endblock %}
+
+{% block class_body %}has-detached-right{% endblock %}
+
+{% block title_page %}
+    <span class="text-semibold">{{ (title~'.label.name')|trans }}</span> - {{ name|default('label.na'|trans) }}
+{% endblock %}
+
+{% block breadcrumb %}
+    <li><a href="{{ path('appbundle_'~title~'_index') }}">{{ (title~'.label.name')|trans }}</a></li>
+    <li class="active">{{ name|default('label.na'|trans) }}</li>
+{% endblock breadcrumb %}
+
+{% block main_container %}
+    {% include "@green/templates/modal-remove.html.twig" %}
+    <div class="container-detached">
+        <div class="content-detached">
+            <div class="row">
+                <div class="panel panel-white">
+                    <div class="panel-heading">
+                        <h6 class="panel-title">{% block title_table %}{{ name|default('label.na'|trans) }}{% endblock %}</h6>
+                        <div class="heading-elements">
+                            <ul class="icons-list pull-right">
+                                <li><a data-action="collapse"></a></li>
+                                <li><a data-action="reload"></a></li>
+                                <li><a data-action="close"></a></li>
+                            </ul>
+                            <div class="heading-btn pull-right">
+                                {% if type is defined %}
+                                    <a href="{{ path('appbundle_'~title~'_add', {'type' : type}) }}" type="button" class="btn bg-info btn-xs btn-labeled"><b><i
+                                                    class="icon-plus"></i></b> {{ (title~'.label.create')|trans }}</a>
+                                {% else %}
+                                    <a href="{{ path('appbundle_'~title~'_add') }}" type="button" class="btn bg-info btn-xs btn-labeled"><b><i
+                                                    class="icon-plus"></i></b> {{ (title~'.label.create')|trans }}</a>
+                                {% endif %}
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <table class="table datatable-responsive">
+                        <thead>
+                        <tr>
+                            <th class="col-lg-1">#</th>
+                            {% block label_table_container %}{{ name|default('label.na'|trans) }}{% endblock %}
+                            <th class="text-center text-muted col-lg-1"><i class="icon-pencil"></i></th>
+                            <th class="text-center text-muted col-lg-1"><i class="icon-trash"></i></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for entity in entities %}
+                            <tr>
+                                {% block entity_table_container %}{% endblock %}
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="sidebar-detached">
+            <div class="sidebar sidebar-default">
+                <div class="sidebar-content">
+                    <!-- Action buttons -->
+                    <div class="sidebar-category">
+                        <div class="category-title">
+                            <span>{{ 'label.quick_shortcut'|trans }}</span>
+                            <ul class="icons-list">
+                                <li><a href="#" data-action="collapse"></a></li>
+                            </ul>
+                        </div>
+
+                        <div class="category-content">
+                            <div class="row">
+                                {% block quick_shortcut_table_container %}{% endblock %}
+                            </div>
+                            <ul class="navigation navigation-alt navigation-accordion">
+                                <li class="navigation-divider"></li>
+                                {% block action_table_container %}{% endblock %}
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- /action buttons -->
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock main_container %}
+
+{% block inline_js %}
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var lastIdx = null;
+//            // Setting datatable defaults
+            $.extend($.fn.dataTable.defaults, {
+                autoWidth: false,
+                responsive: true,
+                dom: '<"datatable-header"fl><"datatable-scroll"t><"datatable-footer"ip>',
+                language: {
+                    search: '<span>Filtre:</span> _INPUT_',
+                    lengthMenu: '<span>Nombre:</span> _MENU_',
+                    paginate: {'first': 'First', 'last': 'Last', 'next': '&rarr;', 'previous': '&larr;'}
+                },
+                drawCallback: function () {
+                    $(this).find('tbody tr').slice(-3).find('.dropdown, .btn-group').addClass('dropup');
+                },
+                preDrawCallback: function () {
+                    $(this).find('tbody tr').slice(-3).find('.dropdown, .btn-group').removeClass('dropup');
+                }
+            });
+            var table = $('.datatable-responsive').DataTable();
+
+            $('.datatable-responsive tbody').on('mouseover', 'td', function () {
+                var colIdx = table.cell(this).index().column;
+
+                if (colIdx !== lastIdx) {
+                    $(table.cells().nodes()).removeClass('active');
+                    $(table.column(colIdx).nodes()).addClass('active');
+                }
+            }).on('mouseleave', function () {
+                $(table.cells().nodes()).removeClass('active');
+            });
+        });
+    </script>
+{% endblock %}

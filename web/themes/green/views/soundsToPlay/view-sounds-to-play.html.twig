@@ -1,0 +1,30 @@
+{% extends "@green/layout-view.html.twig" %}
+
+{% block quick_shortcut_table_container %}
+    {% include "@green/soundsToPlay/quick-shortcut-sounds-to-play.html.twig" %}
+{% endblock quick_shortcut_table_container %}
+
+{% block action_table_container %}
+    {% include "@green/soundsToPlay/action-table-sounds-to-play.html.twig" %}
+{% endblock action_table_container %}
+
+{% block entity_view_container %}
+    <div class="panel-body">
+        <div class="well">
+            <dl class="dl-horizontal">
+                <dt>{{ 'label.id'|trans }}</dt>
+                <dd>{{ entity.id }}</dd>
+                <dt>{{ 'label.datetime'|trans }}</dt>
+                <dd>{{ entity.dateTime|date('d/m/y') }}</dd>
+                <dt>{{ 'label.pathSound'|trans }}</dt>
+                <dd>{{ entity.pathSound }}</dd>
+                <dt>{{ 'label.character'|trans }}</dt>
+                <dd>{{ entity.character.name|default('label.na'|trans) }}</dd>
+            </dl>
+        </div>
+    </div>
+{% endblock entity_view_container %}
+
+{% block extra_entity_view_container %}
+    {% include "@green/soundsToPlay/listing-sounds-to-play.html.html.twig" %}
+{% endblock %}

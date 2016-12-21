@@ -1,0 +1,39 @@
+{% extends "@green/layout-view.html.twig" %}
+
+{% block quick_shortcut_table_container %}
+    {% include "@green/map/quick-shortcut-map.html.twig" %}
+{% endblock quick_shortcut_table_container %}
+
+{% block action_table_container %}
+    {% include "@green/map/action-table-map.html.twig" %}
+{% endblock action_table_container %}
+
+{% block entity_view_container %}
+    <div class="panel-body">
+        <div class="well">
+            <dl class="dl-horizontal">
+                <dt>{{ 'label.id'|trans }}</dt>
+                <dd>{{ entity.id }}</dd>
+                <dt>{{ 'label.name'|trans }}</dt>
+                <dd>{{ entity.name }}</dd>
+                <dt>{{ 'label.picture'|trans }}</dt>
+                <dd>{{ entity.picture }}</dd>
+                <dt>{{ 'label.display'|trans }}</dt>
+                <dd>{{ entity.display }}</dd>
+                <dt>{{ 'label.displayType'|trans }}</dt>
+                <dd>{{ entity.displayType.name|default('label.na'|trans) }}</dd>
+                <dt>{{ 'label.verticalAxis'|trans }}</dt>
+                <dd>{{ entity.verticalAxis }}</dd>
+                <dt>{{ 'label.horizontalAxis'|trans }}</dt>
+                <dd>{{ entity.horizontalAxis }}</dd>
+                <dt>{{ 'label.universe'|trans }}</dt>
+                <dd>{{ entity.universe.name|default('label.na'|trans) }}</dd>
+                {% block complement_horizontal_entity_view_container %}{% endblock complement_horizontal_entity_view_container %}
+            </dl>
+        </div>
+    </div>
+{% endblock entity_view_container %}
+
+{% block extra_entity_view_container %}
+
+{% endblock %}

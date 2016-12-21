@@ -1,0 +1,30 @@
+{% embed "@green/templates/table-panel.html.twig" %}
+    {% block table_panel_title %}{{ 'label.maps'|trans }}{% endblock %}
+    {% block table_panel_btn %}
+        <a href="{{ path('appbundle_map_add') }}" type="button" class="btn bg-teal btn-xs btn-labeled"><b><i class="icon-plus2"></i></b> {{ 'map.label.create'|trans }}</a>
+    {% endblock %}
+    {% block table_panel_th %}
+        <th>#</th>
+        <th>{{ 'label.name'|trans }}</th>
+        <th>{{ 'label.picture'|trans }}</th>
+        <th>{{ 'label.display'|trans }}</th>
+        <th>{{ 'label.displayType'|trans }}</th>
+        <th>{{ 'label.verticalAxis'|trans }}</th>
+        <th>{{ 'label.horizontalAxis'|trans }}</th>
+        <th>{{ 'label.universe'|trans }}</th>
+    {% endblock %}
+    {% block table_panel_tr %}
+        {% for map in entity.maps %}
+            <tr>
+                <td><a href="{{ path('appbundle_map_view',{'id':entity.id}) }}">{{ entity.id }}</a></td>
+                <td><a href="{{ path('appbundle_map_view',{'id':entity.id}) }}">{{ entity.name }}</a></td>
+                <td>{{ entity.picture }}</td>
+                <td>{{ entity.display }}</td>
+                <td>{{ entity.displayType.name|default('label.na'|trans) }}</td>
+                <td>{{ entity.verticalAxis }}</td>
+                <td>{{ entity.horizontalAxis }}</td>
+                <td>{{ entity.universe.name|default('label.na'|trans) }}</td>
+            </tr>
+        {% endfor %}
+    {% endblock %}
+{% endembed %}

@@ -1,0 +1,47 @@
+{% extends '@green/layout.html.twig' %}
+
+{% block title_page %}
+    <span class="text-semibold">{{ breadcrumbs[0].name|trans }}</span> - {{ label|trans }}
+{% endblock %}
+
+{% block breadcrumb %}
+    {% for breadcrumb in breadcrumbs %}
+        {% if breadcrumb.url %}
+            <li><a href="{{ breadcrumb.url }}">{{ breadcrumb.name|trans }}</a></li>
+        {% else %}
+            <li>{{ breadcrumb.name|trans }}</li>
+        {% endif %}
+    {% endfor %}
+    <div id="new_form_modal" class="modal fade" style="display: none;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-info">
+                    <button type="button" class="close" data-dismiss="modal">×</button>
+                    <h6 class="modal-title"></h6>
+                </div>
+
+                <div class="modal-body">
+                    <p class="modalMessage"></p>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-link" data-dismiss="modal">{{ 'label.close'|trans }}</button>
+                    <!--suppress HtmlUnknownAttribute -->
+                    <button type="button" class="btn btn-info save-entity" data-dismiss="modal" for="new_form_modal">{{ 'label.save'|trans }}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block core_js %}
+    <script src="{{ asset('assets/vendor/jquery.uniform/src/js/jquery.uniform.js') }}"></script>
+    <script src="{{ asset('assets/vendor/moment/moment.js') }}"></script>
+    <script src="{{ asset('assets/vendor/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
+    <script src="{{ asset('assets/vendor/spectrum/spectrum.js') }}"></script>
+    <script src="{{ asset('assets/vendor/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/select2/dist/js/select2.min.js') }}"></script>
+    <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+    <script src="{{ path('fos_js_routing_js', {'callback': 'fos.Router.setData'}) }}"></script>
+    <script src="{{ asset('themes/green/js/pages/form.js') }}"></script>
+{% endblock %}

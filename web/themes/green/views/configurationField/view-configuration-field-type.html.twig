@@ -1,0 +1,49 @@
+{% extends "@green/layout-view.html.twig" %}
+
+{% block quick_shortcut_table_container %}
+    {% include "@green/configurationField/quick-shortcut-configuration-field.html.twig" %}
+{% endblock quick_shortcut_table_container %}
+
+{% block action_table_container %}
+    {% include "@green/configurationField/action-table-configuration-field.html.twig" %}
+{% endblock action_table_container %}
+
+{% block entity_view_container %}
+    <div class="panel-body">
+        <div class="well">
+            <dl class="dl-horizontal">
+                <dt>{{ 'label.id'|trans }}</dt>
+                <dd>{{ entity.id }}</dd>
+                <dt>{{ 'label.name'|trans }}</dt>
+                <dd>{{ entity.name }}</dd>
+            </dl>
+        </div>
+    </div>
+{% endblock entity_view_container %}
+
+{% block extra_entity_view_container %}
+    {% embed "@green/templates/table-panel.html.twig" %}
+        {% block table_panel_title %}{{ 'label.$configuration_fields'|trans }}{% endblock %}
+        {% block table_panel_btn %}
+            <a href="{{ path('appbundle_$configuration_field_add') }}" type="button" class="btn bg-teal btn-xs btn-labeled"><b><i class="icon-plus2"></i></b> {{ '$configuration_field.label.create'|trans }}</a>
+        {% endblock %}
+        {% block table_panel_th %}
+            <th>#</th>
+            <th>{{ 'label.name'|trans }}</th>
+            <th>{{ 'label.description'|trans }}</th>
+            <th>{{ 'label.type'|trans }}</th>
+            <th>{{ 'label.universe'|trans }}</th>
+        {% endblock %}
+        {% block table_panel_tr %}
+            {% for whisper in entity.whispers %}
+                <tr>
+                    <td><a href="{{ path('appbundle_configuration_field_view',{'id':entity.id}) }}">{{ entity.id }}</a></td>
+                    <td><a href="{{ path('appbundle_configuration_field_view',{'id':entity.id}) }}">{{ entity.name }}</a></td>
+                    <td>{{ entity.description }}</td>
+                    <td>{{ entity.type.name }}</td>
+                    <td>{{ entity.universe.name|default('label.na'|trans) }}</td>
+                </tr>
+            {% endfor %}
+        {% endblock %}
+    {% endembed %}
+{% endblock %}

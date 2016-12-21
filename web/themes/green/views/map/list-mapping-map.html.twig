@@ -1,0 +1,31 @@
+{% extends "@green/layout-table.html.twig" %}
+
+{% block label_table_container %}
+    <th>{{ 'label.map'|trans }}</th>
+    <th>{{ 'label.verticalAxis'|trans }}</th>
+    <th>{{ 'label.horizontalAxis'|trans }}</th>
+{% endblock label_table_container %}
+
+{% block entity_table_container %}
+    <td><a href="{{ path('appbundle_mapping_map_view',{'id':entity.id}) }}">{{ entity.id }}</a></td>
+    <td><a href="{{ path('appbundle_map_view',{'id':entity.map.id}) }}">{{ entity.map.name }}</a></td>
+    <td>{{ entity.verticalAxis }}</td>
+    <td>{{ entity.horizontalAxis }}</td>
+    <td><a href="{{ path('appbundle_mapping_map_edit', {'id': entity.id}) }}" class="btn btn-warning btn-labeled btn-xs"><b><i class="icon-pencil"></i></b> {{ 'label.edit'|trans }}</a></td>
+    <td>
+        <button data-toggle="modal"
+                data-target="#modal_theme_danger"
+                data-action="{{ path('appbundle_mapping_map_remove', {'id' : entity.id}) }}"
+                data-message="{{ 'modal.delete'|trans }}"
+                data-title="{{ 'modal.title'|trans }} <b>{{ entity.id }}</b>"
+                class="btn btn-danger btn-labeled btn-xs"><b><i class="icon-trash"></i></b> {{ 'label.delete'|trans }}</button>
+    </td>
+{% endblock entity_table_container %}
+
+{% block quick_shortcut_table_container %}
+    {% include "@green/map/quick-shortcut-map.html.twig" %}
+{% endblock quick_shortcut_table_container %}
+
+{% block action_table_container %}
+    {% include "@green/map/action-table-map.html.twig" %}
+{% endblock action_table_container %}

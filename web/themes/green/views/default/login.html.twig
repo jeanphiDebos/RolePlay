@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Role Play</title>
+
+    <!-- Global stylesheets -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
+    <link href="{{ asset('themes/green/css/icons/icomoon/styles.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('themes/green/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('themes/green/css/core.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('themes/green/css/components.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('themes/green/css/colors.min.css') }}" rel="stylesheet" type="text/css">
+    <!-- /global stylesheets -->
+
+    <!-- Core JS files -->
+    <script type="text/javascript" src="{{ asset('assets/vendor/PACE/pace.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/vendor/jquery/dist/jquery.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/vendor/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/vendor/blockUI/jquery.blockUI.js') }}"></script>
+    <!-- /core JS files -->
+
+    <!-- Theme JS files -->
+    <script type="text/javascript" src="{{ asset('assets/vendor/jquery.uniform/src/js/jquery.uniform.js') }}"></script>
+
+    <script type="text/javascript" src="{{ asset('themes/green/js/core/app.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('themes/green/js/pages/form-checkbox-radio.js') }}"></script>
+    <!-- /theme JS files -->
+
+</head>
+
+<body class="login-cover">
+
+<!-- Page container -->
+<div class="page-container login-container">
+
+    <!-- Page content -->
+    <div class="page-content">
+
+        <!-- Main content -->
+        <div class="content-wrapper">
+
+            <!-- Content area -->
+            <div class="content">
+
+                <!-- Tabbed form -->
+                <div class="tabbable panel login-form width-400">
+                    <ul class="nav nav-tabs nav-justified">
+                        <li class="active"><a href="#basic-tab1" data-toggle="tab"><h6><i class="icon-checkmark3 position-left"></i> {{ 'label.already_user'|trans }}</h6></a></li>
+                        <li><a href="#basic-tab2" data-toggle="tab"><h6><i class="icon-plus3 position-left"></i> {{ 'label.register'|trans }}</h6></a></li>
+                    </ul>
+
+                    <div class="tab-content panel-body">
+                        <div class="tab-pane fade in active" id="basic-tab1">
+                            {#<form action="{{ path('login') }}" method="post">#}
+                            <form action="" method="post">
+                                <div class="text-center">
+                                    <div class="icon-object border-slate-300 text-slate-300"><i class="icon-reading"></i></div>
+                                    <h5 class="content-group">{{ 'label.login_to_account'|trans }}
+                                        <small class="display-block">{{ 'label.your_informations'|trans }}</small>
+                                    </h5>
+                                    {% if error %}
+                                        <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                                    {% endif %}
+                                </div>
+
+                                <div class="form-group has-feedback has-feedback-left">
+                                    <input type="text" class="form-control" placeholder="{{ 'label.username'|trans }}" name="_username" required="required" value="{{ last_username }}">
+                                    <div class="form-control-feedback">
+                                        <i class="icon-user text-muted"></i>
+                                    </div>
+                                </div>
+
+                                <div class="form-group has-feedback has-feedback-left">
+                                    <input type="password" class="form-control" placeholder="{{ 'label.password'|trans }}" name="_password" required="required">
+                                    <div class="form-control-feedback">
+                                        <i class="icon-lock2 text-muted"></i>
+                                    </div>
+                                </div>
+
+                                <div class="form-group login-options">
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <label class="checkbox-inline">
+                                                <input type="checkbox" class="styled" checked="checked">
+                                                {{ 'form.remember'|trans }}
+                                            </label>
+                                        </div>
+
+                                        <div class="col-sm-6 text-right">
+                                            <a href="#">{{ 'form.forgot_password'|trans }}</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <button type="submit" class="btn bg-blue btn-block">{{ 'label.login'|trans }} <i class="icon-arrow-right14 position-right"></i></button>
+                                </div>
+                            </form>
+                        </div>
+
+                        <div class="tab-pane fade" id="basic-tab2">
+                            <form action="#">
+                                <div class="text-center">
+                                    <div class="icon-object border-success text-success"><i class="icon-plus3"></i></div>
+                                    <h5 class="content-group">{{ 'label.register'|trans }}
+                                        <small class="display-block">{{ 'label.all_input_required'|trans }}</small>
+                                    </h5>
+                                </div>
+
+                                <div class="form-group has-feedback has-feedback-left">
+                                    <input type="text" class="form-control" placeholder="{{ 'label.your_username'|trans }}">
+                                    <div class="form-control-feedback">
+                                        <i class="icon-user-check text-muted"></i>
+                                    </div>
+                                </div>
+
+                                <div class="form-group has-feedback has-feedback-left">
+                                    <input type="text" class="form-control" placeholder="{{ 'label.create_password'|trans }}">
+                                    <div class="form-control-feedback">
+                                        <i class="icon-user-lock text-muted"></i>
+                                    </div>
+                                </div>
+
+                                <div class="form-group has-feedback has-feedback-left">
+                                    <input type="text" class="form-control" placeholder="{{ 'label.your_mail'|trans }}">
+                                    <div class="form-control-feedback">
+                                        <i class="icon-mention text-muted"></i>
+                                    </div>
+                                </div>
+
+                                <button type="submit" class="btn bg-indigo-400 btn-block">{{ 'label.to_register'|trans }} <i class="icon-circle-right2 position-right"></i></button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!-- /tabbed form -->
+
+
+                <!-- Footer -->
+                <div class="footer text-white">
+                    &copy; 2015. <a href="http://www.cartelmatic.com" class="text-white" target="_blank">Cartelmatic</a>
+                </div>
+                <!-- /footer -->
+
+            </div>
+            <!-- /content area -->
+
+        </div>
+        <!-- /main content -->
+
+    </div>
+    <!-- /page content -->
+
+</div>
+<!-- /page container -->
+
+</body>
+</html>

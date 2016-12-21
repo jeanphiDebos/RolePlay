@@ -1,0 +1,21 @@
+<!-- Main navigation -->
+<div class="sidebar-category sidebar-category-visible">
+    <div class="category-content no-padding">
+        <ul class="navigation navigation-main navigation-accordion">
+            <!-- Main -->
+            <li class="navigation-header"><span>{{ 'label.main'|trans }}</span> <i class="icon-menu" title="Main pages"></i></li>
+            <li><a href="{{ path('app_home_index') }}"><i class="icon-home4"></i> <span>{{ 'label.home'|trans }}</span></a></li>
+            <li>
+                <a href="{{ path('appbundle_map_index') }}"><i class="icon-address-book"></i> <span>{{ 'map.label.name'|trans }}</span></a>
+            </li>
+            {#<li>#}
+                {#<a href="#"><i class="icon-address-book"></i> <span>{{ 'map.label.name'|trans }}</span></a>#}
+                {#<ul>#}
+                    {#<li><a href="{{ path('appbundle_map_index') }}">{{ 'map.label.name'|trans }}</a></li>#}
+                {#</ul>#}
+            {#</li>#}
+            <!-- /main -->
+        </ul>
+    </div>
+</div>
+<!-- /main navigation -->
