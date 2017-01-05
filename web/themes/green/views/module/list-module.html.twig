@@ -9,9 +9,9 @@
     <td><a href="{{ path('appbundle_module_view',{'id':entity.id}) }}">{{ entity.id }}</a></td>
     <td><a href="{{ path('appbundle_module_view',{'id':entity.id}) }}">{{ entity.name }}</a></td>
     <td>{% for universe in entity.universes %}
-        {% if not loop.first %}<br>{% endif %}
-        <a href="{{ path('appbundle_universe_view',{'id':universe.id}) }}">{{ universe.name|default('label.na'|trans) }}</a>
-    {% endfor %}</td>
+            {% if not loop.first %}<br>{% endif %}
+            <a href="{{ path('appbundle_universe_view',{'id':universe.id}) }}">{{ universe.name|default('label.na'|trans) }}</a>
+        {% endfor %}</td>
     <td><a href="{{ path('appbundle_module_edit', {'id': entity.id}) }}" class="btn btn-warning btn-labeled btn-xs"><b><i class="icon-pencil"></i></b> {{ 'label.edit'|trans }}</a></td>
     <td>
         <button data-toggle="modal"

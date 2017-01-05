@@ -1,6 +1,7 @@
 {% extends "@green/layout-table.html.twig" %}
 
 {% block label_table_container %}
+    <th>{{ 'label.value'|trans }}</th>
     <th>{{ 'label.datetime'|trans }}</th>
     <th>{{ 'label.play'|trans }}</th>
     <th>{{ 'label.animation'|trans }}</th>
@@ -9,6 +10,7 @@
 
 {% block entity_table_container %}
     <td><a href="{{ path('appbundle_event_view',{'id':entity.id}) }}">{{ entity.id }}</a></td>
+    <td>{{ entity.value }}</td>
     <td>{{ entity.dateTime|date('d/m/y') }}</td>
     <td>{{ entity.play }}</td>
     <td>{{ entity.animation.name|default('label.na'|trans) }}</td>

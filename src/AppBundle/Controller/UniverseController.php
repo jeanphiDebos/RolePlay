@@ -91,14 +91,6 @@ class UniverseController extends AbstractController implements BaseInterface
     /**
      * @return mixed
      */
-    public function getViewForm()
-    {
-        return '@' . $this->getThemeAdmin() . '/universe/form-universe.html.twig';
-    }
-
-    /**
-     * @return mixed
-     */
     public function getFormClass()
     {
         return UniverseType::class;

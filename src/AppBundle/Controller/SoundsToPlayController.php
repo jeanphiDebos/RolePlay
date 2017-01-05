@@ -91,14 +91,6 @@ class SoundsToPlayController extends AbstractController implements BaseInterface
     /**
      * @return mixed
      */
-    public function getViewForm()
-    {
-        return '@' . $this->getThemeAdmin() . '/soundsToPlay/form-sounds-to-play.html.twig';
-    }
-
-    /**
-     * @return mixed
-     */
     public function getFormClass()
     {
         return SoundsToPlayType::class;

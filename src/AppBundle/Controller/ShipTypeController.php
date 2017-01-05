@@ -91,14 +91,6 @@ class ShipTypeController extends AbstractController implements BaseInterface
     /**
      * @return mixed
      */
-    public function getViewForm()
-    {
-        return '@' . $this->getThemeAdmin() . '/ship/form-ship-type.html.twig';
-    }
-
-    /**
-     * @return mixed
-     */
     public function getFormClass()
     {
         return ShipTypeType::class;

@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Class Option
  * @ORM\Entity()
- * @ORM\Table(name="option")
+ * @ORM\Table(name="option_role_play")
  * @package AppBundle\Entity
  * @ORM\HasLifecycleCallbacks()
  */

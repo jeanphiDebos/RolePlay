@@ -91,14 +91,6 @@ class ConfigurationFieldTypeController extends AbstractController implements Bas
     /**
      * @return mixed
      */
-    public function getViewForm()
-    {
-        return '@' . $this->getThemeAdmin() . '/configurationField/form-configuration-field-type.html.twig';
-    }
-
-    /**
-     * @return mixed
-     */
     public function getFormClass()
     {
         return ConfigurationFieldTypeType::class;

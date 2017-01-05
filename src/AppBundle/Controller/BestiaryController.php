@@ -91,14 +91,6 @@ class BestiaryController extends AbstractController implements BaseInterface
     /**
      * @return mixed
      */
-    public function getViewForm()
-    {
-        return '@' . $this->getThemeAdmin() . '/bestiary/form-bestiary.html.twig';
-    }
-
-    /**
-     * @return mixed
-     */
     public function getFormClass()
     {
         return BestiaryType::class;

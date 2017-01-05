@@ -61,6 +61,21 @@ class DefaultManager implements ManagerInterface
     }
 
     /**
+     * @param $id
+     * @return Entity|null|object
+     */
+    public function getEntity($id = null)
+    {
+        if ($id) {
+            $this->entity = $this->repository->find($id);
+            if (!$this->entity) {
+                $this->session->getFlashBag()->add('danger', $this->getClassNameLower() . '.message.invalid_entity');
+            }
+        }
+        return $this->entity;
+    }
+
+    /**
      * @return string
      * Permet la récupération de la class en minuscule
      */
@@ -77,21 +92,6 @@ class DefaultManager implements ManagerInterface
             $result .= $word;
         }
         return strtolower($result);
-    }
-
-    /**
-     * @param $id
-     * @return Entity|null|object
-     */
-    public function getEntity($id = null)
-    {
-        if ($id) {
-            $this->entity = $this->repository->find($id);
-            if (!$this->entity) {
-                $this->session->getFlashBag()->add('danger', $this->getClassNameLower() . '.message.invalid_entity');
-            }
-        }
-        return $this->entity;
     }
 
     /**
@@ -125,25 +125,6 @@ class DefaultManager implements ManagerInterface
     }
 
     /**
-     *
-     */
-    public function gestionOptions()
-    {
-
-    }
-
-    /**
-     * @param $entity
-     * @return Entity
-     */
-    public function save($entity)
-    {
-        $this->em->persist($entity);
-        $this->em->flush();
-        return $entity;
-    }
-
-    /**
      * @param $entity
      */
     public function remove($entity)
@@ -158,6 +139,14 @@ class DefaultManager implements ManagerInterface
     }
 
     /**
+     * @return FormInterface
+     */
+    public function getForm()
+    {
+        return $this->form;
+    }
+
+    /**
      * @param Form $form
      * @param Request $request
      * @return DefaultManager
@@ -167,14 +156,6 @@ class DefaultManager implements ManagerInterface
         $this->form = $form;
         $this->request = $request;
         return $this;
-    }
-
-    /**
-     * @return FormInterface
-     */
-    public function getForm()
-    {
-        return $this->form;
     }
 
     /**
@@ -200,18 +181,37 @@ class DefaultManager implements ManagerInterface
             $textFlashBag = "success_add";
             $this->entity = $this->form->getData();
 
-            if ($this->entity->getId()){
+            if ($this->entity->getId()) {
                 $textFlashBag = "success_edit";
             }
 
             $this->save($this->entity);
             $this->gestionOptions();
 
-            $this->session->getFlashBag()->add('success', $this->getClassNameLower() . '.message.'.$textFlashBag);
+            $this->session->getFlashBag()->add('success', $this->getClassNameLower() . '.message.' . $textFlashBag);
             return true;
         } catch (\Exception $e) {
             $this->session->getFlashBag()->add('danger', $e->getMessage());
             return false;
         }
+    }
+
+    /**
+     * @param $entity
+     * @return Entity
+     */
+    public function save($entity)
+    {
+        $this->em->persist($entity);
+        $this->em->flush();
+        return $entity;
+    }
+
+    /**
+     *
+     */
+    public function gestionOptions()
+    {
+
     }
 }

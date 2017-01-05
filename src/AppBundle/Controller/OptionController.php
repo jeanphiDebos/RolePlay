@@ -91,14 +91,6 @@ class OptionController extends AbstractController implements BaseInterface
     /**
      * @return mixed
      */
-    public function getViewForm()
-    {
-        return '@' . $this->getThemeAdmin() . '/option/form-option.html.twig';
-    }
-
-    /**
-     * @return mixed
-     */
     public function getFormClass()
     {
         return OptionType::class;

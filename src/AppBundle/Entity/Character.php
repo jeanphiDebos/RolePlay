@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Class Character
  * @ORM\Entity()
- * @ORM\Table(name="character")
+ * @ORM\Table(name="character_player")
  * @package AppBundle\Entity
  * @ORM\HasLifecycleCallbacks()
  */
@@ -43,7 +43,7 @@ class Character
     protected $whispers;
     /**
      * @var Universe
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Universe", inversedBy="character")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Universe", inversedBy="characters")
      */
     protected $universe;
 

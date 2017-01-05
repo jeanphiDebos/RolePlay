@@ -2,7 +2,9 @@
 
 namespace AppBundle\Form;
 
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -13,9 +15,20 @@ class ModuleType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('name')->add('universes')        ;
+        $builder
+            ->add('name', TextType::class, [
+                'label' => 'label.name',
+                'required' => true
+            ])
+            ->add('universes', EntityType::class, [
+                'label' => 'label.universes',
+                'class' => 'AppBundle\Entity\Universe',
+                'choice_label' => 'name',
+                'multiple' => true,
+                'required' => false
+            ]);
     }
-    
+
     /**
      * {@inheritdoc}
      */

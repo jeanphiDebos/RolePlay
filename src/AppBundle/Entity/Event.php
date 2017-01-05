@@ -21,6 +21,11 @@ class Event
      */
     protected $id;
     /**
+     * @var string
+     * @ORM\Column(name="value", type="string", length=255, nullable=false)
+     */
+    protected $value;
+    /**
      * @var \DateTime
      * @ORM\Column(name="datetime", type="datetime", nullable=false)
      */
@@ -65,6 +70,30 @@ class Event
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Get value
+     *
+     * @return string
+     */
+    public function getValue()
+    {
+        return $this->value;
+    }
+
+    /**
+     * Set value
+     *
+     * @param string $value
+     *
+     * @return Event
+     */
+    public function setValue($value)
+    {
+        $this->value = $value;
+
+        return $this;
     }
 
     /**
@@ -116,6 +145,16 @@ class Event
     }
 
     /**
+     * Get animation
+     *
+     * @return \AppBundle\Entity\EventAnimation
+     */
+    public function getAnimation()
+    {
+        return $this->animation;
+    }
+
+    /**
      * Set animation
      *
      * @param \AppBundle\Entity\EventAnimation $animation
@@ -130,13 +169,13 @@ class Event
     }
 
     /**
-     * Get animation
+     * Get for
      *
-     * @return \AppBundle\Entity\EventAnimation
+     * @return \AppBundle\Entity\EventFor
      */
-    public function getAnimation()
+    public function getFor()
     {
-        return $this->animation;
+        return $this->for;
     }
 
     /**
@@ -151,15 +190,5 @@ class Event
         $this->for = $for;
 
         return $this;
-    }
-
-    /**
-     * Get for
-     *
-     * @return \AppBundle\Entity\EventFor
-     */
-    public function getFor()
-    {
-        return $this->for;
     }
 }

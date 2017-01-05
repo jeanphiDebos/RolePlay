@@ -13,13 +13,13 @@ class BaseController extends Controller
      */
     protected $theme;
     /**
-     * @var Session
-     */
-    private $session;
-    /**
      * @var array
      */
     protected $options;
+    /**
+     * @var Session
+     */
+    private $session;
 
     /**
      * @param ContainerInterface|null $container

@@ -2,7 +2,6 @@
 namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -26,40 +25,6 @@ class ConfigurationFieldType extends Status
     public function __construct()
     {
         $this->configurationFields = new ArrayCollection();
-    }
-
-    /**
-     * Add configurationField
-     *
-     * @param ConfigurationField $configurationFields
-     *
-     * @return ConfigurationFieldType
-     */
-    public function addProject(ConfigurationField $configurationFields)
-    {
-        $this->configurationFields[] = $configurationFields;
-
-        return $this;
-    }
-
-    /**
-     * Remove configurationField
-     *
-     * @param ConfigurationField $configurationFields
-     */
-    public function removeProject(ConfigurationField $configurationFields)
-    {
-        $this->configurationFields->removeElement($configurationFields);
-    }
-
-    /**
-     * Get configurationFields
-     *
-     * @return Collection
-     */
-    public function getProjects()
-    {
-        return $this->configurationFields;
     }
 
     /**

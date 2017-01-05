@@ -2,7 +2,6 @@
 namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -33,7 +32,7 @@ class EventFor extends Status
      *
      * @param \AppBundle\Entity\Event $event
      *
-     * @return EventAnimation
+     * @return EventFor
      */
     public function addEvent(\AppBundle\Entity\Event $event)
     {

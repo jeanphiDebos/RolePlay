@@ -27,7 +27,7 @@ class Ship
     protected $name;
     /**
      * @var string
-     * @ORM\Column(name="picture", type="string", length=255, nullable=true)
+     * @ORM\Column(name="picture", type="string", length=255, nullable=false)
      */
     protected $picture;
     /**

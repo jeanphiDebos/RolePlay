@@ -25,7 +25,8 @@
     {% embed "@green/templates/table-panel.html.twig" %}
         {% block table_panel_title %}{{ 'label.$configuration_fields'|trans }}{% endblock %}
         {% block table_panel_btn %}
-            <a href="{{ path('appbundle_$configuration_field_add') }}" type="button" class="btn bg-teal btn-xs btn-labeled"><b><i class="icon-plus2"></i></b> {{ '$configuration_field.label.create'|trans }}</a>
+            <a href="{{ path('appbundle_$configuration_field_add') }}" type="button" class="btn bg-teal btn-xs btn-labeled"><b><i
+                            class="icon-plus2"></i></b> {{ '$configuration_field.label.create'|trans }}</a>
         {% endblock %}
         {% block table_panel_th %}
             <th>#</th>

@@ -48,6 +48,27 @@ class AbstractController extends BaseController
     }
 
     /**
+     * @param $entity
+     * @return mixed
+     */
+    public function getNameForView($entity)
+    {
+        if (is_callable([$entity, 'getName'])) {
+            /** @noinspection PhpUndefinedMethodInspection */
+            return $entity->getName();
+        } elseif (is_callable([$entity, 'getSubject'])) {
+            /** @noinspection PhpUndefinedMethodInspection */
+            return $entity->getSubject();
+        } elseif (is_callable([$entity, 'getFirstname'])) {
+            /** @noinspection PhpUndefinedMethodInspection */
+            return $entity->getFirstname() . ' ' . $entity->getLastName();
+        } else {
+            /** @noinspection PhpUndefinedMethodInspection */
+            return $this->getManager()->getClassNameLower();
+        }
+    }
+
+    /**
      * @param Request $request
      * @param $id
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
@@ -78,6 +99,14 @@ class AbstractController extends BaseController
                 ['name' => $this->getManager()->getClassNameLower() . '.label.edit', 'url' => null]
             ]
         ));
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getViewForm()
+    {
+        return '@' . $this->getThemeAdmin() . '/templates/form.html.twig';
     }
 
     /**
@@ -122,34 +151,5 @@ class AbstractController extends BaseController
         $manager->remove($entity);
         /** @noinspection PhpUndefinedMethodInspection */
         return $this->redirect($this->generateUrl('appbundle_' . $this->getManager()->getClassNameLower() . '_index'));
-    }
-
-    /**
-     * @param $entity
-     * @return mixed
-     */
-    public function getNameForView($entity)
-    {
-        if (is_callable([$entity, 'getName'])) {
-            /** @noinspection PhpUndefinedMethodInspection */
-            return $entity->getName();
-        } elseif (is_callable([$entity, 'getSubject'])) {
-            /** @noinspection PhpUndefinedMethodInspection */
-            return $entity->getSubject();
-        } elseif (is_callable([$entity, 'getFirstname'])) {
-            /** @noinspection PhpUndefinedMethodInspection */
-            return $entity->getFirstname() . ' ' . $entity->getLastName();
-        } else {
-            /** @noinspection PhpUndefinedMethodInspection */
-            return $this->getManager()->getClassNameLower();
-        }
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getViewForm()
-    {
-        return '@' . $this->getThemeAdmin() . '/templates/form.html.twig';
     }
 }

@@ -9,7 +9,8 @@
     <td><a href="{{ path('appbundle_configuration_field_type_view',{'id':entity.id}) }}">{{ entity.id }}</a></td>
     <td><a href="{{ path('appbundle_configuration_field_type_view',{'id':entity.id}) }}">{{ entity.name }}</a></td>
     <td>{{ entity.configurationFields|length }}</td>
-    <td><a href="{{ path('appbundle_configuration_field_type_edit', {'id': entity.id}) }}" class="btn btn-warning btn-labeled btn-xs"><b><i class="icon-pencil"></i></b> {{ 'label.edit'|trans }}</a></td>
+    <td><a href="{{ path('appbundle_configuration_field_type_edit', {'id': entity.id}) }}" class="btn btn-warning btn-labeled btn-xs"><b><i class="icon-pencil"></i></b> {{ 'label.edit'|trans }}</a>
+    </td>
     <td>
         <button data-toggle="modal"
                 data-target="#modal_theme_danger"

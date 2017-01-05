@@ -2,7 +2,9 @@
 
 namespace AppBundle\Form;
 
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -13,9 +15,20 @@ class WhisperType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('whisp')->add('read')->add('dateTime')->add('character')        ;
+        $builder
+            ->add('whisp', TextType::class, [
+                'label' => 'label.whisp',
+                'required' => true
+            ])
+            ->add('character', EntityType::class, [
+                'label' => 'label.character',
+                'class' => 'AppBundle\Entity\Character',
+                'choice_label' => 'name',
+                'multiple' => false,
+                'required' => true
+            ]);
     }
-    
+
     /**
      * {@inheritdoc}
      */

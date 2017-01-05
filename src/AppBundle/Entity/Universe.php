@@ -42,6 +42,16 @@ class Universe
      */
     protected $maps;
     /**
+     * @var Character[]
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Character", mappedBy="universe")
+     */
+    protected $characters;
+    /**
+     * @var Bestiary[]
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Bestiary", mappedBy="universe")
+     */
+    protected $bestiarys;
+    /**
      * @var Ship[]
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Ship", mappedBy="universe")
      */

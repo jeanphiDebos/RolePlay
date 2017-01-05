@@ -2,6 +2,7 @@
 
 {% block label_table_container %}
     <th>{{ 'label.name'|trans }}</th>
+    <th>{{ 'label.picture'|trans }}</th>
     <th>{{ 'label.hide'|trans }}</th>
     <th>{{ 'label.universe'|trans }}</th>
 {% endblock label_table_container %}
@@ -9,6 +10,7 @@
 {% block entity_table_container %}
     <td><a href="{{ path('appbundle_bestiary_view',{'id':entity.id}) }}">{{ entity.id }}</a></td>
     <td><a href="{{ path('appbundle_bestiary_view',{'id':entity.id}) }}">{{ entity.name }}</a></td>
+    <td>{{ entity.picture }}</td>
     <td>{{ entity.hide }}</td>
     <td>{{ entity.universe.name|default('label.na'|trans) }}</td>
     <td><a href="{{ path('appbundle_bestiary_edit', {'id': entity.id}) }}" class="btn btn-warning btn-labeled btn-xs"><b><i class="icon-pencil"></i></b> {{ 'label.edit'|trans }}</a></td>

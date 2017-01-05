@@ -3,6 +3,7 @@
 namespace AppBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -13,9 +14,17 @@ class OptionType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('name')->add('value')        ;
+        $builder
+            ->add('name', TextType::class, [
+                'label' => 'label.name',
+                'required' => true
+            ])
+            ->add('value', TextType::class, [
+                'label' => 'label.value',
+                'required' => true
+            ]);
     }
-    
+
     /**
      * {@inheritdoc}
      */

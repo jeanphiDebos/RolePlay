@@ -91,14 +91,6 @@ class ConfigurationFieldController extends AbstractController implements BaseInt
     /**
      * @return mixed
      */
-    public function getViewForm()
-    {
-        return '@' . $this->getThemeAdmin() . '/configurationField/form-configuration-field.html.twig';
-    }
-
-    /**
-     * @return mixed
-     */
     public function getFormClass()
     {
         return ConfigurationFieldType::class;

@@ -27,7 +27,7 @@ class FieldBestiary
     protected $bestiary;
     /**
      * @var string
-     * @ORM\Column(name="value", type="string", length=255, nullable=false)
+     * @ORM\Column(name="value", type="string", length=255, nullable=true)
      */
     protected $value;
 

@@ -18,6 +18,11 @@ abstract class Status
      * @ORM\Column(name="name", type="string", length=255, unique=true, nullable=false)
      */
     protected $name;
+    /**
+     * @var string
+     * @ORM\Column(name="shortname", type="string", length=255, unique=true, nullable=false)
+     */
+    protected $shortName;
 
     /**
      * Status constructor.
@@ -57,5 +62,21 @@ abstract class Status
     public function setName($name)
     {
         $this->name = $name;
+    }
+
+    /**
+     * @return string
+     */
+    public function getShortName()
+    {
+        return $this->shortName;
+    }
+
+    /**
+     * @param string $shortName
+     */
+    public function setShortName($shortName)
+    {
+        $this->shortName = $shortName;
     }
 }

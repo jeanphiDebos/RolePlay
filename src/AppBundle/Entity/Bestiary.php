@@ -27,6 +27,11 @@ class Bestiary
      */
     protected $name;
     /**
+     * @var string
+     * @ORM\Column(name="picture", type="string", length=255, nullable=false)
+     */
+    protected $picture;
+    /**
      * @var boolean
      * @ORM\Column(name="hide", type="boolean", nullable=false)
      */
@@ -38,7 +43,7 @@ class Bestiary
     protected $fieldBestiarys;
     /**
      * @var Universe
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Universe", inversedBy="bestiary")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Universe", inversedBy="bestiarys")
      */
     protected $universe;
 
@@ -88,6 +93,30 @@ class Bestiary
     public function setName($name)
     {
         $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get picture
+     *
+     * @return string
+     */
+    public function getPicture()
+    {
+        return $this->picture;
+    }
+
+    /**
+     * Set picture
+     *
+     * @param string $picture
+     *
+     * @return Bestiary
+     */
+    public function setPicture($picture)
+    {
+        $this->picture = $name;
 
         return $this;
     }
