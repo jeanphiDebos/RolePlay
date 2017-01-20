@@ -8,7 +8,11 @@ use AppBundle\Service\DefaultManager;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 
-
+/**
+ * Class CharacterController
+ * @package AppBundle\Controller\CharacterController
+ * @Route(path="/admin")
+ */
 class CharacterController extends AbstractController implements BaseInterface
 {
     /**
@@ -16,7 +20,7 @@ class CharacterController extends AbstractController implements BaseInterface
      */
     public function getManager()
     {
-        return $this->get('cms_default_manager')->setRepository(Character::class);
+        return $this->get('cms_character_manager')->setRepository(Character::class);
     }
 
     /**

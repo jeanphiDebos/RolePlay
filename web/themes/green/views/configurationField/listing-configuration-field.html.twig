@@ -1,0 +1,28 @@
+
+{% embed "@green/templates/table-panel.html.twig" %}
+    {% block table_panel_title %}{{ 'label.$configuration_fields'|trans }}{% endblock %}
+    {% block table_panel_btn %}
+        <a href="{{ path('appbundle_$configuration_field_add') }}" type="button" class="btn bg-teal btn-xs btn-labeled"><b><i
+                        class="icon-plus2"></i></b> {{ '$configuration_field.label.create'|trans }}</a>
+    {% endblock %}
+    {% block table_panel_th %}
+        <th>#</th>
+        <th>{{ 'label.name'|trans }}</th>
+        <th>{{ 'label.description'|trans }}</th>
+        <th>{{ 'label.type'|trans }}</th>
+        <th>{{ 'label.for'|trans }}</th>
+        <th>{{ 'label.universe'|trans }}</th>
+    {% endblock %}
+    {% block table_panel_tr %}
+        {% for configurationField in entity.configurationFields %}
+            <tr>
+                <td><a href="{{ path('appbundle_configuration_field_view',{'id':configurationField.id}) }}">{{ configurationField.id }}</a></td>
+                <td><a href="{{ path('appbundle_configuration_field_view',{'id':configurationField.id}) }}">{{ configurationField.name }}</a></td>
+                <td>{{ configurationField.description }}</td>
+                <td>{{ configurationField.type.name|default('label.na'|trans) }}</td>
+                <td>{{ configurationField.for.name|default('label.na'|trans) }}</td>
+                <td>{{ configurationField.universe.name|default('label.na'|trans) }}</td>
+            </tr>
+        {% endfor %}
+    {% endblock %}
+{% endembed %}

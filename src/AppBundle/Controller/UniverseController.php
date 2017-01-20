@@ -8,15 +8,30 @@ use AppBundle\Service\DefaultManager;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 
-
+/**
+ * Class UniverseController
+ * @package AppBundle\Controller\UniverseController
+ * @Route(path="/admin")
+ */
 class UniverseController extends AbstractController implements BaseInterface
 {
+    /**
+     * @param Universe $entity
+     */
+    public function initOptions($entity)
+    {
+        $this->options = array("module" => array());
+        foreach ($entity->getModules() as $module) {
+            $this->options['module'][] = $module;
+        }
+    }
+
     /**
      * @return DefaultManager
      */
     public function getManager()
     {
-        return $this->get('cms_default_manager')->setRepository(Universe::class);
+        return $this->get('cms_universe_manager')->setRepository(Universe::class);
     }
 
     /**

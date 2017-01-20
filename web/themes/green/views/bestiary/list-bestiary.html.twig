@@ -10,7 +10,7 @@
 {% block entity_table_container %}
     <td><a href="{{ path('appbundle_bestiary_view',{'id':entity.id}) }}">{{ entity.id }}</a></td>
     <td><a href="{{ path('appbundle_bestiary_view',{'id':entity.id}) }}">{{ entity.name }}</a></td>
-    <td>{{ entity.picture }}</td>
+    <td><img src="{{ asset('uploads/picture/' ~ entity.picture) }}"></td>
     <td>{{ entity.hide }}</td>
     <td>{{ entity.universe.name|default('label.na'|trans) }}</td>
     <td><a href="{{ path('appbundle_bestiary_edit', {'id': entity.id}) }}" class="btn btn-warning btn-labeled btn-xs"><b><i class="icon-pencil"></i></b> {{ 'label.edit'|trans }}</a></td>

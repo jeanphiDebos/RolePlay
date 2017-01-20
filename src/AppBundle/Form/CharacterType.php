@@ -4,6 +4,8 @@ namespace AppBundle\Form;
 
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -19,6 +21,14 @@ class CharacterType extends AbstractType
             ->add('name', TextType::class, [
                 'label' => 'label.name',
                 'required' => true
+            ])
+            ->add('password', RepeatedType::class, [
+                'type' => PasswordType::class,
+                'invalid_message' => 'label.invalid_password',
+                'options' => array('attr' => array('class' => 'password-field')),
+                'required' => true,
+                'first_options' => array('label' => 'label.password'),
+                'second_options' => array('label' => 'label.confirm_password'),
             ])
             ->add('universe', EntityType::class, [
                 'label' => 'label.universe',

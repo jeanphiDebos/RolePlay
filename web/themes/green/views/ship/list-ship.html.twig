@@ -7,6 +7,7 @@
     <th>{{ 'label.type'|trans }}</th>
     <th>{{ 'label.crew'|trans }}</th>
     <th>{{ 'label.shell'|trans }}</th>
+    <th>{{ 'label.sail'|trans }}</th>
     <th>{{ 'label.canon'|trans }}</th>
     <th>{{ 'label.cannonball'|trans }}</th>
     <th>{{ 'label.universe'|trans }}</th>
@@ -15,11 +16,12 @@
 {% block entity_table_container %}
     <td><a href="{{ path('appbundle_ship_view',{'id':entity.id}) }}">{{ entity.id }}</a></td>
     <td><a href="{{ path('appbundle_ship_view',{'id':entity.id}) }}">{{ entity.name }}</a></td>
-    <td>{{ entity.picture }}</td>
+    <td><img src="{{ asset('uploads/picture/' ~ entity.picture) }}"></td>
     <td>{{ entity.playerShip }}</td>
     <td>{{ entity.type.name|default('label.na'|trans) }}</td>
     <td>{{ entity.crew }}</td>
     <td>{{ entity.shell }}</td>
+    <td>{{ entity.sail }}</td>
     <td>{{ entity.canon }}</td>
     <td>{{ entity.cannonball }}</td>
     <td>{{ entity.universe.name|default('label.na'|trans) }}</td>

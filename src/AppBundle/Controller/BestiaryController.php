@@ -8,7 +8,11 @@ use AppBundle\Service\DefaultManager;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 
-
+/**
+ * Class BestiaryController
+ * @package AppBundle\Controller\BestiaryController
+ * @Route(path="/admin")
+ */
 class BestiaryController extends AbstractController implements BaseInterface
 {
     /**

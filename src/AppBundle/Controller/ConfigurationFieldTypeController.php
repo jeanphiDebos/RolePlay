@@ -8,7 +8,11 @@ use AppBundle\Service\DefaultManager;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 
-
+/**
+ * Class ConfigurationFieldTypeController
+ * @package AppBundle\Controller\ConfigurationFieldTypeController
+ * @Route(path="/admin")
+ */
 class ConfigurationFieldTypeController extends AbstractController implements BaseInterface
 {
     /**

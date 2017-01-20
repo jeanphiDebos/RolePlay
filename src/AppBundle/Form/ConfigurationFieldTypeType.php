@@ -18,6 +18,10 @@ class ConfigurationFieldTypeType extends AbstractType
             ->add('name', TextType::class, [
                 'label' => 'label.name',
                 'required' => true
+            ])
+            ->add('shortName', TextType::class, [
+                'label' => 'label.shortName',
+                'required' => true
             ]);
     }
 

@@ -8,15 +8,30 @@ use AppBundle\Service\DefaultManager;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 
-
+/**
+ * Class ModuleController
+ * @package AppBundle\Controller\ModuleController
+ * @Route(path="/admin")
+ */
 class ModuleController extends AbstractController implements BaseInterface
 {
+    /**
+     * @param Module $entity
+     */
+    public function initOptions($entity)
+    {
+        $this->options = array("universe" => array());
+        foreach ($entity->getUniverses() as $universe) {
+            $this->options['universe'][] = $universe;
+        }
+    }
+
     /**
      * @return DefaultManager
      */
     public function getManager()
     {
-        return $this->get('cms_default_manager')->setRepository(Module::class);
+        return $this->get('cms_module_manager')->setRepository(Module::class);
     }
 
     /**

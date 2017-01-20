@@ -8,7 +8,11 @@ use AppBundle\Service\DefaultManager;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 
-
+/**
+ * Class SoundsToPlayController
+ * @package AppBundle\Controller\SoundsToPlayController
+ * @Route(path="/admin")
+ */
 class SoundsToPlayController extends AbstractController implements BaseInterface
 {
     /**

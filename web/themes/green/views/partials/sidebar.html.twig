@@ -2,7 +2,10 @@
     <div class="category-content no-padding">
         <ul class="navigation navigation-main navigation-accordion">
             <li class="navigation-header"><span>{{ 'label.main'|trans }}</span> <i class="icon-menu" title="Main pages"></i></li>
-            <li><a href="{{ path('app_home_index') }}"><i class="icon-home4"></i> <span>{{ 'label.home'|trans }}</span></a></li>
+            {% if is_granted('ROLE_ADMIN') %}
+            <li>
+                <a href="{{ path('app_home_index') }}"><i class="icon-home4"></i> <span>{{ 'label.home'|trans }}</span></a>
+            </li>
             <li>
                 <a href="{{ path('appbundle_character_index') }}"><i class="icon-accessibility"></i> <span>{{ 'character.label.name'|trans }}</span></a>
             </li>
@@ -25,7 +28,7 @@
                 <a href="{{ path('appbundle_ship_index') }}"><i class="icon-safari"></i> <span>{{ 'ship.label.name'|trans }}</span></a>
             </li>
             <li>
-                <a href="{{ path('appbundle_ship_index') }}"><i class="icon-shrink"></i> <span>{{ 'naval_fighting_simulator.label.name'|trans }}</span></a>
+                <a href="{{ path('appbundle_naval_fighting_simulator_index') }}"><i class="icon-shrink"></i> <span>{{ 'naval_fighting_simulator.label.name'|trans }}</span></a>
             </li>
             <li>
                 <a href="{{ path('appbundle_sounds_to_play_index') }}"><i class="icon-address-book"></i> <span>{{ 'sounds_to_play.label.name'|trans }}</span></a>
@@ -39,6 +42,24 @@
             <li>
                 <a href="{{ path('appbundle_module_index') }}"><i class="icon-cogs"></i> <span>{{ 'module.label.name'|trans }}</span></a>
             </li>
+            {% endif %}
+            {% if is_granted('ROLE_USER') %}
+                <li>
+                    <a href="{{ path('app_home_index') }}"><i class="icon-home4"></i> <span>{{ 'label.home'|trans }}</span></a>
+                </li>
+                <li>
+                    <a href="{{ path('app_whisper_mj_index') }}"><i class="icon-bubbles"></i> <span>{{ 'whisper.label.name'|trans }}</span></a>
+                </li>
+                <li>
+                    <a href="{{ path('app_map_mapping_index') }}"><i class="icon-map"></i> <span>{{ 'mapping_map.label.name'|trans }}</span></a>
+                </li>
+                <li>
+                    <a href="{{ path('app_bestiaries_index') }}"><i class="icon-bug"></i> <span>{{ 'bestiary.label.name'|trans }}</span></a>
+                </li>
+                <li>
+                    <a href="{{ path('app_naval_fighting_index') }}"><i class="icon-shrink"></i> <span>{{ 'naval_fighting_simulator.label.name'|trans }}</span></a>
+                </li>
+            {% endif %}
         </ul>
     </div>
 </div>

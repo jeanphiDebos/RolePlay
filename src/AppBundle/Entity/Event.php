@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation as Serializer;
 
 /**
  * Class Event
@@ -10,6 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="event")
  * @package AppBundle\Entity
  * @ORM\HasLifecycleCallbacks()
+ * @Serializer\ExclusionPolicy("none")
  */
 class Event
 {
@@ -37,12 +39,14 @@ class Event
     protected $play;
     /**
      * @var EventAnimation
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\EventAnimation", inversedBy="events")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\EventAnimation", inversedBy="events", cascade={"persist"})
+     * @Serializer\MaxDepth(1)
      */
     protected $animation;
     /**
      * @var EventFor
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\EventFor", inversedBy="events")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\EventFor", inversedBy="events", cascade={"persist"})
+     * @Serializer\MaxDepth(1)
      */
     protected $for;
 

@@ -1,0 +1,184 @@
+{% extends "@green/layout-page.html.twig" %}
+
+{% block title_page %}
+    <span class="text-semibold">{{ ('naval_fighting_simulator.label.name')|trans }}</span>
+{% endblock %}
+
+{% block breadcrumb %}
+    <li><a href="{{ path('appbundle_naval_fighting_simulator_index') }}">{{ ('naval_fighting_simulator.label.name')|trans }}</a></li>
+{% endblock breadcrumb %}
+
+{% block title_table %}{{ 'naval_fighting_simulator.label.name'|trans }}{% endblock %}
+
+{% block main_container_page %}
+    <form class="row clearfix" action="{{ path('appbundle_naval_fighting_simulator_battle') }}">
+        <div class="col-md-4 column">
+            <div class="input-group">
+                <span class="input-group-addon">{{ 'naval_fighting_simulator.label.ship'|trans }}</span>
+                <select class="form-control shipSelect" id="shipSelectOne" name="shipSelect">
+                    <option value="" class="defautValue">{{ 'naval_fighting_simulator.label.select'|trans }}
+                    </option>
+                    {% for entity in ships %}
+                        <option value="{{ entity.id }}" class="shipSelected"{% if ship.id|default('') == entity.id %} selected{% endif %}>{{ entity.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+        <div class="col-md-4 column">
+            <input type="submit" id="battleNavalFighting" class="btn btn-default" value="{{ 'naval_fighting_simulator.label.battle'|trans }}">
+            <a href="{{ path('appbundle_naval_fighting_simulator_stop') }}">
+                <button type="button" id="stopNavalFighting" class="btn btn-default">{{ 'naval_fighting_simulator.label.stop'|trans }}</button>
+            </a>
+        </div>
+        <div class="col-md-4 column">
+            <div class="input-group">
+                <span class="input-group-addon">{{ 'naval_fighting_simulator.label.ship_adverse'|trans }}</span>
+                <select class="form-control shipSelect" id="shipSelectAdverse" name="shipSelectAdverse">
+                    <option value="" class="defautValue">{{ 'naval_fighting_simulator.label.select'|trans }}
+                        {% for entity in ships %}
+                    <option value="{{ entity.id }}" class="shipSelected"{% if shipAdverse.id|default('') == entity.id %} selected{% endif %}>{{ entity.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+    </form>
+    <div class="row clearfix">
+        <div class="col-md-4 column">
+            <div class="row clearfix">
+                <div class="col-md-8 column">
+                    <button type="button" id="attackCanon" class="btn btn-default">{{ 'naval_fighting_simulator.label.attack_canon'|trans }}</button>
+                </div>
+            </div>
+            <div class="row clearfix">
+                <div class="col-md-8 column">
+                    <button type="button" id="attackCrew" class="btn btn-default">{{ 'naval_fighting_simulator.label.attack_crew'|trans }}</button>
+                </div>
+            </div>
+            <hr>
+            <div class="row clearfix">
+                <div class="col-md-12 column">
+                    <div class="input-group">
+                        <span class="input-group-addon">{{ 'label.crew'|trans }}</span>
+                        <input class="form-control caracteristicsShip" type="number" name="crew" id="crew" disabled="disabled" value="{{ ship.crew|default('') }}">
+                    </div>
+                </div>
+            </div>
+            <div class="row clearfix">
+                <div class="col-md-12 column">
+                    <div class="input-group">
+                        <span class="input-group-addon">{{ 'label.shell'|trans }}</span>
+                        <input class="form-control caracteristicsShip" type="number" name="shell" id="shell" disabled="disabled" value="{{ ship.shell|default('') }}">
+                    </div>
+                </div>
+            </div>
+            <div class="row clearfix">
+                <div class="col-md-12 column">
+                    <div class="input-group">
+                        <span class="input-group-addon">{{ 'label.sail'|trans }}</span>
+                        <input class="form-control caracteristicsShip" type="number" name="sail" id="sail" disabled="disabled" value="{{ ship.sail|default('') }}">
+                    </div>
+                </div>
+            </div>
+            <div class="row clearfix">
+                <div class="col-md-12 column">
+                    <div class="input-group">
+                        <span class="input-group-addon">{{ 'label.canon'|trans }}</span>
+                        <input class="form-control caracteristicsShip" type="number" name="canon" id="canon" disabled="disabled" value="{{ ship.canon|default('') }}">
+                    </div>
+                </div>
+            </div>
+            <div class="row clearfix">
+                <div class="col-md-12 column">
+                    <div class="input-group">
+                        <span class="input-group-addon">{{ 'label.cannonball'|trans }}</span>
+                        <input class="form-control caracteristicsShip" type="number" name="cannonball" id="cannonball" disabled="disabled" value="{{ ship.cannonball|default('') }}">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 column">
+            <div class="row clearfix">
+                <div class="col-md-12 column" id="deAuto"></div>
+            </div>
+        </div>
+        <div class="col-md-4 column">
+            <div class="row clearfix">
+                <div class="col-md-8 column">
+                    <button type="button" id="attackCanonAdverse" class="btn btn-default">{{ 'naval_fighting_simulator.label.attack_canon'|trans }}</button>
+                </div>
+            </div>
+            <div class="row clearfix">
+                <div class="col-md-8 column">
+                    <button type="button" id="attackCrewAdverse" class="btn btn-default">{{ 'naval_fighting_simulator.label.attack_crew'|trans }}</button>
+                </div>
+            </div>
+            <hr>
+            <div class="row clearfix">
+                <div class="col-md-12 column">
+                    <div class="input-group">
+                        <span class="input-group-addon">{{ 'label.crew'|trans }}</span>
+                        <input class="form-control caracteristicsShipAdverse" type="text" name="crew" id="crewAdverse" disabled="disabled" value="{{ shipAdverse.crew|default('') }}">
+                    </div>
+                </div>
+            </div>
+            <div class="row clearfix">
+                <div class="col-md-12 column">
+                    <div class="input-group">
+                        <span class="input-group-addon">{{ 'label.shell'|trans }}</span>
+                        <input class="form-control caracteristicsShipAdverse" type="number" name="shell" id="shellAdverse" disabled="disabled" value="{{ shipAdverse.shell|default('') }}">
+                    </div>
+                </div>
+            </div>
+            <div class="row clearfix">
+                <div class="col-md-12 column">
+                    <div class="input-group">
+                        <span class="input-group-addon">{{ 'label.sail'|trans }}</span>
+                        <input class="form-control caracteristicsShipAdverse" type="number" name="sail" id="sailAdverse" disabled="disabled" value="{{ shipAdverse.sail|default('') }}">
+                    </div>
+                </div>
+            </div>
+            <div class="row clearfix">
+                <div class="col-md-12 column">
+                    <div class="input-group">
+                        <span class="input-group-addon">{{ 'label.canon'|trans }}</span>
+                        <input class="form-control caracteristicsShipAdverse" type="number" name="canon" id="canonAdverse" disabled="disabled" value="{{ shipAdverse.canon|default('') }}">
+                    </div>
+                </div>
+            </div>
+            <div class="row clearfix">
+                <div class="col-md-12 column">
+                    <div class="input-group">
+                        <span class="input-group-addon">{{ 'label.cannonball'|trans }}</span>
+                        <input class="form-control caracteristicsShipAdverse" type="number" name="cannonball" id="cannonballAdverse" disabled="disabled" value="{{ shipAdverse.cannonball|default('') }}">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock main_container_page %}
+
+
+{% block quick_shortcut_table_container %}
+    {% include "@green/ship/quick-shortcut-ship.html.twig" %}
+{% endblock quick_shortcut_table_container %}
+
+{% block action_table_container %}
+    {% include "@green/ship/action-table-ship.html.twig" %}
+{% endblock action_table_container %}
+
+{% block core_js %}
+    <script type="text/javascript" src="{{ asset('themes/green/js/pages/naval-fighting-simulator.js') }}"></script>
+{% endblock %}
+{% block inline_js %}
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var damageCanonShell = {{ options.damageCanonShell|default(1) }};
+            var damageCanonCrew = {{ options.damageCanonCrew|default(1) }};
+            var damageCanonCanon = {{ options.damageCanonCanon|default(1) }};
+            var damageCrewCrew = {{ options.damageCrewCrew|default(1) }};
+            var urlAjax = "{{ path('appbundle_naval_fighting_simulator_add_event') }}";
+
+            initEventAttack(damageCanonShell, damageCanonCrew, damageCanonCanon, damageCrewCrew, urlAjax);
+        });
+    </script>
+{% endblock %}

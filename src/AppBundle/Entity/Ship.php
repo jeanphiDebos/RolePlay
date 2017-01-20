@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -28,6 +29,7 @@ class Ship
     /**
      * @var string
      * @ORM\Column(name="picture", type="string", length=255, nullable=false)
+     * @Assert\File(mimeTypes={ "image/gif", "image/jpeg", "image/png" })
      */
     protected $picture;
     /**
@@ -50,6 +52,11 @@ class Ship
      * @ORM\Column(name="shell", type="integer", nullable=false)
      */
     protected $shell;
+    /**
+     * @var int
+     * @ORM\Column(name="sail", type="integer", nullable=false)
+     */
+    protected $sail;
     /**
      * @var int
      * @ORM\Column(name="canon", type="integer", nullable=false)
@@ -208,6 +215,30 @@ class Ship
     public function setShell($shell)
     {
         $this->shell = $shell;
+
+        return $this;
+    }
+
+    /**
+     * Get sail
+     *
+     * @return integer
+     */
+    public function getSail()
+    {
+        return $this->sail;
+    }
+
+    /**
+     * Set sail
+     *
+     * @param integer $sail
+     *
+     * @return Ship
+     */
+    public function setSail($sail)
+    {
+        $this->sail = $sail;
 
         return $this;
     }

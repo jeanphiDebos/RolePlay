@@ -42,6 +42,7 @@
     "x-editable": "^1.5.1",
     "featherlight": "^1.5.1",
     "bootstrap-slider": "*",
-    "jquery-highlight": "^3.3.0"
+    "jquery-highlight": "^3.3.0",
+    "bootbox.js": "bootbox#^4.4.0"
   }
 }

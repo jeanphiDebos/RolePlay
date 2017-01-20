@@ -8,7 +8,11 @@ use AppBundle\Service\DefaultManager;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 
-
+/**
+ * Class ShipTypeController
+ * @package AppBundle\Controller\ShipTypeController
+ * @Route(path="/admin")
+ */
 class ShipTypeController extends AbstractController implements BaseInterface
 {
     /**

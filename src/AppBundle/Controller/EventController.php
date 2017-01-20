@@ -8,7 +8,11 @@ use AppBundle\Service\DefaultManager;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 
-
+/**
+ * Class EventController
+ * @package AppBundle\Controller\EventController
+ * @Route(path="/admin")
+ */
 class EventController extends AbstractController implements BaseInterface
 {
     /**
@@ -16,7 +20,7 @@ class EventController extends AbstractController implements BaseInterface
      */
     public function getManager()
     {
-        return $this->get('cms_default_manager')->setRepository(Event::class);
+        return $this->get('cms_event_manager')->setRepository(Event::class);
     }
 
     /**

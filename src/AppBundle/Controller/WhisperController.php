@@ -8,7 +8,11 @@ use AppBundle\Service\DefaultManager;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 
-
+/**
+ * Class WhisperController
+ * @package AppBundle\Controller\WhisperController
+ * @Route(path="/admin")
+ */
 class WhisperController extends AbstractController implements BaseInterface
 {
     /**

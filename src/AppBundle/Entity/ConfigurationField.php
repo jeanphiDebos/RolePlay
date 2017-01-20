@@ -37,6 +37,11 @@ class ConfigurationField
      */
     protected $type;
     /**
+     * @var ConfigurationFieldFor
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\ConfigurationFieldFor", inversedBy="configurationFields")
+     */
+    protected $for;
+    /**
      * @var Universe
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Universe", inversedBy="configurationFields")
      */
@@ -148,6 +153,30 @@ class ConfigurationField
     public function setType(\AppBundle\Entity\ConfigurationFieldType $type = null)
     {
         $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * Get for
+     *
+     * @return \AppBundle\Entity\ConfigurationFieldFor
+     */
+    public function getFor()
+    {
+        return $this->for;
+    }
+
+    /**
+     * Set for
+     *
+     * @param \AppBundle\Entity\ConfigurationFieldFor $for
+     *
+     * @return ConfigurationField
+     */
+    public function setFor(\AppBundle\Entity\ConfigurationFieldFor $for = null)
+    {
+        $this->for = $for;
 
         return $this;
     }

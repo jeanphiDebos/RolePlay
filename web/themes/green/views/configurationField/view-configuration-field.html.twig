@@ -18,6 +18,10 @@
                 <dd>{{ entity.name }}</dd>
                 <dt>{{ 'label.description'|trans }}</dt>
                 <dd>{{ entity.description }}</dd>
+                <dt>{{ 'label.type'|trans }}</dt>
+                <dd>{{ entity.type.name|default('label.na'|trans) }}</dd>
+                <dt>{{ 'label.for'|trans }}</dt>
+                <dd>{{ entity.for.name|default('label.na'|trans) }}</dd>
                 <dt>{{ 'label.universe'|trans }}</dt>
                 <dd>{{ entity.universe.name|default('label.na'|trans) }}</dd>
             </dl>

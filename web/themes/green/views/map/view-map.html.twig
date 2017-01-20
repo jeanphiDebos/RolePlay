@@ -17,7 +17,7 @@
                 <dt>{{ 'label.name'|trans }}</dt>
                 <dd>{{ entity.name }}</dd>
                 <dt>{{ 'label.picture'|trans }}</dt>
-                <dd>{{ entity.picture }}</dd>
+                <dd><img src="{{ asset('uploads/picture/' ~ entity.picture) }}"></dd>
                 <dt>{{ 'label.display'|trans }}</dt>
                 <dd>{{ entity.display }}</dd>
                 <dt>{{ 'label.displayType'|trans }}</dt>

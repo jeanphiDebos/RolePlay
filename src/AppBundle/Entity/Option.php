@@ -11,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @package AppBundle\Entity
  * @ORM\HasLifecycleCallbacks()
  */
-class Option
+class Option extends Status
 {
     /**
      * @var int
@@ -20,11 +20,6 @@ class Option
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
-    /**
-     * @var string
-     * @ORM\Column(name="name", type="string", length=255, unique=true, nullable=false)
-     */
-    protected $name;
     /**
      * @var string
      * @ORM\Column(name="value", type="string", length=255, nullable=false)
@@ -45,40 +40,6 @@ class Option
     public function __destruct()
     {
 
-    }
-
-    /**
-     * Get id
-     *
-     * @return integer
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * Get name
-     *
-     * @return string
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    /**
-     * Set name
-     *
-     * @param string $name
-     *
-     * @return Option
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
-
-        return $this;
     }
 
     /**

@@ -38,12 +38,14 @@
         </ul>
     </div>
 
+    {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_USER') %}
     <div class="navbar-collapse collapse" id="navbar-mobile">
         <ul class="nav navbar-nav">
             <li><a class="sidebar-control sidebar-main-toggle hidden-xs"><i class="icon-paragraph-justify3"></i></a>
             </li>
         </ul>
     </div>
+    {% endif %}
 </div>
 <!-- /main navbar -->
 
@@ -55,11 +57,13 @@
     <div class="page-content">
 
         <!-- Main sidebar -->
+        {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_USER') %}
         <div class="sidebar sidebar-main">
             <div class="sidebar-content">
                 {% include "@green/partials/sidebar.html.twig" %}
             </div>
         </div>
+        {% endif %}
         <!-- /main sidebar -->
 
 
@@ -116,6 +120,7 @@
 <script type="text/javascript" src="{{ asset('assets/vendor/PACE/pace.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('assets/vendor/jquery/dist/jquery.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('assets/vendor/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('assets/vendor/bootbox.js/bootbox.js') }}"></script>
 <script type="text/javascript" src="{{ asset('assets/vendor/blockUI/jquery.blockUI.js') }}"></script>
 <script type="text/javascript" src="{{ asset('themes/green/js/plugins/nicescroll.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('assets/vendor/pnotify/dist/pnotify.js') }}"></script>

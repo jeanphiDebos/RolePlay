@@ -3,6 +3,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation as Serializer;
 
 /**
  * Class EventFor
@@ -10,12 +11,14 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="event_for")
  * @package AppBundle\Entity
  * @ORM\HasLifecycleCallbacks()
+ * @Serializer\ExclusionPolicy("none")
  */
 class EventFor extends Status
 {
     /**
      * @var Event[]
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Event", mappedBy="eventFor")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Event", mappedBy="for")
+     * @Serializer\MaxDepth(0)
      */
     protected $events;
 

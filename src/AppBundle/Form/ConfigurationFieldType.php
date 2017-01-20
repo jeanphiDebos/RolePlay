@@ -31,6 +31,13 @@ class ConfigurationFieldType extends AbstractType
                 'multiple' => false,
                 'required' => true
             ])
+            ->add('for', EntityType::class, [
+                'label' => 'label.for',
+                'class' => 'AppBundle\Entity\ConfigurationFieldFor',
+                'choice_label' => 'name',
+                'multiple' => false,
+                'required' => true
+            ])
             ->add('universe', EntityType::class, [
                 'label' => 'label.universe',
                 'class' => 'AppBundle\Entity\Universe',

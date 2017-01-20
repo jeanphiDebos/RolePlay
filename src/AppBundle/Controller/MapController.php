@@ -8,7 +8,11 @@ use AppBundle\Service\DefaultManager;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 
-
+/**
+ * Class MapController
+ * @package AppBundle\Controller\MapController
+ * @Route(path="/admin")
+ */
 class MapController extends AbstractController implements BaseInterface
 {
     /**

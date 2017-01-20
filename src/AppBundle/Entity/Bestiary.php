@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -29,6 +30,7 @@ class Bestiary
     /**
      * @var string
      * @ORM\Column(name="picture", type="string", length=255, nullable=false)
+     * @Assert\File(mimeTypes={ "image/gif", "image/jpeg", "image/png" })
      */
     protected $picture;
     /**
@@ -116,7 +118,7 @@ class Bestiary
      */
     public function setPicture($picture)
     {
-        $this->picture = $name;
+        $this->picture = $picture;
 
         return $this;
     }

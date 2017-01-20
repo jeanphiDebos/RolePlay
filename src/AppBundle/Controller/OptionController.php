@@ -8,7 +8,11 @@ use AppBundle\Service\DefaultManager;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 
-
+/**
+ * Class OptionController
+ * @package AppBundle\Controller\OptionController
+ * @Route(path="/admin")
+ */
 class OptionController extends AbstractController implements BaseInterface
 {
     /**

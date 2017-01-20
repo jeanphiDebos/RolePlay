@@ -9,7 +9,7 @@ class ApiKeyUserProvider implements UserProviderInterface
 {
     public function getUsernameForApiKey($apiKey)
     {
-        $user = new User('Root', 'Root', array('ROLE_USER'));
+        $user = new User('admin', 'adminpass', array('ROLE_ADMIN'));
 
         return $user->getUsername();
     }

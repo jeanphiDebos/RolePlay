@@ -24,6 +24,10 @@ class DefaultManager implements ManagerInterface
      */
     protected $entity;
     /**
+     * @var String
+     */
+    protected $targetPicture;
+    /**
      * @var array
      */
     protected $options;
@@ -47,10 +51,12 @@ class DefaultManager implements ManagerInterface
     /**
      * ActivityManager constructor.
      * @param EntityManager $em
+     * @param String $targetPicture
      */
-    public function __construct(EntityManager $em)
+    public function __construct(EntityManager $em, $targetPicture)
     {
         $this->em = $em;
+        $this->targetPicture = $targetPicture;
         $this->session = new Session();
     }
 
@@ -180,6 +186,14 @@ class DefaultManager implements ManagerInterface
         try {
             $textFlashBag = "success_add";
             $this->entity = $this->form->getData();
+
+            if (is_callable([$this->entity, 'getPicture'])) {
+                /** @var \Symfony\Component\HttpFoundation\File\UploadedFile $file */
+                $file = $this->entity->getPicture();
+                $fileName = md5(uniqid()).'.'.$file->guessExtension();
+                $file->move($this->targetPicture,$fileName);
+                $this->entity->setPicture($fileName);
+            }
 
             if ($this->entity->getId()) {
                 $textFlashBag = "success_edit";

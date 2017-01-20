@@ -9,6 +9,8 @@ parameters:
     mailer_host: 127.0.0.1
     mailer_user: null
     mailer_password: null
-    secret: ThisTokenIsNotSoSecretChangeIt
+    secret: f4f82638b06eef2383b628b92a6cdbf4951fd079
+    base_api: 'http://localhost/autre/RolePlay/web'
     theme_admin: green
+    picture_directory: '%kernel.root_dir%/../web/uploads/picture'
     locale: fr

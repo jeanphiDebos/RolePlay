@@ -23,9 +23,24 @@ class Character
     protected $id;
     /**
      * @var string
-     * @ORM\Column(name="name", type="string", length=255, nullable=false)
+     * @ORM\Column(name="name", type="string", length=255, nullable=false, unique=true)
      */
     protected $name;
+    /**
+     * @var string
+     * @ORM\Column(name="password", type="string", length=255, nullable=false)
+     */
+    protected $password;
+    /**
+     * @var string
+     * @ORM\Column(name="salt", type="string", length=255, nullable=false)
+     */
+    protected $salt;
+    /**
+     * @var string
+     * @ORM\Column(name="token", type="string", length=255, nullable=true)
+     */
+    protected $token;
     /**
      * @var FieldCharacter[]
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\FieldCharacter", mappedBy="character")
@@ -55,6 +70,7 @@ class Character
         $this->fieldCharacters = new ArrayCollection();
         $this->soundsToPlays = new ArrayCollection();
         $this->whispers = new ArrayCollection();
+        $this->salt = base_convert(sha1(uniqid(mt_rand(), true)), 16, 36);
     }
 
     /**
@@ -95,6 +111,78 @@ class Character
     public function setName($name)
     {
         $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get password
+     *
+     * @return string
+     */
+    public function getPassword()
+    {
+        return $this->password;
+    }
+
+    /**
+     * Set password
+     *
+     * @param string $password
+     *
+     * @return Character
+     */
+    public function setPassword($password)
+    {
+        $this->password = $password;
+
+        return $this;
+    }
+
+    /**
+     * Get token
+     *
+     * @return string
+     */
+    public function getToken()
+    {
+        return $this->token;
+    }
+
+    /**
+     * Set token
+     *
+     * @param string $token
+     *
+     * @return Character
+     */
+    public function setToken($token)
+    {
+        $this->token = $token;
+
+        return $this;
+    }
+
+    /**
+     * Get salt
+     *
+     * @return string
+     */
+    public function getSalt()
+    {
+        return $this->salt;
+    }
+
+    /**
+     * Set salt
+     *
+     * @param string $salt
+     *
+     * @return Character
+     */
+    public function setSalt($salt)
+    {
+        $this->salt = $salt;
 
         return $this;
     }

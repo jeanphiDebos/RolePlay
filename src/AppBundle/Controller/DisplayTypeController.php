@@ -8,7 +8,11 @@ use AppBundle\Service\DefaultManager;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 
-
+/**
+ * Class DisplayTypeController
+ * @package AppBundle\Controller\DisplayTypeController
+ * @Route(path="/admin")
+ */
 class DisplayTypeController extends AbstractController implements BaseInterface
 {
     /**

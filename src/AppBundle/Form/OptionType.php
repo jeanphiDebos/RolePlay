@@ -19,6 +19,10 @@ class OptionType extends AbstractType
                 'label' => 'label.name',
                 'required' => true
             ])
+            ->add('shortName', TextType::class, [
+                'label' => 'label.shortName',
+                'required' => true
+            ])
             ->add('value', TextType::class, [
                 'label' => 'label.value',
                 'required' => true
