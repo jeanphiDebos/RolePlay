@@ -21,3 +21,4 @@ parameters:
     base_api: 'http://localhost/autre/RolePlay/web'
     theme_admin: "green"
     locale: 'fr'
+    picture_directory: '%kernel.root_dir%/../web/picture'
