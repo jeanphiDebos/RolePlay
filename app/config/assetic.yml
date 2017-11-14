@@ -1,0 +1,87 @@
+# Assetic Configuration
+assetic:
+    debug: '%kernel.debug%'
+    use_controller: false
+    filters:
+        cssrewrite: ~
+        jsqueeze: ~
+        scssphp:
+            formatter: 'Leafo\ScssPhp\Formatter\Compressed'
+    assets:
+        # js
+        globals_js:
+            inputs:
+                - '%kernel.project_dir%/vendor/components/jquery/jquery.min.js'
+                - '%kernel.project_dir%/vendor/components/jqueryui/jquery-ui.min.js'
+                - '%kernel.project_dir%/vendor/twbs/bootstrap/dist/js/bootstrap.min.js'
+                - '@FOSJsRoutingBundle/Resources/public/js/router.js'
+                - '%kernel.project_dir%/web/js/fos_js_routes.js'
+                - '%kernel.project_dir%/app/Resources/public/js/*'
+            output: "js/all.js"
+            filters: [ ?jsqueeze ]
+
+        # css
+        bootstrap_css:
+            inputs:
+                - '%kernel.project_dir%/vendor/twbs/bootstrap/dist/css/bootstrap.min.css'
+                - '%kernel.project_dir%/vendor/twbs/bootstrap/dist/css/bootstrap-theme.min.css'
+            output: "css/bootstrap.css"
+            filters: [ cssrewrite ]
+        fontawesome_scss:
+            inputs:
+                - '@BmatznerFontAwesomeBundle/Resources/public/scss/font-awesome.scss'
+            output: "css/font-awesome.css"
+            filters: [ scssphp ]
+        globals_scss:
+            inputs:
+                - '%kernel.project_dir%/app/Resources/public/css/globals.scss'
+            output: "css/globals.css"
+            filters: [ scssphp ]
+
+        # images
+#        images_select_blue:
+#            inputs:
+#                - '@%kernel.project_dir%/app/Resources/assets/images/select-blue.png'
+#            output: "images/select-blue.png"
+
+        # fonts
+        bootstrap_glyphicons_ttf:
+            inputs:
+                - '%kernel.project_dir%/vendor/twbs/bootstrap/dist/fonts/glyphicons-halflings-regular.ttf'
+            output: "fonts/glyphicons-halflings-regular.ttf"
+        bootstrap_glyphicons_eot:
+            inputs:
+                - '%kernel.project_dir%/vendor/twbs/bootstrap/dist/fonts/glyphicons-halflings-regular.eot'
+            output: "fonts/glyphicons-halflings-regular.eot"
+        bootstrap_glyphicons_svg:
+            inputs:
+                - '%kernel.project_dir%/vendor/twbs/bootstrap/dist/fonts/glyphicons-halflings-regular.svg'
+            output: "fonts/glyphicons-halflings-regular.svg"
+        bootstrap_glyphicons_woff:
+            inputs:
+                - '%kernel.project_dir%/vendor/twbs/bootstrap/dist/fonts/glyphicons-halflings-regular.woff'
+            output: "fonts/glyphicons-halflings-regular.woff"
+        bootstrap_glyphicons_woff2:
+            inputs:
+                - '%kernel.project_dir%/vendor/twbs/bootstrap/dist/fonts/glyphicons-halflings-regular.woff2'
+            output: "fonts/glyphicons-halflings-regular.woff2"
+        fontawesome_fonts_eot:
+            inputs:
+                - '@BmatznerFontAwesomeBundle/Resources/public/fonts/fontawesome-webfont.eot'
+            output: "fonts/fontawesome-webfont.eot"
+        fontawesome_fonts_woff:
+            inputs:
+                - '@BmatznerFontAwesomeBundle/Resources/public/fonts/fontawesome-webfont.woff'
+            output: "fonts/fontawesome-webfont.woff"
+        fontawesome_fonts_woff2:
+            inputs:
+                - '@BmatznerFontAwesomeBundle/Resources/public/fonts/fontawesome-webfont.woff2'
+            output: "fonts/fontawesome-webfont.woff2"
+        fontawesome_fonts_ttf:
+            inputs:
+                - '@BmatznerFontAwesomeBundle/Resources/public/fonts/fontawesome-webfont.ttf'
+            output: "fonts/fontawesome-webfont.ttf"
+        fontawesome_fonts_svg:
+            inputs:
+                - '@BmatznerFontAwesomeBundle/Resources/public/fonts/fontawesome-webfont.svg'
+            output: "fonts/fontawesome-webfont.svg"

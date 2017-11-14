@@ -1,13 +1,30 @@
+{% set locale = app.request.locale|split('_')|first|default('fr') %}
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-    </body>
+<html lang="{{ locale }}">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}" type="text/css"/>
+    <link rel="stylesheet" href="{{ asset('css/font-awesome.css') }}" type="text/css"/>
+    <link rel="stylesheet" href="{{ asset('css/globals.css') }}" type="text/css"/>
+</head>
+<body {% block body_attributes %}{% endblock %}>
+{% if app.session is not null and app.session.started %}
+    <div id="flash-messages">
+        {% for label, messages in app.session.flashbag.all %}
+            {% for message in messages %}
+                <div class="alert alert-{{ label }}">
+                    {{ message|trans }}
+                </div>
+            {% endfor %}
+        {% endfor %}
+    </div>
+{% endif %}
+
+{% block body %}{% endblock %}
+<script type="text/javascript" src="{{ asset('js/all.js') }}"></script>
+</body>
 </html>
