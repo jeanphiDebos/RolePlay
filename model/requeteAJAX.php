@@ -391,7 +391,7 @@ function addMessage($IDPersonnage, $message, $requeteurSQL)
  */
 function allMessagesLue($nomPersonnage, $requeteurSQL)
 {
-    $donnee = $requeteurSQL->getDonneeByChamp("personnage", "nom", $nomPersonnage);
+    $donnee = $requeteurSQL->getDonneeByChamp("personnage", "nom", $nomPersonnage, "");
     if ($donnee['id']) {
         $requeteurSQL->allMessagesLue($donnee['id']);
 

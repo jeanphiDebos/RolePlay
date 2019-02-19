@@ -72,9 +72,6 @@ function affichageMessages(nomPersonnage) {
                         for (i = 0; i < lesMessages.length; i++) {
                             affichageLeMessage(lesMessages[i]);
                         }
-                    } else {
-                        console.error("affichageMessages : " + e + "(" + data + ")");
-                        afficherMessage(4, "affichageMessages : " + e + "(" + data + ")", 0);
                     }
                 } catch (e) {
                     console.error("affichageMessages : " + e + "(" + data + ")");
@@ -105,8 +102,8 @@ function allMessagesLue(nomPersonnage) {
             },
             success: function (data) {
                 if (data != "") {
-                    console.error("allMessagesLue : " + e + "(" + data + ")");
-                    afficherMessage(4, "allMessagesLue : " + e + "(" + data + ")", 0);
+                    console.error("allMessagesLue : (" + data + ")");
+                    afficherMessage(4, "allMessagesLue : (" + data + ")", 0);
                 }
             },
             error: function () {
@@ -184,8 +181,8 @@ function ajoutMessage(nomPersonnage, message) {
             },
             success: function (data) {
                 if (data != "") {
-                    console.error("ajoutMessage : " + e + "(" + data + ")");
-                    afficherMessage(4, "ajoutMessage : " + e + "(" + data + ")", 0);
+                    console.error("ajoutMessage : (" + data + ")");
+                    afficherMessage(4, "ajoutMessage : (" + data + ")", 0);
                 }
             },
             error: function () {

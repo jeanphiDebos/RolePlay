@@ -82,7 +82,7 @@ class requeteurSQL
      * @param string $order
      * @return array
      */
-    public function getDonneeByChamp($table, $champ, $valeur, $order)
+    public function getDonneeByChamp($table, $champ, $valeur, $order = "")
     {
         $requete = "SELECT * FROM `" . $table . "` WHERE `" . $champ . "` like '" . addslashes($valeur) . "'" . $order;
 

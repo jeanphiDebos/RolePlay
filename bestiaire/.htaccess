@@ -1,0 +1,5 @@
+RewriteEngine on
+
+Rewritecond %{HTTP_HOST} ^(?:www\.)?bestiaire.roleplay-by-jp.ovh$
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule (.*[^/.]+\.(?:jpe?g|gif|bmp|png|tiff|css|js|eot|svg|ttf|woff|woff2|php))$ http://roleplay-by-jp.ovh/$1 [R=301,L,NC]
