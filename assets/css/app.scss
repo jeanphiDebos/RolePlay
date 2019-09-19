@@ -1,0 +1,18 @@
+$icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
+$fa-font-path: "~font-awesome/fonts";
+
+@import '~bootstrap-sass/assets/stylesheets/bootstrap';
+
+html {
+  height: 100%;
+}
+
+body {
+  background-color: #ccc;
+  min-height: 100%;
+}
+
+#homepage-app {
+  margin: auto;
+  min-height: 100%;
+}

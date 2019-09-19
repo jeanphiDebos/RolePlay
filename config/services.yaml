@@ -4,7 +4,11 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
-    locale: 'en'
+    locale: 'fr'
+    file_directory: 'uploads/images'
+    file_item_directory: uploads/images/items
+    path_file_directory: '%kernel.project_dir%/public/%file_directory%'
+    path_easy_admin_file_directory: './'
 
 services:
     # default configuration for services in *this* file
@@ -26,3 +30,8 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+
+    App\Service\FileUploader:  
+        arguments: 
+            $fileDirectory: '%file_directory%'
+            $pathFileDirectory: '%path_file_directory%'
