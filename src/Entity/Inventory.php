@@ -28,10 +28,10 @@ use Doctrine\ORM\Mapping as ORM;
 class Inventory
 {
     /**
-     * @var integer
+     * @var string
      * @ORM\Id
-     * @ORM\Column(type="integer")
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\GeneratedValue(strategy="UUID")
+     * @ORM\Column(type="guid", unique=true)
      * @Groups({"readInventory"})
      */
     protected $id;
@@ -59,7 +59,7 @@ class Inventory
     }
 
     /**
-     * @return int
+     * @return string
      */
     public function getId()
     {
@@ -96,5 +96,13 @@ class Inventory
     public function setItem(Item $item)
     {
         $this->item = $item;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString(): string
+    {
+        return (string) $this->character->getUsername() . ' - ' . $this->id;
     }
 }

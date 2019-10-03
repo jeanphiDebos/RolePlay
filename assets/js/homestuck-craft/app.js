@@ -188,7 +188,7 @@ $(document).ready(function () {
       },
       findItemInventory: function (idInventoryItem) {
         let itemFind = homestuck.inventory.inventoryItems.filter(function (inventoryItem) {
-          return parseInt(inventoryItem.id) === parseInt(idInventoryItem)
+          return inventoryItem.id === idInventoryItem
         });
         
         if (itemFind.length !== 0) {
@@ -199,7 +199,7 @@ $(document).ready(function () {
       },
       findIndexItemInventory: function (idInventoryItem) {
         return homestuck.inventory.inventoryItems.findIndex(function (inventoryItem) {
-          return parseInt(inventoryItem.id) === parseInt(idInventoryItem)
+          return inventoryItem.id === idInventoryItem
         });
       }
     },
@@ -305,7 +305,7 @@ $(document).ready(function () {
       },
       craftItem: function () {
         let idCraftItem = homestuck.selectedResultCraftingItem.attr('data-id-craft-item');
-        let resourceCraftItem = parseInt(homestuck.selectedResultCraftingItem.attr('data-resource-craft-item'));
+        let resourceCraftItem = homestuck.selectedResultCraftingItem.attr('data-resource-craft-item');
         let idItemSourceOne = homestuck.selectInventoryItemSourceOne.val();
         let idItemSourceTwo = homestuck.selectInventoryItemSourceTwo.val();
 

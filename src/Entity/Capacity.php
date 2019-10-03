@@ -97,4 +97,12 @@ class Capacity
     {
         $this->maxTypeItemCraft = $maxTypeItemCraft;
     }
+
+    /**
+     * @return string
+     */
+    public function __toString(): string
+    {
+        return (string) $this->lvl . ' - ' . $this->capacity;
+    }
 }

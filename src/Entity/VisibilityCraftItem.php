@@ -32,10 +32,10 @@ use Symfony\Component\Serializer\Annotation\Groups;
 class VisibilityCraftItem
 {
     /**
-     * @var integer
+     * @var string
      * @ORM\Id
-     * @ORM\Column(type="integer")
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\GeneratedValue(strategy="UUID")
+     * @ORM\Column(type="guid", unique=true)
      * @Groups({"readCraft", "readVisibilityCraftItem"})
      */
     protected $id;
@@ -69,7 +69,7 @@ class VisibilityCraftItem
     }
 
     /**
-     * @return int
+     * @return string
      */
     public function getId()
     {
@@ -122,5 +122,13 @@ class VisibilityCraftItem
     public function setIsValid(bool $isValid)
     {
         $this->isValid = $isValid;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString(): string
+    {
+        return (string) $this->character->getUsername() . ' - ' . $this->craft->getId();
     }
 }

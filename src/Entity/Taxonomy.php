@@ -19,10 +19,10 @@ use Symfony\Component\Serializer\Annotation\Groups;
 abstract class Taxonomy
 {
     /**
-     * @var integer
+     * @var string
      * @ORM\Id()
-     * @ORM\Column(type="integer", nullable=false)
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\GeneratedValue(strategy="UUID")
+     * @ORM\Column(type="guid", unique=true)
      */
     protected $id;
     /**
@@ -46,7 +46,7 @@ abstract class Taxonomy
     }
 
     /**
-     * @return int
+     * @return string
      */
     public function getId()
     {

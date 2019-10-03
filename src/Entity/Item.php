@@ -27,10 +27,10 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\BooleanFilter;
 class Item
 {
     /**
-     * @var integer
+     * @var string
      * @ORM\Id
-     * @ORM\Column(type="integer")
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\GeneratedValue(strategy="UUID")
+     * @ORM\Column(type="guid", unique=true)
      * @Groups({"readInventory", "writeInventory", "readCraft", "writeCraft"})
      */
     protected $id;
@@ -121,7 +121,7 @@ class Item
     }
 
     /**
-     * @return int
+     * @return string
      */
     public function getId()
     {

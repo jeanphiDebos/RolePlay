@@ -2,10 +2,10 @@ var Encore = require('@symfony/webpack-encore');
 
 Encore
     .setOutputPath('public/build/')
-    // .setPublicPath('/build')
+    .setPublicPath('/build')
     // for dev
     .setPublicPath('/test/RolePlay/public/build')
-    .setManifestKeyPrefix('build')
+    // .setManifestKeyPrefix('build')
     .cleanupOutputBeforeBuild()
     .addStyleEntry('css/app', './assets/css/app.scss')
     .addEntry('js/tate-no-yusha-skill/app', './assets/js/tate-no-yusha-skill/app.js')

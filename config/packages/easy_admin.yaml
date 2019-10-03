@@ -1,5 +1,33 @@
 easy_admin:
-    site_name: 'Tate No Yusha Skill'
+    design:
+        menu:
+            - User
+            - label: 'Tate No Yusha Skill'
+              children:
+                - 'Weapon'
+                - 'Skill'
+            - label: 'Homestuck Craft'
+              children:
+                - 'Character'
+                - 'Capacity'
+                - 'Item'
+                - 'TypeItem'
+                - 'CategoryItem'
+                - 'Craft'
+                - 'Inventory'
+                - 'VisibilityCraftItem'
+            - label: 'RolePlay'
+              children:
+                - 'Map'
+                - 'MappingMap'
+                - 'Player'
+                - 'FieldPlayer'
+                - 'Bestiary'
+                - 'FieldBestiary'
+                - 'Whisper'
+                - 'Universe'
+                - 'ConfigurationField'
+    site_name: 'roleplay by jp'
     entities:
         Skill:
             class: App\Entity\Skill
@@ -217,3 +245,79 @@ easy_admin:
                     - 'lvl'
                     - 'resource'
                     - 'player'
+        Universe:
+            class: App\Entity\Universe
+        Player:
+            class: App\Entity\Player
+            list:
+                fields:
+                    - 'name'
+                    - 'User'
+                    - 'universe'
+            form:
+                fields:
+                    - 'name'
+                    - 'User'
+                    - 'universe'
+        Bestiary:
+            class: App\Entity\Bestiary
+            list:
+                fields:
+                    - 'name'
+                    - { property: 'hide', type: 'toggle' }
+                    - { property: 'image', type: 'image', base_path: '%path_easy_admin_file_directory%' }
+                    - 'universe'
+            form:
+                fields:
+                    - 'name'
+                    - { property: 'hide', type_options: { required: false} }
+                    - 'universe'
+            new:
+                fields:
+                    - {property: 'imageFile', type: 'file'}
+            edit:
+                fields:
+                    - { property: 'imageFile', type: 'file', type_options: { required: false} }
+        ConfigurationField:
+            class: App\Entity\ConfigurationField
+            list:
+                fields:
+                    - 'name'
+                    - 'description'
+                    - 'universe'
+            form:
+                fields:
+                    - 'name'
+                    - 'description'
+                    - 'universe'
+        FieldPlayer:
+            class: App\Entity\FieldPlayer
+        FieldBestiary:
+            class: App\Entity\FieldBestiary
+        Whisper:
+            class: App\Entity\Whisper
+        Map:
+            class: App\Entity\Map
+            list:
+                fields:
+                    - 'name'
+                    - { property: 'display', type: 'toggle' }
+                    - { property: 'image', type: 'image', base_path: '%path_easy_admin_file_directory%' }
+                    - 'horizontalAxis'
+                    - 'verticalAxis'
+                    - 'universe'
+            form:
+                fields:
+                    - 'name'
+                    - { property: 'display', type_options: { required: false} }
+                    - 'horizontalAxis'
+                    - 'verticalAxis'
+                    - 'universe'
+            new:
+                fields:
+                    - {property: 'imageFile', type: 'file'}
+            edit:
+                fields:
+                    - { property: 'imageFile', type: 'file', type_options: { required: false} }
+        MappingMap:
+            class: App\Entity\MappingMap

@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -67,9 +69,15 @@ class User implements UserInterface
      */
     private $character;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Player", mappedBy="User")
+     */
+    private $players;
+
     public function __construct()
     {
         $this->roles = array('ROLE_USER');
+        $this->players = new ArrayCollection();
     }
 
     public function getId(): ?string
@@ -201,5 +209,36 @@ class User implements UserInterface
     public function __toString(): string
     {
         return (string) $this->name;
+    }
+
+    /**
+     * @return Collection|Player[]
+     */
+    public function getPlayers(): Collection
+    {
+        return $this->players;
+    }
+
+    public function addPlayer(Player $player): self
+    {
+        if (!$this->players->contains($player)) {
+            $this->players[] = $player;
+            $player->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removePlayer(Player $player): self
+    {
+        if ($this->players->contains($player)) {
+            $this->players->removeElement($player);
+            // set the owning side to null (unless already changed)
+            if ($player->getUser() === $this) {
+                $player->setUser(null);
+            }
+        }
+
+        return $this;
     }
 }

@@ -36,10 +36,10 @@ use Doctrine\ORM\Mapping\UniqueConstraint;
 class Craft
 {
     /**
-     * @var integer
+     * @var string
      * @ORM\Id
-     * @ORM\Column(type="integer")
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\GeneratedValue(strategy="UUID")
+     * @ORM\Column(type="guid", unique=true)
      * @Groups({"readCraft"})
      */
     protected $id;
@@ -86,7 +86,7 @@ class Craft
     }
 
     /**
-     * @return int
+     * @return string
      */
     public function getId()
     {
