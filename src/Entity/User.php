@@ -71,6 +71,7 @@ class User implements UserInterface
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Player", mappedBy="User")
+     * @ApiSubresource(maxDepth=1)
      */
     private $players;
 

@@ -12,6 +12,12 @@ Encore
     .addStyleEntry('css/tate-no-yusha-skill/app', './assets/css/tate-no-yusha-skill/app.scss')
     .addEntry('js/homestuck-craft/app', './assets/js/homestuck-craft/app.js')
     .addStyleEntry('css/homestuck-craft/app', './assets/css/homestuck-craft/app.scss')
+    .addEntry('js/roleplay/app', './assets/js/roleplay/app.js')
+    .addEntry('js/roleplay/player', './assets/js/roleplay/player.js')
+    .addEntry('js/roleplay/bestiary', './assets/js/roleplay/bestiary.js')
+    .addEntry('js/roleplay/whisper', './assets/js/roleplay/whisper.js')
+    .addEntry('js/roleplay/map', './assets/js/roleplay/map.js')
+    .addStyleEntry('css/roleplay/app', './assets/css/roleplay/app.scss')
     .enableSassLoader(function (sassOptions) {
         // https://github.com/sass/node-sass#options
         // options.includePaths = [...]

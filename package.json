@@ -17,6 +17,7 @@
         "build": "encore production --progress"
     },
     "dependencies": {
-        "d3": "3"
+        "d3": "3",
+        "webpack": "^4.0.0"
     }
 }

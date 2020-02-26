@@ -18,4 +18,21 @@ class PlayerRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Player::class);
     }
+
+    public function otherPlayersToCurrentPlayer(Player $player)
+    {
+        $qb = $this->createQueryBuilder('p');
+        $qb->leftJoin('p.universe', 'u');
+        $qb->addSelect('u');
+        $qb->where($qb->expr()->eq('u', ':u'));
+        $qb->andWhere($qb->expr()->neq('p.id', ':currentPlayer'));
+        $qb->setParameters(
+            [
+                'u' => $player->getUniverse(),
+                'currentPlayer' => $player->getId(),
+            ]
+        );
+
+        return $qb->getQuery()->getResult();
+    }
 }

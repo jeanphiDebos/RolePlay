@@ -1,0 +1,46 @@
+{% extends 'roleplay/roleplay.html.twig' %}
+
+{% block main %}
+    <div class="input-group col-sm-12">
+        <ul class="nav nav-tabs" id="whisp-tab" role="tablist">
+        {% for player in otherPlayers %}
+            <li class="nav-item">
+                <a class="nav-link" id="{{ player.id }}-tab" data-toggle="tab" data-id="{{ player.id }}"
+                    href="#{{ player.id }}" role="tab" aria-controls="{{ player.id }}">
+                    <span class="badge badge-info"></span>
+                    {{ player.name }}
+                </a>
+            </li>
+        {% endfor %}
+        </ul>
+    </div>
+
+    <div id="whisp-content" class="container-fluid">
+        <div class="tab-content col-sm-12" id="whisp-tab-content">
+        {% for player in otherPlayers %}
+            <div id="{{ player.id }}" class="tab-pane fade" aria-labelledby="{{ player.id }}-tab" data-init="true" role="tabpanel"></div>
+        {% endfor %}
+        </div>
+    </div>
+
+    <div id="whisp-prototype" class="whisper col-sm-12 is-not-read text-right text-left prototype hide">
+        <span></span><h4></h4>
+    </div>
+
+    <div class="col-sm-12"><hr></div>
+
+    <div id="send-whisp" class="col-sm-12 hide">
+        <div class="input-group">
+            <input id="text-send-whisp" type="text" class="form-control">
+            <span class="input-group-btn">
+                <button id="button-send-whisp" class="btn btn-success" type="button">{{ 'send'|trans }}</button>
+            </span>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('js/roleplay/whisper') }}
+{% endblock %}

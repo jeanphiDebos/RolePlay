@@ -3,7 +3,8 @@
 {% block title %}{% trans %}homestuck-craft{% endtrans %}{% endblock %}
 
 {% block stylesheets %}
-    <link rel="stylesheet" href="{{ asset('build/css/homestuck-craft/app.css') }}">
+    {{ parent() }}
+    {{ encore_entry_link_tags('css/homestuck-craft/app') }}
 {% endblock %}
 
 {% block body %}
@@ -82,5 +83,6 @@
 {% endblock %}
 
 {% block javascripts %}
-    <script src="{{ asset('build/js/homestuck-craft/app.js') }}"></script>
+    {{ parent() }}
+    {{ encore_entry_script_tags('js/homestuck-craft/app') }}
 {% endblock %}

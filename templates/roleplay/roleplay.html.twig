@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% trans %}roleplay{% endtrans %}{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('css/roleplay/app') }}
+{% endblock %}
+
+{% block body %}
+    <div id="container-body" class="container" data-player-id="{{ idPlayer ? idPlayer : null }}">
+        <header class="header clearfix">
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                                data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="#">{{ 'roleplay'|trans }} : {{ app.user.name }}</a>
+                    </div>
+                    <div id="navbar" class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav">
+                            <li>
+                                <a href="{{ path('player', {idPlayer: idPlayer}) }}">
+                                    {{ 'player'|trans }}
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ path('whisp', {idPlayer: idPlayer}) }}">
+                                    <span id="badge-whisp" class="badge badge-info"></span>
+                                    {{ 'whisp'|trans }}
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ path('bestiary', {idPlayer: idPlayer}) }}">
+                                    {{ 'bestiary'|trans }}
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ path('map', {idPlayer: idPlayer}) }}">
+                                    {{ 'map'|trans }}
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
+        <main role="main">
+        {% block main %}{% endblock %}
+        </main>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        const apiWhispers = "{{ path('api_whispers_get_collection') }}";
+    </script>
+    {{ encore_entry_script_tags('js/roleplay/app') }}
+{% endblock %}

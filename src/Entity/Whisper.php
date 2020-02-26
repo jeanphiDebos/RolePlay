@@ -5,10 +5,20 @@ namespace App\Entity;
 use ApiPlatform\Core\Annotation\ApiResource;
 use ApiPlatform\Core\Annotation\ApiSubresource;
 use Doctrine\ORM\Mapping as ORM;
+use ApiPlatform\Core\Annotation\ApiFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\OrderFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\BooleanFilter;
 
 /**
- * @ApiResource()
+ * @ApiResource(attributes={"order"={"dateTime": "ASC"}})
  * @ORM\Entity(repositoryClass="App\Repository\WhisperRepository")
+ * @ApiFilter(OrderFilter::class, properties={"dateTime"})
+ * @ApiFilter(SearchFilter::class, properties={
+ *   "forPlayer.id": "exact",
+ *   "toPlayer.id": "exact"
+ * })
+ * @ApiFilter(BooleanFilter::class, properties={"isread"})
  */
 class Whisper
 {
@@ -47,6 +57,12 @@ class Whisper
      * @ApiSubresource(maxDepth=1)
      */
     private $toPlayer;
+
+    public function __construct()
+    {
+        $this->dateTime = new \DateTime();
+        $this->isread   = false;
+    }
 
     public function getId(): ?string
     {

@@ -3,7 +3,8 @@
 {% block title %}{% trans %}tate-no-yusha-skill{% endtrans %}{% endblock %}
 
 {% block stylesheets %}
-    <link rel="stylesheet" href="{{ asset('build/css/tate-no-yusha-skill/app.css') }}">
+    {{ parent() }}
+    {{ encore_entry_link_tags('css/tate-no-yusha-skill/app') }}
 {% endblock %}
 
 {% block body %}
@@ -48,5 +49,6 @@
     </div>
 {% endblock %}
 {% block javascripts %}
-    <script src="{{ asset('build/js/tate-no-yusha-skill/app.js') }}"></script>
+    {{ parent() }}
+    {{ encore_entry_script_tags('js/tate-no-yusha-skill/app') }}
 {% endblock %}

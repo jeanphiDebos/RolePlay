@@ -1,0 +1,29 @@
+{% extends 'roleplay/roleplay.html.twig' %}
+
+{% block main %}
+    {# ajouter un champ de recherche #}
+    {% for bestiarie in bestiaries %}
+        {% if bestiarie.hide == false %}
+            <div class="col-sm-4">
+                <img src="{{ asset(bestiarie.image) }}" class="image-bestiarie">
+            </div>
+            <div class="col-sm-8">
+                <h2 data-id="{{ bestiarie.id }}" class="bestiarie text-center">
+                    {{ bestiarie.name }}
+                </h2>
+            </div>
+            {% for fieldBestiarie in bestiarie.fieldBestiaries %}
+                <div data-id="{{ fieldBestiarie.id }}" class="fieldBestiarie col-sm-4">
+                    <span class="glyphicon glyphicon-{{ fieldBestiarie.configurationField.name|lower }}"></span>
+                    <h4>{{ fieldBestiarie.configurationField.name|e }} : {{ fieldBestiarie.value|e }}</h4>
+                </div>
+            {% endfor %}
+            <div class="col-sm-12"><hr></div>
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('js/roleplay/bestiary') }}
+{% endblock %}

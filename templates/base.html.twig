@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}{% trans %}roleplay by jp{% endtrans %}{% endblock %}</title>
-        <link rel="stylesheet" href="{{ asset('build/css/app.css') }}">
+        {{ encore_entry_link_tags('css/app') }}
         {% block stylesheets %}{% endblock %}
     </head>
     <body data-user-id="{{ app.user ? app.user.id }}">

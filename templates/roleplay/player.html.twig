@@ -1,0 +1,19 @@
+{% extends 'roleplay/roleplay.html.twig' %}
+
+{% block main %}
+    <h2 id="player" data-id="{{ player.id }}" class="text-center">
+        {{ player.name }}
+    </h2>
+    {# ajout position #}
+    {% for fieldPlayer in fieldPlayers %}
+        <div data-id="{{ fieldPlayer.id }}" class="fieldPlayer col-sm-4">
+            <span class="glyphicon glyphicon-{{ fieldPlayer.configurationField.name|lower }}"></span>
+            <h4>{{ fieldPlayer.configurationField.name|e }} : {{ fieldPlayer.value|e }}</h4>
+        </div>
+    {% endfor %}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('js/roleplay/player') }}
+{% endblock %}

@@ -96,11 +96,11 @@ modal:
       add-item: ajouter l'objet
       creat-item: créer l'objet
     inventory:
-      add-item: selectioner l'objet
-      remove-item: selectioner l'objet
+      add-item: sélectionner l'objet
+      remove-item: sélectionner l'objet
     player:
-      transfer-character: selectioner l'utilisateur
-      transfer-item: selectioner l'objet
+      transfer-character: sélectionner l'utilisateur
+      transfer-item: sélectionner l'objet
       add-crystals: nombre de cristaux
     add-item:
       name: nom
@@ -110,3 +110,5 @@ modal:
       add-type: ajouter ce type
   close: fermer
   sav: sauvegarder
+selected_player: sélectionner le joueur
+validate: valider

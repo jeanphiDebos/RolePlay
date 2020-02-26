@@ -36,9 +36,8 @@ class Player
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="players")
      * @ORM\JoinColumn(nullable=false)
-     * @ApiSubresource(maxDepth=1)
      */
-    private $User;
+    private $user;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\FieldPlayer", mappedBy="player")
@@ -89,12 +88,12 @@ class Player
 
     public function getUser(): ?User
     {
-        return $this->User;
+        return $this->user;
     }
 
-    public function setUser(?User $User): self
+    public function setUser(?User $user): self
     {
-        $this->User = $User;
+        $this->user = $user;
 
         return $this;
     }

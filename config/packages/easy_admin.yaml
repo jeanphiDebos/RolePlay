@@ -252,12 +252,12 @@ easy_admin:
             list:
                 fields:
                     - 'name'
-                    - 'User'
+                    - 'user'
                     - 'universe'
             form:
                 fields:
                     - 'name'
-                    - 'User'
+                    - 'user'
                     - 'universe'
         Bestiary:
             class: App\Entity\Bestiary
