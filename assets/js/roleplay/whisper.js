@@ -1,16 +1,16 @@
 /*
- * not need look autoProvideVariables in webpack.config.js
- * const $ = require('jquery');
- */
- require('bootstrap-sass');
+* not need look autoProvideVariables in webpack.config.js
+* const $ = require('jquery');
+*/
+require('bootstrap-sass');
 
- $.ajaxSetup({
-   contentType: "application/json; charset=utf-8"
- });
- 
- $(document).ready(function () {
+$.ajaxSetup({
+  contentType: "application/json; charset=utf-8"
+});
+
+$(document).ready(function () {
   const currentIdPlayer = $('#container-body').data('player-id');
-  var checkWhisp        = null;
+  var checkWhisp = null;
 
   function insertWhisper(whisp) {
     var $whisp = $('#whisp-prototype').clone();
@@ -22,7 +22,7 @@
     $whisp.find('span').append((new Date(whisp.dateTime)).toLocaleString());
     $whisp.find('h4').append(whisp.whisp);
 
-    if (whisp.isread){
+    if (whisp.isread) {
       $whisp.removeClass('is-not-read');
     }
 
@@ -35,9 +35,8 @@
     return $whisp;
   }
 
-  function whisperIsread(whisp)
-  {
-    if (!whisp.isread && whisp.forPlayer.indexOf(currentIdPlayer) === -1){
+  function whisperIsread(whisp) {
+    if (!whisp.isread && whisp.forPlayer.indexOf(currentIdPlayer) === -1) {
       $.ajax({
         url: apiWhispers + '/' + whisp.id,
         type: 'PUT',
@@ -52,13 +51,15 @@
     }
   }
 
-  function scrollToWhisper()
-  {
-    $('#whisp-tab-content').animate({scrollTop: $('.tab-pane.fade.active').height()}, 500);
+  function scrollToWhisper() {
+    $('#whisp-tab-content').animate({
+      scrollTop: $('#whisp-tab-content').prop('scrollHeight')
+    },
+      500
+    );
   }
 
-  function initWhispersPlayer(idPlayer)
-  {
+  function initWhispersPlayer(idPlayer) {
     var $whispTab = $('#' + idPlayer);
     var $spanBadge = $('#' + idPlayer + '-tab').find('span.badge');
     var data = {
@@ -87,7 +88,7 @@
     });
   }
 
-  function insertWhisp(whisp, currentIdPlayerWhisp){
+  function insertWhisp(whisp, currentIdPlayerWhisp) {
     if (whisp && currentIdPlayerWhisp) {
       $.post(
         apiWhispers,
@@ -104,8 +105,7 @@
     }
   }
 
-  function checkHavWhisp()
-  {
+  function checkHavWhisp() {
     var idPlayer = $('.nav-item.active .nav-link').data('id');
     if (idPlayer) {
       initWhispersPlayer(idPlayer);
@@ -113,9 +113,8 @@
     checkWhisp = setTimeout(checkHavWhisp, 2000);
   }
 
-  function checkWhispers()
-  {
-    $('.nav.nav-tabs .nav-link').each(function(index) {
+  function checkWhispers() {
+    $('.nav.nav-tabs .nav-link').each(function (index) {
       var idPlayer = $(this).data('id');
       var $spanBadge = $(this).find('span.badge');
 
@@ -138,6 +137,10 @@
     setTimeout(checkWhispers, 5000);
   }
 
+  function resizeWhisper() {
+    $('#whisp-content').css('height', $(window).height() - $('header').height() - $('#whisp-tab').height() - $('#send-whisp').height() - 100);
+  }
+
   $('#whisp-tab a').on('click', function (e) {
     e.preventDefault();
     clearTimeout(checkWhisp);
@@ -156,5 +159,9 @@
     insertWhisp(whisp, currentIdPlayerWhisp);
   });
 
-  checkWhispers();
- });
+  $(window).resize(function () {
+    resizeWhisper();
+  });
+
+  resizeWhisper();
+});

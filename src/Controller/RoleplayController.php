@@ -116,6 +116,9 @@ class RoleplayController extends Controller
             return $this->redirectToRoute('roleplay');
         }
 
-        return $this->render('roleplay/map.html.twig', ['idPlayer' => $idPlayer]);
+        return $this->render('roleplay/map.html.twig', [
+            'idPlayer' => $idPlayer,
+            'maps'     => $player->getUniverse()->getMaps(),
+        ]);
     }
 }

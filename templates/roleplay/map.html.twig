@@ -1,10 +1,37 @@
 {% extends 'roleplay/roleplay.html.twig' %}
 
 {% block main %}
-    test 4
+    <div class="col-sm-12 text-center">
+        <label class="" for="selected_map">{{ 'select map'|trans }}</label>
+        <div class="input-group">
+            <select id="selected-map" name="selected_map" class="form-control">
+            {% for map in maps %}
+                {% if map.display == true %}
+                    <option value="{{ map.id }}">{{ map.name }}</option>
+                {% endif %}
+            {% endfor %}
+            </select>
+            <span class="input-group-btn">
+                <button id="button-show-map" class="btn btn-success" type="button">{{ 'show map'|trans }}</button>
+            </span>
+        </div>
+    </div>
+    <div class="col-sm-12"><hr></div>
+    <div class="col-sm-12 text-center" id="carte">
+        {% for map in maps %}
+            {% if map.display == true %}
+                <img id="{{ map.id }}" src="{{ asset(map.image) }}" class="image-map hide">
+            {% endif %}
+        {% endfor %}
+        <div class="masqueCarte"></div>
+    </div>
 {% endblock %}
 
 {% block javascripts %}
     {{ parent() }}
+    <script>
+        const apiMap = "{{ path('api_maps_get_collection') }}";
+        const apiMappingMap = "{{ path('api_maps_mapping_maps_get_subresource', {id: 0}) }}";
+    </script>
     {{ encore_entry_script_tags('js/roleplay/map') }}
 {% endblock %}

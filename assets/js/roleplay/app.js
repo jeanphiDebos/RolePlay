@@ -19,7 +19,6 @@ $(document).ready(function () {
       'toPlayer.id': [currentIdPlayer],
       'isread': false
     }, 'json').done(function (whisps) {
-      console.log(whisps);
       var nbWhisp = whisps.length;
 
       $spanBadge.empty();

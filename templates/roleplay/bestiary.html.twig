@@ -1,24 +1,39 @@
 {% extends 'roleplay/roleplay.html.twig' %}
 
 {% block main %}
-    {# ajouter un champ de recherche #}
+    <div id="search-bestiary" class="col-sm-12">
+        <div class="input-group">
+            <input id="value-search-bestiary" type="text" class="form-control">
+            <span class="input-group-btn">
+                <button id="button-search-bestiary" class="btn btn-success" type="button">{{ 'search'|trans }}</button>
+            </span>
+            <span class="input-group-btn">
+                <button id="button-clear-bestiary" class="btn btn-warning" type="button">{{ 'clear'|trans }}</button>
+            </span>
+        </div>
+    </div>
+
+    <div class="col-sm-12"><hr></div>
+
     {% for bestiarie in bestiaries %}
         {% if bestiarie.hide == false %}
+        <div class="col-sm-12 bestiarie">
             <div class="col-sm-4">
                 <img src="{{ asset(bestiarie.image) }}" class="image-bestiarie">
             </div>
             <div class="col-sm-8">
-                <h2 data-id="{{ bestiarie.id }}" class="bestiarie text-center">
+                <h2 data-id="{{ bestiarie.id }}" class="name-bestiary text-center">
                     {{ bestiarie.name }}
                 </h2>
             </div>
             {% for fieldBestiarie in bestiarie.fieldBestiaries %}
-                <div data-id="{{ fieldBestiarie.id }}" class="fieldBestiarie col-sm-4">
+                <div data-id="{{ fieldBestiarie.id }}" class="field-bestiary col-sm-4">
                     <span class="glyphicon glyphicon-{{ fieldBestiarie.configurationField.name|lower }}"></span>
                     <h4>{{ fieldBestiarie.configurationField.name|e }} : {{ fieldBestiarie.value|e }}</h4>
                 </div>
             {% endfor %}
             <div class="col-sm-12"><hr></div>
+        </div>
         {% endif %}
     {% endfor %}
 {% endblock %}

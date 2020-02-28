@@ -303,6 +303,7 @@ easy_admin:
                     - 'name'
                     - { property: 'display', type: 'toggle' }
                     - { property: 'image', type: 'image', base_path: '%path_easy_admin_file_directory%' }
+                    - 'typeAffichage'
                     - 'horizontalAxis'
                     - 'verticalAxis'
                     - 'universe'
@@ -310,6 +311,8 @@ easy_admin:
                 fields:
                     - 'name'
                     - { property: 'display', type_options: { required: false} }
+                    - 'typeAffichage'
+                    - { property: 'typeAffichage', type: 'choice', type_options: {multiple: false, choices: { 'mapper': 'mapper', 'cacher': 'cacher', 'visible': 'visible' } } }
                     - 'horizontalAxis'
                     - 'verticalAxis'
                     - 'universe'

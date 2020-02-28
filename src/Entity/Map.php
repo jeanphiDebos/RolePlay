@@ -43,6 +43,11 @@ class Map
     private $display;
 
     /**
+     * @ORM\Column(type="string", columnDefinition="ENUM('mapper', 'cacher', 'visible')")
+     */
+    private $typeAffichage;
+
+    /**
      * @ORM\Column(type="integer")
      */
     private $verticalAxis;
@@ -67,6 +72,7 @@ class Map
     public function __construct()
     {
         $this->mappingMaps = new ArrayCollection();
+        $this->typeAffichage = 'mapper';
     }
 
     public function getId(): ?string
@@ -118,6 +124,18 @@ class Map
     public function setDisplay(bool $display): self
     {
         $this->display = $display;
+
+        return $this;
+    }
+
+    public function getTypeAffichage(): ?string
+    {
+        return $this->typeAffichage;
+    }
+
+    public function setTypeAffichage(string $typeAffichage): self
+    {
+        $this->typeAffichage = $typeAffichage;
 
         return $this;
     }
