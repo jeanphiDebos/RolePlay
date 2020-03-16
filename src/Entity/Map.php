@@ -64,7 +64,7 @@ class Map
     private $universe;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\MappingMap", mappedBy="map")
+     * @ORM\OneToMany(targetEntity="App\Entity\MappingMap", mappedBy="map", cascade={"remove"})
      * @ApiSubresource(maxDepth=1)
      */
     private $mappingMaps;

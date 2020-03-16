@@ -70,7 +70,7 @@ class User implements UserInterface
     private $character;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Player", mappedBy="User")
+     * @ORM\OneToMany(targetEntity="App\Entity\Player", mappedBy="User", cascade={"persist", "remove"})
      * @ApiSubresource(maxDepth=1)
      */
     private $players;

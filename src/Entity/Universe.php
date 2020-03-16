@@ -31,22 +31,22 @@ class Universe
     private $display;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Player", mappedBy="universe", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="App\Entity\Player", mappedBy="universe", cascade={"remove"}, orphanRemoval=true)
      */
     private $players;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Bestiary", mappedBy="universe")
+     * @ORM\OneToMany(targetEntity="App\Entity\Bestiary", mappedBy="universe", cascade={"remove"})
      */
     private $bestiaries;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\ConfigurationField", mappedBy="universe")
+     * @ORM\OneToMany(targetEntity="App\Entity\ConfigurationField", mappedBy="universe", cascade={"remove"})
      */
     private $configurationFields;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Map", mappedBy="universe")
+     * @ORM\OneToMany(targetEntity="App\Entity\Map", mappedBy="universe", cascade={"remove"})
      */
     private $maps;
 

@@ -40,13 +40,13 @@ class Player
     private $user;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\FieldPlayer", mappedBy="player")
+     * @ORM\OneToMany(targetEntity="App\Entity\FieldPlayer", mappedBy="player", cascade={"remove"})
      * @ApiSubresource(maxDepth=1)
      */
     private $fieldPlayers;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Whisper", mappedBy="forPlayer")
+     * @ORM\OneToMany(targetEntity="App\Entity\Whisper", mappedBy="forPlayer", cascade={"remove"})
      * @ApiSubresource(maxDepth=1)
      */
     private $whispers;

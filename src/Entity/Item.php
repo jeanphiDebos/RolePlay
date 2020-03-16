@@ -92,17 +92,17 @@ class Item
     private $typeItems;
     /**
      * @var ArrayCollection<Craft>
-     * @ORM\OneToMany(targetEntity="App\Entity\Craft", mappedBy="itemSourceOne")
+     * @ORM\OneToMany(targetEntity="App\Entity\Craft", mappedBy="itemSourceOne", cascade={"persist", "remove"})
      */
     protected $craftsSourceOne;
     /**
      * @var ArrayCollection<Craft>
-     * @ORM\OneToMany(targetEntity="App\Entity\Craft", mappedBy="itemSourceTwo")
+     * @ORM\OneToMany(targetEntity="App\Entity\Craft", mappedBy="itemSourceTwo", cascade={"persist", "remove"})
      */
     protected $craftsSourceTwo;
     /**
      * @var ArrayCollection<Craft>
-     * @ORM\OneToMany(targetEntity="App\Entity\Craft", mappedBy="itemResult")
+     * @ORM\OneToMany(targetEntity="App\Entity\Craft", mappedBy="itemResult", cascade={"persist", "remove"})
      */
     protected $craftsResult;
 

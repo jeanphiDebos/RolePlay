@@ -37,12 +37,12 @@ class ConfigurationField
     private $universe;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\FieldPlayer", mappedBy="configurationField")
+     * @ORM\OneToMany(targetEntity="App\Entity\FieldPlayer", mappedBy="configurationField", cascade={"remove"})
      */
     private $fieldPlayers;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\FieldBestiary", mappedBy="configurationField")
+     * @ORM\OneToMany(targetEntity="App\Entity\FieldBestiary", mappedBy="configurationField", cascade={"remove"})
      */
     private $fieldBestiaries;
 

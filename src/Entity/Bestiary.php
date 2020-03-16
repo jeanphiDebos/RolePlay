@@ -49,7 +49,7 @@ class Bestiary
     private $universe;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\FieldBestiary", mappedBy="bestiary")
+     * @ORM\OneToMany(targetEntity="App\Entity\FieldBestiary", mappedBy="bestiary", cascade={"remove"})
      * @ApiSubresource(maxDepth=1)
      */
     private $fieldBestiaries;
