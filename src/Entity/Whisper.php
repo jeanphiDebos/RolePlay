@@ -52,7 +52,7 @@ class Whisper
     private $forPlayer;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Player", inversedBy="whispers")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Player", inversedBy="whispeds")
      * @ORM\JoinColumn(nullable=false)
      * @ApiSubresource(maxDepth=1)
      */

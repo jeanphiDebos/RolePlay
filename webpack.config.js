@@ -4,7 +4,7 @@ Encore
     .setOutputPath('public/build/')
     .setPublicPath('/build')
     // for dev
-    .setPublicPath('/test/RolePlay/public/build')
+    // .setPublicPath('/public/build')
     // .setManifestKeyPrefix('build')
     .cleanupOutputBeforeBuild()
     .addStyleEntry('css/app', './assets/css/app.scss')

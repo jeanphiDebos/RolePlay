@@ -34,7 +34,7 @@ class User implements UserInterface
     private $email;
 
     /**
-     * @ORM\Column(type="string", length=255, unique=true)
+     * @ORM\Column(type="string", length=150, unique=true)
      * @Assert\NotBlank()
      */
     private $name;
@@ -70,7 +70,7 @@ class User implements UserInterface
     private $character;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Player", mappedBy="User", cascade={"persist", "remove"})
+     * @ORM\OneToMany(targetEntity="App\Entity\Player", mappedBy="user", cascade={"persist", "remove"})
      * @ApiSubresource(maxDepth=1)
      */
     private $players;

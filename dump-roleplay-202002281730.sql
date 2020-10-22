@@ -423,7 +423,7 @@ CREATE TABLE `user` (
   `weapon_id` char(36) DEFAULT NULL COMMENT '(DC2Type:guid)',
   `character_id` char(36) DEFAULT NULL COMMENT '(DC2Type:guid)',
   `email` varchar(180) NOT NULL,
-  `name` varchar(255) NOT NULL,
+  `name` varchar(152) NOT NULL,
   `roles` text NOT NULL,
   `password` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
@@ -452,7 +452,7 @@ DROP TABLE IF EXISTS `user_character`;
 CREATE TABLE `user_character` (
   `id` char(36) NOT NULL COMMENT '(DC2Type:guid)',
   `player_id` char(36) NOT NULL COMMENT '(DC2Type:guid)',
-  `username` varchar(255) NOT NULL,
+  `username` varchar(150) NOT NULL,
   `lvl` int(11) NOT NULL DEFAULT '1',
   `resource` int(11) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`),
