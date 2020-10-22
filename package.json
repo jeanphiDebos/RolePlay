@@ -5,6 +5,7 @@
         "core-js": "3.*",
         "jquery": "3.*",
         "node-sass": "4.*",
+        "regenerator-runtime": "^0.13.2",
         "sass-loader": "7.*",
         "webpack-notifier": "1.*"
     },

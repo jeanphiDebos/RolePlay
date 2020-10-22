@@ -51,10 +51,17 @@ class Player
      */
     private $whispers;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Whisper", mappedBy="toPlayer", cascade={"remove"})
+     * @ApiSubresource(maxDepth=1)
+     */
+    private $whispeds;
+
     public function __construct()
     {
         $this->fieldPlayers = new ArrayCollection();
         $this->whispers = new ArrayCollection();
+        $this->whispeds = new ArrayCollection();
     }
 
     public function getId(): ?string
@@ -154,6 +161,37 @@ class Player
             // set the owning side to null (unless already changed)
             if ($whisper->getForPlayer() === $this) {
                 $whisper->setForPlayer(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Whisper[]
+     */
+    public function getWhispeds(): Collection
+    {
+        return $this->whispeds;
+    }
+
+    public function addWhisped(Whisper $whispeds): self
+    {
+        if (!$this->whispeds->contains($whispeds)) {
+            $this->whispeds[] = $whispeds;
+            $whispeds->setToPlayer($this);
+        }
+
+        return $this;
+    }
+
+    public function removeWhisped(Whisper $whispeds): self
+    {
+        if ($this->whispeds->contains($whispeds)) {
+            $this->whispeds->removeElement($whispeds);
+            // set the owning side to null (unless already changed)
+            if ($whispeds->getToPlayer() === $this) {
+                $whispeds->setToPlayer(null);
             }
         }
 

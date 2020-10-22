@@ -22,14 +22,13 @@ $(document).ready(function () {
     $whisp.find('span').append((new Date(whisp.dateTime)).toLocaleString());
     $whisp.find('h4').append(whisp.whisp);
 
-    if (whisp.isread) {
-      $whisp.removeClass('is-not-read');
-    }
-
     if (whisp.forPlayer.indexOf(currentIdPlayer) !== -1) {
       $whisp.removeClass('text-left');
     } else {
       $whisp.removeClass('text-right');
+      if (whisp.isread) {
+        $whisp.removeClass('is-not-read');
+      }
     }
 
     return $whisp;
@@ -75,12 +74,12 @@ $(document).ready(function () {
       };
     }
 
+    $whispTab.data('data', false);
     $.get(apiWhispers, data, 'json').done(function (whisps) {
       $.each(whisps, function (index, whisp) {
         $whispTab.append(insertWhisper(whisp));
         whisperIsread(whisp);
       });
-      $whispTab.data('data', false);
       $spanBadge.empty();
       scrollToWhisper();
     }).fail(function (data) {
