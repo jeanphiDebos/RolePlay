@@ -1,6 +1,7 @@
 #!/bin/bash
-yarn install --production=true --check-files --no-bin-links --link-duplicates
-composer dump-env prod
 composer install
-yarn run encore production
-composer install --no-dev
+composer dump-env dev
+yarn install --check-files --no-bin-links --link-duplicates
+yarn run build
+composer dump-env prod
+composer install --no-dev --prefer-dist --optimize-autoloader --no-interaction
