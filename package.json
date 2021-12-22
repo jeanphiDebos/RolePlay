@@ -1,6 +1,6 @@
 {
     "devDependencies": {
-        "@symfony/webpack-encore": "0.28.*",
+        "@symfony/webpack-encore": "0.*.*",
         "bootstrap-sass": "3.*",
         "core-js": "3.*",
         "jquery": "3.*",
@@ -12,10 +12,10 @@
     "license": "UNLICENSED",
     "private": true,
     "scripts": {
-        "dev-server": "encore dev-server",
-        "dev": "encore dev",
-        "watch": "encore dev --watch",
-        "build": "encore production --progress"
+        "dev-server": "./node_modules/@symfony/webpack-encore/bin/encore.js dev-server",
+        "dev": "./node_modules/@symfony/webpack-encore/bin/encore.js dev",
+        "watch": "./node_modules/@symfony/webpack-encore/bin/encore.js dev --watch",
+        "build": "./node_modules/@symfony/webpack-encore/bin/encore.js production --progress"
     },
     "dependencies": {
         "d3": "3",
