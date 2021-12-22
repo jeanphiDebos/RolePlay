@@ -110,5 +110,7 @@ modal:
       add-type: ajouter ce type
   close: fermer
   sav: sauvegarder
+public_map: carte par univers
 selected_player: sélectionner le joueur
+selected_universe: sélectionner l'univers
 validate: valider

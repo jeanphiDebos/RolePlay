@@ -7,7 +7,9 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Security;
 use App\Form\Type\SelectedPlayerType;
+use App\Form\Type\SelectedUniverseType;
 use App\Repository\PlayerRepository;
+use App\Repository\UniverseRepository;
 use App\Entity\Player;
 use App\Entity\User;
 
@@ -23,10 +25,16 @@ class RoleplayController extends Controller
      */
     private $playerRepository;
 
-    public function __construct(Security $security, PlayerRepository $playerRepository)
+    /**
+     * @var UniverseRepository $universeRepository
+     */
+    private $universeRepository;
+
+    public function __construct(Security $security, PlayerRepository $playerRepository, UniverseRepository $universeRepository)
     {
         $this->user = $security->getUser();
         $this->playerRepository = $playerRepository;
+        $this->universeRepository = $universeRepository;
     }
 
     /**
@@ -120,5 +128,40 @@ class RoleplayController extends Controller
             'idPlayer' => $idPlayer,
             'maps'     => $player->getUniverse()->getMaps(),
         ]);
+    }
+
+    /**
+     * @Route("/roleplay/public_map/{idUniverse}", name="public_map")
+     */
+    public function rolePlayPublicMapAction(Request $request, string $idUniverse = null)
+    {
+        $form = $this->createForm(SelectedUniverseType::class);
+        $maps = [];
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            /**
+             * @var array $data
+             * @var Universe $universe
+             */
+            $data = $form->getData();
+            $universe = $data['selectedUniverse'];
+
+            return $this->redirectToRoute('public_map', ['idUniverse' => $universe->getId()]);
+        }
+
+        if ($idUniverse) {
+            $universe = $this->universeRepository->findOneBy(['id' => $idUniverse]);
+            $maps     = $universe->getMaps();
+        }
+
+        return $this->render(
+            'roleplay/public_map.html.twig',
+            [
+                'form'       => $form->createView(),
+                'idUniverse' => $idUniverse,
+                'maps'       => $maps,
+            ]
+        );
     }
 }

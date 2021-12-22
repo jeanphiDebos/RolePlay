@@ -15,11 +15,22 @@ a:visited {
     color: blue;
 }
 
+div#returnpage {
+    position: absolute;
+    pointer-events: none;
+    top: 5px;
+    left: 5px;
+    font-size: 30px;
+    z-index: 9999;
+    pointer-events: all;
+    cursor: pointer;
+}
+
 div#sidepanel {
     position: absolute;
     pointer-events: none;
-    top: 0px;
-    right: 0px;
+    top: 5px;
+    right: 5px;
 }
 
 div#title {
@@ -28,7 +39,7 @@ div#title {
     padding: 0px;
     text-align: right;
     font-family: Verdana, Arial, Helvetica, sans-serif;
-    font-size: 18px;    
+    font-size: 30px;    
     line-height: 18px;
     color: #5D1D4D;
     font-weight: bold;
