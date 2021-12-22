@@ -5,7 +5,7 @@ Encore
     .setPublicPath('/build')
     // for dev
     // .setPublicPath('/public/build')
-    .setManifestKeyPrefix('build')
+    // .setManifestKeyPrefix('build')
     .cleanupOutputBeforeBuild()
     .addStyleEntry('css/app', './assets/css/app.scss')
     .addEntry('js/tate-no-yusha-skill/app', './assets/js/tate-no-yusha-skill/app.js')
