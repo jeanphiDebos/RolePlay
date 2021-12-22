@@ -21,35 +21,36 @@
                             <span class="icon-bar"></span>
                         </button>
                         <a class="navbar-brand" href="#">{{ 'homestuck'|trans }} : {{ app.user.name }}</a>
-                        <div class="text-warning text-center">
-                            <span class="player-resource">0</span>
-                            <span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span>
-                        </div>
+                        <a class="navbar-brand" href="{{ path('homepage') }}">
+                            <span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span>
+                        </a>
                     </div>
                     <div id="navbar" class="navbar-collapse collapse">
                         <ul class="nav navbar-nav">
-                            <li>
-                                <a data-toggle="modal" data-target="#add-crystals-player">
-                                    {{ 'player.add-crystals'|trans }}
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="modal" data-target="#add-crystals-player">
+                                    {{ 'player.add-crystals'|trans }} 
+                                    <span class="player-resource text-warning">0</span> 
+                                    <span class="glyphicon glyphicon-asterisk text-warning" aria-hidden="true"></span>
                                 </a>
                             </li>
-                            <li>
-                                <a data-toggle="modal" data-target="#add-item-inventory">
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="modal" data-target="#add-item-inventory">
                                     {{ 'inventory.add-item'|trans }}
                                 </a>
                             </li>
-                            <li>
-                                <a data-toggle="modal" data-target="#remove-item-inventory">
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="modal" data-target="#remove-item-inventory">
                                     {{ 'inventory.remove-item'|trans }}
                                 </a>
                             </li>
-                            <li>
-                                <a data-toggle="modal" data-target="#player-book">
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="modal" data-target="#player-book">
                                     <span class="glyphicon glyphicon-book" aria-hidden="true"></span> {{ 'player.book'|trans }}
                                 </a>
                             </li>
-                            <li>
-                                <a data-toggle="modal" data-target="#player-transfer">
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="modal" data-target="#player-transfer">
                                     <span class="glyphicon glyphicon-transfer" aria-hidden="true"></span> {{ 'player.transfer'|trans }}
                                 </a>
                             </li>

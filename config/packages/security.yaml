@@ -24,6 +24,9 @@ security:
                 secret:   '%kernel.secret%'
                 lifetime: 604800 # 1 week in seconds
                 path:     /
+            logout:
+                path:   app_logout
+                target: app_login
             # activate different ways to authenticate
 
             # http_basic: true
@@ -42,6 +45,8 @@ security:
         - { path: ^/logout, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/api/maps, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/roleplay/public_map, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/admin, role: ROLE_ADMIN }
         - { path: ^/profile, roles: ROLE_USER }
         - { path: ^/, role: ROLE_USER }

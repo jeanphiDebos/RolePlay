@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% trans %}roleplay{% endtrans %}{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('css/roleplay/app') }}
+{% endblock %}
+
+{% block body %}
+    <div id="container-body" class="container" data-universe-id="{{ idUniverse ? idUniverse : null }}">
+        <main role="main">
+            <div class="fixed-top">
+                <a href="{{ path('homepage') }}">
+                    <span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span>
+                </a>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4 offset-md-4 col-md-offset-4 col-xs-6 offset-xs-3 col-xs-offset-3 text-center">
+                    {{ form(form) }}
+                </div>
+                <div class="col-xs-12"><hr></div>
+
+                {% if maps %}
+                <div class="col-xs-12 text-center">
+                    <label class="" for="selected_map">{{ 'select map'|trans }}</label>
+                    <div class="input-group">
+                        <select id="selected-map" name="selected_map" class="form-control">
+                        {% for map in maps %}
+                            {% if map.display == true %}
+                                <option value="{{ map.id }}">{{ map.name }}</option>
+                            {% endif %}
+                        {% endfor %}
+                        </select>
+                        <span class="input-group-btn">
+                            <button id="button-show-map" class="btn btn-success" type="button">{{ 'show map'|trans }}</button>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-xs-12"><hr></div>
+                <div class="col-xs-12 text-center" id="carte">
+                    {% for map in maps %}
+                        {% if map.display == true %}
+                            <img id="{{ map.id }}" src="{{ asset(map.image) }}" class="image-map hide">
+                        {% endif %}
+                    {% endfor %}
+                    <div class="masqueCarte"></div>
+                </div>
+                <div id="player"></div>
+                {% endif %}
+            </div>
+        </main>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {% if maps %}
+        <script>
+            const apiMap = "{{ path('api_maps_get_collection') }}";
+            const apiMappingMap = "{{ path('api_maps_mapping_maps_get_subresource', {id: 0}) }}";
+        </script>
+        {{ encore_entry_script_tags('js/roleplay/map') }}
+    {% endif %}
+    <script src="https://www.youtube.com/iframe_api"></script>
+    {{ encore_entry_script_tags('js/roleplay/music') }}
+{% endblock %}

@@ -20,29 +20,36 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a class="navbar-brand" href="#">{{ 'roleplay'|trans }} : {{ app.user.name }}</a>
+                        <a class="navbar-brand" href="{{ path('roleplay') }}">{{ 'roleplay'|trans }} : {{ app.user.name }}</a>
                     </div>
                     <div id="navbar" class="navbar-collapse collapse">
                         <ul class="nav navbar-nav">
-                            <li>
-                                <a href="{{ path('player', {idPlayer: idPlayer}) }}">
+                            <li class="nav-item {% if app.request.get('_route') == 'player' %} active{% endif %}">
+                                <a class="nav-link" href="{{ path('player', {idPlayer: idPlayer}) }}">
                                     {{ 'player'|trans }}
                                 </a>
                             </li>
-                            <li>
-                                <a href="{{ path('whisp', {idPlayer: idPlayer}) }}">
+                            <li class="nav-item {% if app.request.get('_route') == 'whisp' %} active{% endif %}">
+                                <a class="nav-link" href="{{ path('whisp', {idPlayer: idPlayer}) }}">
                                     <span id="badge-whisp" class="badge badge-info"></span>
                                     {{ 'whisp'|trans }}
                                 </a>
                             </li>
-                            <li>
-                                <a href="{{ path('bestiary', {idPlayer: idPlayer}) }}">
+                            <li class="nav-item {% if app.request.get('_route') == 'bestiary' %} active{% endif %}">
+                                <a class="nav-link" href="{{ path('bestiary', {idPlayer: idPlayer}) }}">
                                     {{ 'bestiary'|trans }}
                                 </a>
                             </li>
-                            <li>
-                                <a href="{{ path('map', {idPlayer: idPlayer}) }}">
+                            <li class="nav-item {% if app.request.get('_route') == 'map' %} active{% endif %}">
+                                <a class="nav-link" href="{{ path('map', {idPlayer: idPlayer}) }}">
                                     {{ 'map'|trans }}
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ path('homepage') }}">
+                                    <span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span>
                                 </a>
                             </li>
                         </ul>

@@ -1,4 +1,6 @@
 {
+    "name": "roleplay",
+    "description": "package projet roleplay",
     "type": "project",
     "license": "proprietary",
     "require": {

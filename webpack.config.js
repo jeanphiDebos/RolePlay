@@ -5,7 +5,7 @@ Encore
     .setPublicPath('/build')
     // for dev
     // .setPublicPath('/public/build')
-    // .setManifestKeyPrefix('build')
+    .setManifestKeyPrefix('build')
     .cleanupOutputBeforeBuild()
     .addStyleEntry('css/app', './assets/css/app.scss')
     .addEntry('js/tate-no-yusha-skill/app', './assets/js/tate-no-yusha-skill/app.js')
@@ -17,6 +17,7 @@ Encore
     .addEntry('js/roleplay/bestiary', './assets/js/roleplay/bestiary.js')
     .addEntry('js/roleplay/whisper', './assets/js/roleplay/whisper.js')
     .addEntry('js/roleplay/map', './assets/js/roleplay/map.js')
+    .addEntry('js/roleplay/music', './assets/js/roleplay/music.js')
     .addStyleEntry('css/roleplay/app', './assets/css/roleplay/app.scss')
     .enableSassLoader(function (sassOptions) {
         // https://github.com/sass/node-sass#options
