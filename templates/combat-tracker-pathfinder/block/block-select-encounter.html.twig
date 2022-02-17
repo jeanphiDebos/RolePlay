@@ -1,0 +1,34 @@
+<div id="{{ source }}" class="row bg-light">
+    <div class="col-md-12">
+        <form id="block-select-encounter-item-{{ source }}" class="block-select-item">
+            <div class="form-group col-md-12">
+                <h4 for="select-encounter-item-{{ source }}">{{ ('pathfinder.select-item.'~source)|trans }}</h4>
+            </div>
+            <div class="form-group col-md-8">
+                <select class="form-control select-listing-encounter-item" id="select-encounter-item-{{ source }}">
+                    <option value="" selected></option>
+                {% for item in items %}
+                    <option value="{{ item.id }}">{{ item.name }}{% if source=='bestiary' %} (lvl : {{ item.level }}){% endif %}</option>
+                {% endfor %}
+                </select>
+            </div>
+            <div class="form-group col-md-4">
+            <button type="button" class="btn btn-primary" id="add-encounter-{{ source }}">
+                {{ 'pathfinder.add'|trans }}
+            </button>
+            </div>
+        </form>
+    </div>
+    <div class="col-md-12">
+        <hr>
+    </div>
+    <div id="proto-selected-encounter-item-{{ source }}" class="row selected-encounter-item hide" data-id-item="">
+        <input type="hidden" class="xp">
+        <div class="col-md-5 pt-8"><span class="name"></span></div>
+        <div class="col-md-4"><input type="number" class="form-control initiation"></div>
+        <div class="col-md-2 pt-8"><span class="pv"></span> pv</div>
+        <div class="col-md-1 pt-8"><span class="selected-encounter-item-{{ source }}-remove glyphicon glyphicon-remove text-danger" aria-hidden="true" data-id-item=""></span></div>
+    </div>
+    <div id="list-selected-encounter-item-{{ source }}" class="col-md-12">
+    </div>
+</div>

@@ -27,6 +27,10 @@ easy_admin:
                 - 'Whisper'
                 - 'Universe'
                 - 'ConfigurationField'
+            - label: 'Pathfinder'
+              children:
+                - 'PathfinderPlayer'
+                - 'PathfinderBestiary'
     site_name: 'roleplay by jp'
     entities:
         Skill:
@@ -324,3 +328,31 @@ easy_admin:
                     - { property: 'imageFile', type: 'file', type_options: { required: false} }
         MappingMap:
             class: App\Entity\MappingMap
+        PathfinderPlayer:
+            class: App\Entity\PathfinderPlayer
+            list:
+                fields:
+                    - 'name'
+                    - 'lifePoint'
+                    - 'initiation'
+            form:
+                fields:
+                    - 'name'
+                    - 'lifePoint'
+                    - 'initiation'
+        PathfinderBestiary:
+            class: App\Entity\PathfinderBestiary
+            list:
+                fields:
+                    - 'name'
+                    - 'level'
+                    - 'lifePoint'
+                    - 'initiation'
+                    - 'xp'
+            form:
+                fields:
+                    - 'name'
+                    - 'level'
+                    - 'lifePoint'
+                    - 'initiation'
+                    - 'xp'

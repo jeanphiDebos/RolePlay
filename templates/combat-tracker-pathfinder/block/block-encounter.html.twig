@@ -1,0 +1,39 @@
+<div id="combat-tracke-encounter" class="row">
+    <h2 class="col-md-12 text-center">
+        <span>{{ 'pathfinder.round'|trans }} : </span><span id="pathfinder-round">0</span>
+    </h2>
+    <h2 class="col-md-12 text-center">
+        <span>{{ 'pathfinder.total-xp'|trans }} : </span><span id="pathfinder-total-xp">0</span>
+    </h2>
+    <div class="col-md-12">
+        <hr>
+    </div>
+    <div class="col-md-12 bg-light table-responsive table-responsive-md">
+        <table class="hide">
+            <tbody>
+                <tr id="proto-selected-encounter-item" class="selected-encounter-item hide" data-id-item="">
+                    <td scope="row" class="col-md-1"><span class="current-played glyphicon glyphicon-arrow-right text-info pt-8 hide" aria-hidden="true"></span></td>
+                    <td class="col-md-3 name"><div class="pt-8"></div></td>
+                    <td class="col-md-1 note"><input type="text" class="form-control" placeholder="note"></div></td>
+                    <td class="col-md-2 initiation"><div class="pt-8"></div></td>
+                    <td class="col-md-2 current-pv"><input type="number" class="form-control" value=""></td>
+                    <td class="col-md-2 text-left"><div class="pt-8">&nbsp;/&nbsp;<span class="pv"></span></div></td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col" class="col-md-1">#</th>
+                    <th scope="col" class="col-md-3 text-center">{{ 'pathfinder.name'|trans }} </th>
+                    <th scope="col" class="col-md-2 text-center">{{ 'pathfinder.note'|trans }} </th>
+                    <th scope="col" class="col-md-2 text-center">{{ 'pathfinder.initiation'|trans }} </th>
+                    <th scope="col" class="col-md-2 text-center">{{ 'pathfinder.current-pv'|trans }} </th>
+                    <th scope="col" class="col-md-2 text-center">{{ 'pathfinder.max-pv'|trans }} </th>
+                </tr>
+            </thead>
+            <tbody id="listing-selected-encounter">
+            </tbody>
+        </table>
+    </div>
+</div>

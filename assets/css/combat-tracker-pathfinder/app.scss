@@ -1,0 +1,33 @@
+body {
+  background-color: #ccc;
+}
+
+a {
+    color: blue;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+a:visited {
+    color: blue;
+}
+
+.bg-light {
+    background-color: #f8f9fa!important;
+}
+
+.serapateur {
+    border-right-style: solid;
+}
+
+.selected-encounter-item {
+    padding: 5px;
+    padding-bottom: 10px;
+}
+
+.pt-8 {
+    padding-top: 8px !important;
+}

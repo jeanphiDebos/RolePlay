@@ -114,3 +114,18 @@ public_map: carte par univers
 selected_player: sélectionner le joueur
 selected_universe: sélectionner l'univers
 validate: valider
+combat_tracker_pathfinder: Traqueur de combat pathfinder
+combat-tracker-pathfinder: Traqueur de combat pathfinder
+pathfinder:
+  round: Round
+  total-xp: Total xp
+  name: nom
+  initiation: initiation
+  current-pv: PV
+  max-pv: PV max
+  start-combat: Commencer
+  clear-combat: Clear
+  next-combat: Next
+  select-item:
+    player: joueur
+    bestiary: monstre

@@ -19,6 +19,8 @@ Encore
     .addEntry('js/roleplay/map', './assets/js/roleplay/map.js')
     .addEntry('js/roleplay/music', './assets/js/roleplay/music.js')
     .addStyleEntry('css/roleplay/app', './assets/css/roleplay/app.scss')
+    .addEntry('js/combat-tracker-pathfinder/app', './assets/js/combat-tracker-pathfinder/app.js')
+    .addStyleEntry('css/combat-tracker-pathfinder/app', './assets/css/combat-tracker-pathfinder/app.scss')
     .enableSassLoader(function (sassOptions) {
         // https://github.com/sass/node-sass#options
         // options.includePaths = [...]

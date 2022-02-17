@@ -1,0 +1,86 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% trans %}combat-tracker-pathfinder{% endtrans %}{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('css/combat-tracker-pathfinder/app') }}
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <header class="header clearfix">
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                                data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand text-center" href="#">{{ 'combat-tracker-pathfinder'|trans }}</a>
+                    </div>
+                    <div id="navbar" class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ path('homepage') }}">
+                                    <span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
+        <main role="main">
+            <div class="row text-center">
+                <div class="col-md-12">
+                    <button type="button" class="btn btn-success" id="start-combat-tracker">
+                        {{ 'pathfinder.start-combat'|trans }}
+                    </button>
+                    &nbsp;&nbsp;&nbsp;
+                    <button type="button" class="btn btn-danger" id="clear-combat-tracker">
+                        {{ 'pathfinder.clear-combat'|trans }}
+                    </button>
+                    <hr>
+                </div>
+                <div id="block-encounter" class="col-md-6">
+                    {% include 'combat-tracker-pathfinder/block/block-encounter.html.twig' %}
+                </div>
+                <div class="col-md-1">
+                    <div>
+                        <span class="glyphicon glyphicon-resize-full" aria-hidden="true" data-toggle="collapse" href="#collapseSelectEncounter" aria-controls="collapseSelectEncounter"></span>
+                        <span class="glyphicon glyphicon-resize-small hide" aria-hidden="true" data-toggle="collapse" href="#collapseSelectEncounter" aria-controls="collapseSelectEncounter"></span>
+                    </div>
+                    <hr>
+                    <button type="button" class="btn btn-primary btn-sm" id="next-combat-tracker">
+                        {{ 'pathfinder.next-combat'|trans }}
+                    </button>
+                </div>
+                <div class="col-md-5 collapse" id="collapseSelectEncounter" data-parent="#main">
+                    <div class="row">
+                        <div class="col-md-12">
+                            {% include 'combat-tracker-pathfinder/block/block-select-encounter.html.twig' with {'source': 'player', 'items': player} %}
+                        </div>
+                        <div class="col-md-12">
+                            <hr>
+                        </div>
+                        <div class="col-md-12">
+                            {% include 'combat-tracker-pathfinder/block/block-select-encounter.html.twig' with {'source': 'bestiary', 'items': bestiary} %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        const apiPathfinderBestiaries = "{{ path('api_pathfinder_bestiaries_get_collection') }}";
+        const apiPathfinderPlayers = "{{ path('api_pathfinder_players_get_collection') }}";
+    </script>
+    {{ encore_entry_script_tags('js/combat-tracker-pathfinder/app') }}
+{% endblock %}
