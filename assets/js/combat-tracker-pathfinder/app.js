@@ -23,6 +23,17 @@ $(document).ready(function () {
   var $selectPlayer = $('#select-encounter-item-player');
   var $selectBestiary = $('#select-encounter-item-bestiary');
   
+  var $modalSheetBestiary = $('#modal-sheet-bestiary');
+  var $modalSheetBestiaryTitre = $('#sheet-bestiary-info-titre');
+  var $modalSheetBestiaryImage = $('#sheet-bestiary-info-image');
+
+  function showModalSheetBestiary(nameBestiary, sheetBestiary)
+  {
+    $modalSheetBestiaryTitre.empty().append(nameBestiary);
+    $modalSheetBestiaryImage.attr('src', sheetBestiary);
+    $modalSheetBestiary.modal();
+  }
+
   $('#add-encounter-player').on('click', function () {
     var addPlayer = $selectPlayer.val();
 
@@ -75,10 +86,12 @@ $(document).ready(function () {
 
             $newEncounterBestiary.attr('data-id-item', bestiarie.id);
             $newEncounterBestiary.data('id-item', bestiarie.id);
-            $newEncounterBestiary.find('.name').empty().append(bestiarie.name + ' (' + bestiarie.level + ')');
+            $newEncounterBestiary.find('.name').empty().append(bestiarie.name + ' (lvl : ' + bestiarie.level + ')');
             $newEncounterBestiary.find('.initiation').val(bestiarie.initiation).attr('disabled','disabled');
-            $newEncounterBestiary.find('.xp').val(bestiarie.xp);
             $newEncounterBestiary.find('.pv').empty().append(bestiarie.lifePoint);
+            $newEncounterBestiary.find('.xp').val(bestiarie.xp);
+            $newEncounterBestiary.find('.info').val(bestiarie.info);
+            $newEncounterBestiary.find('.sheet').val(bestiarie.sheet);
             $newEncounterBestiaryRemove.data('id-item', bestiarie.id);
             $newEncounterBestiaryRemove.attr('data-id-item', bestiarie.id);
             $newEncounterBestiary.removeClass('hide');
@@ -119,12 +132,16 @@ $(document).ready(function () {
     });
 
     $listEncounterBestiary.find('.selected-encounter-item').each(function() {
+      roleBestiary = (Math.floor(Math.random() * 19) + 1);
       listencounter.push({
         'id': $(this).attr('data-id-item'),
         'name': $(this).find('.name').text(),
-        'initiation': (Math.floor(Math.random() * 19) + 1) + Math.floor($(this).find('.initiation').val()),
+        'roleBestiary': roleBestiary,
+        'initiation': (roleBestiary + Math.floor($(this).find('.initiation').val())),
+        'lifePoint': $(this).find('.pv').text(),
         'xp': $(this).find('.xp').val(),
-        'lifePoint': $(this).find('.pv').text()
+        'info': $(this).find('.info').val(),
+        'sheet': $(this).find('.sheet').val()
       });
 
       totalXP += Math.floor($(this).find('.xp').val());
@@ -140,11 +157,25 @@ $(document).ready(function () {
       $newEncounter = $protoEncounter.clone();
       $newEncounter.attr('data-id-item', encounter.id);
       $newEncounter.data('id-item', encounter.id);
-      $newEncounter.find('.name div').empty().append(encounter.name);
+      $newEncounter.find('.name').empty().append(encounter.name);
       $newEncounter.find('.initiation div').empty().append(encounter.initiation);
+      if (encounter.roleBestiary) {
+        $newEncounter.find('.initiation div').append('<br>(' + encounter.roleBestiary + ')');
+      }
       $newEncounter.find('.current-pv input').val(encounter.lifePoint);
       $newEncounter.find('.pv').empty().append(encounter.lifePoint);
       $newEncounter.removeClass('hide');
+
+      if (encounter.info) {
+        $newEncounter.find('.info-encounter').attr('data-content', encounter.info).removeClass('hide').popover();
+      }
+
+      if (encounter.sheet) {
+        $newEncounter.find('.sheet-encounter').removeClass('hide').on('click', function () {
+          showModalSheetBestiary(encounter.name, encounter.sheet)
+        });
+      }
+
       if (index==0) {
         $newEncounter.find('.current-played').removeClass('hide').addClass('is-current-played').addClass('is-first-encounter');
       }

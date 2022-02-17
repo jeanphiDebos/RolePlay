@@ -2,8 +2,6 @@
 
 namespace App\EventListener;
 
-use App\Entity\Skill;
-use App\Entity\Weapon;
 use App\Service\FileUploader;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\EventDispatcher\GenericEvent;

@@ -31,3 +31,14 @@ a:visited {
 .pt-8 {
     padding-top: 8px !important;
 }
+
+.col-nopadding {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+ }
+
+ #sheet-bestiary-info-image{
+     max-width: 100%;
+ }

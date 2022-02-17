@@ -349,6 +349,8 @@ easy_admin:
                     - 'lifePoint'
                     - 'initiation'
                     - 'xp'
+                    - 'info'
+                    - { property: 'sheet', type: 'image', base_path: '%path_easy_admin_file_directory%' }
             form:
                 fields:
                     - 'name'
@@ -356,3 +358,19 @@ easy_admin:
                     - 'lifePoint'
                     - 'initiation'
                     - 'xp'
+                    - 'info'
+            show:
+                fields:
+                    - 'name'
+                    - 'level'
+                    - 'lifePoint'
+                    - 'initiation'
+                    - 'xp'
+                    - 'info'
+                    - { property: 'sheet', type: 'image', base_path: '%path_easy_admin_file_directory%' }
+            new:
+                fields:
+                    - {property: 'imageFile', type: 'file'}
+            edit:
+                fields:
+                    - { property: 'imageFile', type: 'file', type_options: { required: false} }

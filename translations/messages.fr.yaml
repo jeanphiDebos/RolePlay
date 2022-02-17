@@ -126,6 +126,7 @@ pathfinder:
   start-combat: Commencer
   clear-combat: Clear
   next-combat: Next
+  note : note
   select-item:
     player: joueur
     bestiary: monstre

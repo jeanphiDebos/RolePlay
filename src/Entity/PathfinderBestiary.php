@@ -43,6 +43,22 @@ class PathfinderBestiary
      */
     private $xp;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $info;
+    
+    /**
+     * @var string
+     * @ORM\Column(type="string", length=255)
+     */
+    private $sheet;
+
+    /**
+     * @var File
+     */
+    private $imageFile;
+
     public function __construct()
     {
         $this->level = 0;
@@ -114,6 +130,66 @@ class PathfinderBestiary
         $this->xp = $xp;
 
         return $this;
+    }
+
+    public function getInfo(): ?string
+    {
+        return $this->info;
+    }
+
+    public function setInfo(string $info): self
+    {
+        $this->info = $info;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSheet()
+    {
+        return $this->sheet;
+    }
+
+    /**
+     * @param string $sheet
+     */
+    public function setSheet($sheet)
+    {
+        $this->sheet = $sheet;
+    }
+
+    /**
+     * @return string
+     */
+    public function getImage()
+    {
+        return $this->sheet;
+    }
+
+    /**
+     * @param string $image
+     */
+    public function setImage($image)
+    {
+        $this->sheet = $image;
+    }
+
+    /**
+     * @return File
+     */
+    public function getImageFile()
+    {
+        return $this->imageFile;
+    }
+
+    /**
+     * @param File $imageFile
+     */
+    public function setImageFile($imageFile)
+    {
+        $this->imageFile = $imageFile;
     }
 
     /**
