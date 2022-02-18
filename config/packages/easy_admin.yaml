@@ -333,11 +333,13 @@ easy_admin:
             list:
                 fields:
                     - 'name'
+                    - 'level'
                     - 'lifePoint'
                     - 'initiation'
             form:
                 fields:
                     - 'name'
+                    - 'level'
                     - 'lifePoint'
                     - 'initiation'
         PathfinderBestiary:
@@ -348,7 +350,6 @@ easy_admin:
                     - 'level'
                     - 'lifePoint'
                     - 'initiation'
-                    - 'xp'
                     - 'info'
                     - { property: 'sheet', type: 'image', base_path: '%path_easy_admin_file_directory%' }
             form:
@@ -357,7 +358,6 @@ easy_admin:
                     - 'level'
                     - 'lifePoint'
                     - 'initiation'
-                    - 'xp'
                     - 'info'
             show:
                 fields:
@@ -365,7 +365,6 @@ easy_admin:
                     - 'level'
                     - 'lifePoint'
                     - 'initiation'
-                    - 'xp'
                     - 'info'
                     - { property: 'sheet', type: 'image', base_path: '%path_easy_admin_file_directory%' }
             new:

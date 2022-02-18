@@ -39,11 +39,6 @@ class PathfinderBestiary
     private $initiation;
 
     /**
-     * @ORM\Column(type="integer")
-     */
-    private $xp;
-
-    /**
      * @ORM\Column(type="string", length=255)
      */
     private $info;
@@ -64,7 +59,6 @@ class PathfinderBestiary
         $this->level = 0;
         $this->lifePoint = 0;
         $this->initiation = 0;
-        $this->xp = 0;
     }
 
     public function getId(): ?string
@@ -116,18 +110,6 @@ class PathfinderBestiary
     public function setInitiation(string $initiation): self
     {
         $this->initiation = $initiation;
-
-        return $this;
-    }
-
-    public function getXp(): ?string
-    {
-        return $this->xp;
-    }
-
-    public function setXp(string $xp): self
-    {
-        $this->xp = $xp;
 
         return $this;
     }

@@ -26,6 +26,11 @@ class PathfinderPlayer
     /**
      * @ORM\Column(type="integer")
      */
+    private $level;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
     private $lifePoint;
 
     /**
@@ -35,6 +40,7 @@ class PathfinderPlayer
 
     public function __construct()
     {
+        $this->level = 0;
         $this->lifePoint = 0;
         $this->initiation = 0;
     }
@@ -52,6 +58,18 @@ class PathfinderPlayer
     public function setName(string $name): self
     {
         $this->name = $name;
+
+        return $this;
+    }
+
+    public function getLevel(): ?string
+    {
+        return $this->level;
+    }
+
+    public function setLevel(string $level): self
+    {
+        $this->level = $level;
 
         return $this;
     }

@@ -12,6 +12,7 @@ $(document).ready(function () {
   var $listingSelectedEncounter = $('#listing-selected-encounter');
   var $pathfinderRound = $('#pathfinder-round');
   var $pathfinderTotalXP = $('#pathfinder-total-xp');
+  var $pathfinderTypeEncounter = $('#pathfinder-type-encounter');
 
   var $protoEncounter = $('#proto-selected-encounter-item');
   var $protoEncounterPlayer = $('#proto-selected-encounter-item-player');
@@ -34,6 +35,49 @@ $(document).ready(function () {
     $modalSheetBestiary.modal();
   }
 
+  function calculeXPBestiary(lvlBestiary, lvlAveragePlayes)
+  {
+    lvlBestiary = Math.floor(lvlBestiary);
+    lvlAveragePlayes = Math.floor(lvlAveragePlayes);
+
+    deltalvl = lvlBestiary - lvlAveragePlayes;
+
+    if (deltalvl <= -4) {
+      return 10;
+    } else if (deltalvl == -3) {
+      return 15;
+    } else if (deltalvl == -2) {
+      return 20;
+    } else if (deltalvl == -1) {
+      return 30;
+    } else if (deltalvl == 0) {
+      return 40;
+    } else if (deltalvl == 1) {
+      return 60;
+    } else if (deltalvl == 2) {
+      return 80;
+    } else if (deltalvl == 3) {
+      return 120;
+    } else if (deltalvl >= 4) {
+      return 160;
+    }
+  }
+
+  function calculeTypeEncounter(totalXP, encounterPlayers)
+  {
+    if (totalXP < 15*encounterPlayers) {
+      return 'Triviale';
+    } else if (totalXP < 20*encounterPlayers) {
+      return 'Faible';
+    } else if (totalXP < 30*encounterPlayers) {
+      return 'Moderee';
+    } else if (totalXP < 40*encounterPlayers) {
+      return 'Serieuse';
+    } else {
+      return 'Extreme';
+    }
+  }
+
   $('#add-encounter-player').on('click', function () {
     var addPlayer = $selectPlayer.val();
 
@@ -48,7 +92,8 @@ $(document).ready(function () {
             $newEncounterPlayer.removeAttr('id');
             $newEncounterPlayer.attr('data-id-item', player.id);
             $newEncounterPlayer.data('id-item', player.id);
-            $newEncounterPlayer.find('.name').empty().append(player.name);
+            $newEncounterPlayer.find('.name').empty().append(player.name + ' (lvl&nbsp;:&nbsp;' + player.level + ')');
+            $newEncounterPlayer.find('.level').val(player.level);
             $newEncounterPlayer.find('.initiation').val(player.initiation);
             $newEncounterPlayer.find('.pv').empty().append(player.lifePoint);
             $newEncounterPlayer.find('.selected-encounter-item-player-remove')
@@ -86,10 +131,10 @@ $(document).ready(function () {
 
             $newEncounterBestiary.attr('data-id-item', bestiarie.id);
             $newEncounterBestiary.data('id-item', bestiarie.id);
-            $newEncounterBestiary.find('.name').empty().append(bestiarie.name + ' (lvl : ' + bestiarie.level + ')');
+            $newEncounterBestiary.find('.name').empty().append(bestiarie.name + ' (lvl&nbsp;:&nbsp;' + bestiarie.level + ')');
+            $newEncounterBestiary.find('.level').val(bestiarie.level);
             $newEncounterBestiary.find('.initiation').val(bestiarie.initiation).attr('disabled','disabled');
             $newEncounterBestiary.find('.pv').empty().append(bestiarie.lifePoint);
-            $newEncounterBestiary.find('.xp').val(bestiarie.xp);
             $newEncounterBestiary.find('.info').val(bestiarie.info);
             $newEncounterBestiary.find('.sheet').val(bestiarie.sheet);
             $newEncounterBestiaryRemove.data('id-item', bestiarie.id);
@@ -118,6 +163,8 @@ $(document).ready(function () {
   });
 
   $('#start-combat-tracker').on('click', function () {
+    var lvlPlayers = 0;
+    var totalXP = 0;
     var totalXP = 0;
     var listencounter = [];
     $listingSelectedEncounter.empty();
@@ -126,25 +173,31 @@ $(document).ready(function () {
       listencounter.push({
         'id': $(this).attr('data-id-item'),
         'name': $(this).find('.name').text(),
+        'level': $(this).find('.level').val(),
         'initiation': $(this).find('.initiation').val(),
         'lifePoint': $(this).find('.pv').text()
       });
+
+      lvlPlayers += Math.floor($(this).find('.level').val());
     });
+
+    nbPlayers = listencounter.length;
+    lvlAveragePlayes = Math.floor(lvlPlayers/nbPlayers);
 
     $listEncounterBestiary.find('.selected-encounter-item').each(function() {
       roleBestiary = (Math.floor(Math.random() * 19) + 1);
       listencounter.push({
         'id': $(this).attr('data-id-item'),
         'name': $(this).find('.name').text(),
+        'level': $(this).find('.level').val(),
         'roleBestiary': roleBestiary,
         'initiation': (roleBestiary + Math.floor($(this).find('.initiation').val())),
         'lifePoint': $(this).find('.pv').text(),
-        'xp': $(this).find('.xp').val(),
         'info': $(this).find('.info').val(),
         'sheet': $(this).find('.sheet').val()
       });
 
-      totalXP += Math.floor($(this).find('.xp').val());
+      totalXP += calculeXPBestiary(Math.floor($(this).find('.level').val()), lvlAveragePlayes);
     });
 
 
@@ -189,6 +242,7 @@ $(document).ready(function () {
 
     $pathfinderRound.empty().append(1);
     $pathfinderTotalXP.empty().append(totalXP);
+    $pathfinderTypeEncounter.empty().append('(' + calculeTypeEncounter(totalXP, nbPlayers) + ')');
   });
 
   $('#next-combat-tracker').on('click', function () {
