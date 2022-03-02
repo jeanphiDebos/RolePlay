@@ -3,12 +3,19 @@
  * const $ = require('jquery');
  */
 require('bootstrap-sass');
+require('bootstrap-select');
+
+// import 'bootstrap';
+// import selectpicker from 'bootstrap-select';
 
 $.ajaxSetup({
   contentType: 'application/json; charset=utf-8'
 });
 
 $(document).ready(function () {
+  var listPlayers =[];
+  var listBestiaries =[];
+
   var $listingSelectedEncounter = $('#listing-selected-encounter');
   var $pathfinderRound = $('#pathfinder-round');
   var $pathfinderTotalXP = $('#pathfinder-total-xp');
@@ -26,12 +33,77 @@ $(document).ready(function () {
   
   var $modalSheetBestiary = $('#modal-sheet-bestiary');
   var $modalSheetBestiaryTitre = $('#sheet-bestiary-info-titre');
+  var $modalSheetBestiaryTags = $('#sheet-bestiary-info-tags');
   var $modalSheetBestiaryImage = $('#sheet-bestiary-info-image');
 
-  function showModalSheetBestiary(nameBestiary, sheetBestiary)
+  function initDataTracker()
   {
-    $modalSheetBestiaryTitre.empty().append(nameBestiary);
-    $modalSheetBestiaryImage.attr('src', sheetBestiary);
+    $.get(apiPathfinderPlayers, 'json').done(function (players) {
+      try {
+        listPlayers = players;
+      } catch (e) {
+        console.error('error: ajax apiPathfinderPlayers: ' + e);
+      }
+    }).fail(function (data) {
+      console.error('error: ajax apiPathfinderPlayers: ' + data);
+    });
+
+    $.get(apiPathfinderBestiaries, 'json').done(function (bestiarie) {
+      try {
+        listBestiaries = bestiarie;
+      } catch (e) {
+        console.error('error: ajax apiPathfinderBestiaries: ' + e);
+      }
+    }).fail(function (data) {
+      console.error('error: ajax apiPathfinderBestiaries: ' + data);
+    });
+
+  }
+
+  function findPlayer(idPlayer)
+  {
+    let playerFind = listPlayers.filter(function (player) {
+      return player.id === idPlayer
+    });
+    
+    if (playerFind.length !== 0) {
+      return playerFind[0];
+    }
+
+    return null;
+  }
+
+  function findBestiary(idBestiary)
+  {
+    let bestiaryFind = listBestiaries.filter(function (bestiary) {
+      return bestiary.id === idBestiary
+    });
+    
+    if (bestiaryFind.length !== 0) {
+      return bestiaryFind[0];
+    }
+
+    return null;
+  }
+
+  function showModalSheetBestiary(idBestiary)
+  {
+    let bestiary = findBestiary(idBestiary);
+
+    if (bestiary == null) {
+      return;
+    }
+
+    $modalSheetBestiaryTags.empty();
+    $modalSheetBestiaryTitre.empty().append(bestiary.name);
+    $modalSheetBestiaryImage.attr('src', bestiary.sheet);
+
+    bestiary.typeBestiarys.forEach(function(typeBestiary){
+        let style = 'color: ' + typeBestiary.categoryBestiary.textColor + '; background-color: ' + typeBestiary.categoryBestiary.backgroundColor + ';';
+        console.log(style);
+        $modalSheetBestiaryTags.append('<span class="type-bestiary ' + typeBestiary.categoryBestiary.name + '" style="' + style + '">' + typeBestiary.name + '</span>');
+    });
+
     $modalSheetBestiary.modal();
   }
 
@@ -79,79 +151,83 @@ $(document).ready(function () {
   }
 
   $('#add-encounter-player').on('click', function () {
-    var addPlayer = $selectPlayer.val();
+    let idPlayer = $selectPlayer.val();
 
-    if (addPlayer) {
-      $.get(apiPathfinderPlayers + '/' + addPlayer, 'json').done(function (player) {
-        try {
-          if (player) {
-            $newEncounterPlayer = $protoEncounterPlayer.clone();
-            $newEncounterPlayerRemove = $newEncounterPlayer.find('.selected-encounter-item-player-remove');
+    if (idPlayer == "") {
+      return;
+    }
 
-            $newEncounterPlayer.removeClass('hide');
-            $newEncounterPlayer.removeAttr('id');
-            $newEncounterPlayer.attr('data-id-item', player.id);
-            $newEncounterPlayer.data('id-item', player.id);
-            $newEncounterPlayer.find('.name').empty().append(player.name + ' (lvl&nbsp;:&nbsp;' + player.level + ')');
-            $newEncounterPlayer.find('.level').val(player.level);
-            $newEncounterPlayer.find('.initiation').val(player.initiation);
-            $newEncounterPlayer.find('.pv').empty().append(player.lifePoint);
-            $newEncounterPlayer.find('.selected-encounter-item-player-remove')
-            $newEncounterPlayerRemove.data('id-item', player.id)
-            $newEncounterPlayerRemove.attr('data-id-item', player.id);
-            $listEncounterPlayer.append($newEncounterPlayer);
+    let player = findPlayer(idPlayer);
 
-            $selectPlayer.find("option[value='"+addPlayer+"']").attr('disabled','disabled');
-            $selectPlayer.val('');
+    try {
+      if (player == null) {
+        return;
+      }
 
-            $newEncounterPlayerRemove.click(function () {
-              id = $(this).attr('data-id-item');
-              $(this).closest('.selected-encounter-item').remove();
-              $selectPlayer.find("option[value='" + id + "']").removeAttr('disabled');
-            });
-          }
-        } catch (e) {
-          console.error('error: ajax apiPathfinderPlayers: ' + e);
-        }
-      }).fail(function (data) {
-        console.error('error: ajax apiPathfinderPlayers: ' + data);
+      $newEncounterPlayer = $protoEncounterPlayer.clone();
+      $newEncounterPlayerRemove = $newEncounterPlayer.find('.selected-encounter-item-player-remove');
+
+      $newEncounterPlayer.removeClass('hide');
+      $newEncounterPlayer.removeAttr('id');
+      $newEncounterPlayer.attr('data-id-item', player.id);
+      $newEncounterPlayer.data('id-item', player.id);
+      $newEncounterPlayer.find('.name').empty().append(player.name + ' (lvl&nbsp;:&nbsp;' + player.level + ')');
+      $newEncounterPlayer.find('.level').val(player.level);
+      $newEncounterPlayer.find('.initiation').val(player.initiation);
+      $newEncounterPlayer.find('.pv').empty().append(player.lifePoint);
+      $newEncounterPlayer.find('.selected-encounter-item-player-remove')
+      $newEncounterPlayerRemove.data('id-item', player.id)
+      $newEncounterPlayerRemove.attr('data-id-item', player.id);
+      $listEncounterPlayer.append($newEncounterPlayer);
+
+      $selectPlayer.find("option[value='"+idPlayer+"']").attr('disabled','disabled');
+      $selectPlayer.val('');
+
+      $newEncounterPlayerRemove.click(function () {
+        id = $(this).attr('data-id-item');
+        $(this).closest('.selected-encounter-item').remove();
+        $selectPlayer.find("option[value='" + id + "']").removeAttr('disabled');
       });
+    } catch (e) {
+      console.error('error: ajax apiPathfinderPlayers: ' + e);
     }
   });
   
   $('#add-encounter-bestiary').on('click', function () {
-    var addBestiary = $selectBestiary.val();
+    let idBestiary = $selectBestiary.val();
 
-    if (addBestiary) {
-      $.get(apiPathfinderBestiaries + '/' + addBestiary, 'json').done(function (bestiarie) {
-        try {
-          if (bestiarie) {
-            $newEncounterBestiary = $protoEncounterBestiary.clone();
-            $newEncounterBestiaryRemove = $newEncounterBestiary.find('.selected-encounter-item-bestiary-remove');
+    if (idBestiary == "") {
+      return;
+    }
 
-            $newEncounterBestiary.attr('data-id-item', bestiarie.id);
-            $newEncounterBestiary.data('id-item', bestiarie.id);
-            $newEncounterBestiary.find('.name').empty().append(bestiarie.name + ' (lvl&nbsp;:&nbsp;' + bestiarie.level + ')');
-            $newEncounterBestiary.find('.level').val(bestiarie.level);
-            $newEncounterBestiary.find('.initiation').val(bestiarie.initiation).attr('disabled','disabled');
-            $newEncounterBestiary.find('.pv').empty().append(bestiarie.lifePoint);
-            $newEncounterBestiary.find('.info').val(bestiarie.info);
-            $newEncounterBestiary.find('.sheet').val(bestiarie.sheet);
-            $newEncounterBestiaryRemove.data('id-item', bestiarie.id);
-            $newEncounterBestiaryRemove.attr('data-id-item', bestiarie.id);
-            $newEncounterBestiary.removeClass('hide');
-            $listEncounterBestiary.append($newEncounterBestiary);
+    let bestiary = findBestiary(idBestiary);
 
-            $newEncounterBestiaryRemove.click(function () {
-              $(this).closest('.selected-encounter-item').remove();
-            });
-          }
-        } catch (e) {
-          console.error('error: ajax apiPathfinderBestiaries: ' + e);
-        }
-      }).fail(function (data) {
-        console.error('error: ajax apiPathfinderBestiaries: ' + data);
+    try {
+      if (bestiary == null) {
+        return;
+      }
+
+      $newEncounterBestiary = $protoEncounterBestiary.clone();
+      $newEncounterBestiaryRemove = $newEncounterBestiary.find('.selected-encounter-item-bestiary-remove');
+
+      $newEncounterBestiary.attr('data-id-item', bestiary.id);
+      $newEncounterBestiary.data('id-item', bestiary.id);
+      $newEncounterBestiary.find('.name').empty().append(bestiary.name + ' (lvl&nbsp;:&nbsp;' + bestiary.level + ')');
+      $newEncounterBestiary.find('.level').val(bestiary.level);
+      $newEncounterBestiary.find('.initiation').val(bestiary.initiation).attr('disabled','disabled');
+      $newEncounterBestiary.find('.pv').empty().append(bestiary.lifePoint);
+      $newEncounterBestiary.find('.info').val(bestiary.info);
+      $newEncounterBestiary.find('.sheet').val(bestiary.sheet);
+      $newEncounterBestiaryRemove.data('id-item', bestiary.id);
+      $newEncounterBestiaryRemove.attr('data-id-item', bestiary.id);
+      $newEncounterBestiary.removeClass('hide');
+      $listEncounterBestiary.append($newEncounterBestiary);
+
+      $newEncounterBestiaryRemove.click(function () {
+        $(this).closest('.selected-encounter-item').remove();
       });
+    } catch (e) {
+      console.error('error: ajax apiPathfinderBestiaries: ' + e);
     }
   });
 
@@ -163,10 +239,9 @@ $(document).ready(function () {
   });
 
   $('#start-combat-tracker').on('click', function () {
-    var lvlPlayers = 0;
-    var totalXP = 0;
-    var totalXP = 0;
-    var listencounter = [];
+    let lvlPlayers = 0;
+    let totalXP = 0;
+    let listencounter = [];
     $listingSelectedEncounter.empty();
 
     $listEncounterPlayer.find('.selected-encounter-item').each(function() {
@@ -201,7 +276,7 @@ $(document).ready(function () {
     });
 
 
-    var listencounter = listencounter.sort(function(a, b) {
+    listencounter = listencounter.sort(function(a, b) {
       return a.initiation - b.initiation;
     }).reverse();
 
@@ -220,12 +295,12 @@ $(document).ready(function () {
       $newEncounter.removeClass('hide');
 
       if (encounter.info) {
-        $newEncounter.find('.info-encounter').attr('data-content', encounter.info).removeClass('hide').popover();
+        $newEncounter.find('.info-encounter div').empty().append(encounter.info);
       }
 
       if (encounter.sheet) {
         $newEncounter.find('.sheet-encounter').removeClass('hide').on('click', function () {
-          showModalSheetBestiary(encounter.name, encounter.sheet)
+          showModalSheetBestiary(encounter.id);
         });
       }
 
@@ -246,11 +321,11 @@ $(document).ready(function () {
   });
 
   $('#next-combat-tracker').on('click', function () {
-    var $isCurrentPlayed = $('.is-current-played');
+    let $isCurrentPlayed = $('.is-current-played');
     $isCurrentPlayed.addClass('hide').removeClass('is-current-played');
     if ($isCurrentPlayed.hasClass('is-last-encounter')) {
       $isCurrentPlayed.closest('#listing-selected-encounter').find('.is-first-encounter').removeClass('hide').addClass('is-current-played');
-      var currentRound = Math.floor($pathfinderRound.text());
+      let currentRound = Math.floor($pathfinderRound.text());
       $pathfinderRound.empty().append(currentRound+1);
     } else {
       $isCurrentPlayed.closest('tr.selected-encounter-item').next().find('.current-played').removeClass('hide').addClass('is-current-played');
@@ -270,4 +345,6 @@ $(document).ready(function () {
   });
 
   $('#collapseSelectEncounter').collapse('show');
+
+  initDataTracker();
 });

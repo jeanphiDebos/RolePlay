@@ -14,21 +14,13 @@
             <tbody>
                 <tr id="proto-selected-encounter-item" class="selected-encounter-item hide" data-id-item="">
                     <td scope="row" class="col-md-1"><span class="current-played glyphicon glyphicon-arrow-right text-info pt-8 hide" aria-hidden="true"></span></td>
-                    <td class="col-md-3">
+                    <td class="col-md-2">
                         <div class="pt-8 col-md-8 col-nopadding name"></div>
                         <div class="pt-8 col-md-4 col-nopadding">
-                            <span class="info-encounter glyphicon glyphicon-zoom-in text-info hide"
-                                data-container="body"
-                                data-toggle="popover"
-                                data-placement="top"
-                                data-trigger="hover"
-                                data-content=""
-                                data-html="true"
-                                aria-hidden="true"
-                            ></span>
                             <span class="sheet-encounter glyphicon glyphicon-picture text-info hide"></span>
                         </div>
                     </td>
+                    <td class="col-md-1 info-encounter"><div class="pt-8"></div></td>
                     <td class="col-md-1 note"><input type="text" class="form-control" placeholder="note"></div></td>
                     <td class="col-md-2 initiation"><div class="pt-8"></div></td>
                     <td class="col-md-2 current-pv"><input type="number" class="form-control" value=""></td>
@@ -41,6 +33,7 @@
                 <tr>
                     <th scope="col" class="col-md-1">#</th>
                     <th scope="col" class="col-md-3 text-center">{{ 'pathfinder.name'|trans }} </th>
+                    <th scope="col" class="col-md-3 text-center">{{ 'pathfinder.info'|trans }} </th>
                     <th scope="col" class="col-md-2 text-center">{{ 'pathfinder.note'|trans }} </th>
                     <th scope="col" class="col-md-2 text-center">{{ 'pathfinder.initiation'|trans }} </th>
                     <th scope="col" class="col-md-2 text-center">{{ 'pathfinder.current-pv'|trans }} </th>

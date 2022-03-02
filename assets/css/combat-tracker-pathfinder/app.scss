@@ -1,3 +1,5 @@
+@import "~bootstrap-select/sass/bootstrap-select";
+
 body {
   background-color: #ccc;
 }
@@ -13,6 +15,10 @@ a:hover {
 
 a:visited {
     color: blue;
+}
+
+input[type=number] {
+    width: 70px !important;
 }
 
 .bg-light {
@@ -37,12 +43,22 @@ a:visited {
     padding-right: 0 !important;
     margin-left: 0 !important;
     margin-right: 0 !important;
- }
+}
 
- #sheet-bestiary-info-image{
-     max-width: 100%;
- }
+#sheet-bestiary-info-image {
+    max-width: 100%;
+}
 
- #shopping-encounter-info-image{
-     max-width: 100%;
- }
+#shopping-encounter-info-image {
+    max-width: 100%;
+}
+
+#sheet-bestiary-info-titre {
+    margin-bottom: 10px;
+}
+
+span.type-bestiary {
+    padding: 5px;
+    border: outset;
+    margin: 5px;
+}

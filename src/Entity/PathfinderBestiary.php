@@ -3,11 +3,16 @@
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
+use Symfony\Component\Serializer\Annotation\Groups;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ApiResource()
  * @ORM\Entity(repositoryClass="App\Repository\PathfinderBestiaryRepository")
+ * @ApiResource(attributes={
+ *     "normalization_context"={"groups"={"readPathfinderBestiary"}},
+ *     "denormalization_context"={"api_allow_update"=true, "groups"={"writePathfinderBestiary"}}
+ * })
  */
 class PathfinderBestiary
 {
@@ -15,37 +20,44 @@ class PathfinderBestiary
      * @ORM\Id()
      * @ORM\GeneratedValue(strategy="UUID")
      * @ORM\Column(type="guid", unique=true)
+     * @Groups({"readPathfinderBestiary", "writePathfinderBestiary"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"readPathfinderBestiary"})
      */
     private $name;
 
     /**
      * @ORM\Column(type="integer")
+     * @Groups({"readPathfinderBestiary"})
      */
     private $level;
 
     /**
      * @ORM\Column(type="integer")
+     * @Groups({"readPathfinderBestiary"})
      */
     private $lifePoint;
 
     /**
      * @ORM\Column(type="integer")
+     * @Groups({"readPathfinderBestiary"})
      */
     private $initiation;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"readPathfinderBestiary"})
      */
     private $info;
-    
+
     /**
      * @var string
      * @ORM\Column(type="string", length=255)
+     * @Groups({"readPathfinderBestiary"})
      */
     private $sheet;
 
@@ -54,11 +66,24 @@ class PathfinderBestiary
      */
     private $imageFile;
 
+    /**
+     * @var ArrayCollection<TypeBestiary>
+     * @ORM\ManyToMany(targetEntity="App\Entity\TypeBestiary", inversedBy="pathfinderBestiary", cascade={"persist"})
+     * @ORM\JoinTable(
+     *      name="pathfinder_bestiars_type",
+     *      joinColumns={@ORM\JoinColumn(name="pathfinder_bestiary_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="type_bestiary_id", referencedColumnName="id")}
+     * )
+     * @Groups({"readPathfinderBestiary"})
+     */
+    private $typeBestiarys;
+
     public function __construct()
     {
         $this->level = 0;
         $this->lifePoint = 0;
         $this->initiation = 0;
+        $this->typeBestiarys = new ArrayCollection();
     }
 
     public function getId(): ?string
@@ -172,6 +197,46 @@ class PathfinderBestiary
     public function setImageFile($imageFile)
     {
         $this->imageFile = $imageFile;
+    }
+
+    /**
+     * Add typeBestiary
+     *
+     * @param TypeBestiary $typeBestiary
+     *
+     * @return $this
+     */
+    public function addTypeBestiary(TypeBestiary $typeBestiary)
+    {
+        $this->typeBestiarys->add($typeBestiary);
+
+        return $this;
+    }
+
+    /**
+     * Remove typeBestiary
+     *
+     * @param TypeBestiary $typeBestiary
+     */
+    public function removeTypeBestiary(TypeBestiary $typeBestiary)
+    {
+        $this->typeBestiarys->removeElement($typeBestiary);
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getTypeBestiarys()
+    {
+        return $this->typeBestiarys;
+    }
+
+    /**
+     * @param ArrayCollection $typeBestiarys
+     */
+    public function setTypeBestiarys(ArrayCollection $typeBestiarys)
+    {
+        $this->typeBestiarys = $typeBestiarys;
     }
 
     /**

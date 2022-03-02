@@ -55,8 +55,8 @@ class DefaultController extends Controller
      */
     public function combatTrackerPathfinderAction()
     {
-        $player = $this->pathfinderPlayerRepository->findAll();
-        $bestiary = $this->pathfinderBestiaryRepository->findAll();
+        $player   = $this->pathfinderPlayerRepository->findBy([], ['name' => 'ASC']);
+        $bestiary = $this->pathfinderBestiaryRepository->findBy([], ['name' => 'ASC']);
 
         return $this->render(
             'combat-tracker-pathfinder/index.html.twig',

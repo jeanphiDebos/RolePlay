@@ -28,7 +28,7 @@ abstract class Taxonomy
     /**
      * @var string
      * @ORM\Column(type="string", length=255, nullable=false)
-     * @Groups({"readInventory", "readCraft"})
+     * @Groups({"readInventory", "readCraft", "readPathfinderBestiary"})
      */
     protected $name;
     /**
