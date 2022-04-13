@@ -7,6 +7,10 @@ Encore
     .setPublicPath('/public/build')
     .setManifestKeyPrefix('build')
     .cleanupOutputBeforeBuild()
+    .copyFiles({
+         from: './assets/img',
+         to: 'img/[path][name].[ext]',
+     })
     .addStyleEntry('css/app', './assets/css/app.scss')
     .addEntry('js/tate-no-yusha-skill/app', './assets/js/tate-no-yusha-skill/app.js')
     .addStyleEntry('css/tate-no-yusha-skill/app', './assets/css/tate-no-yusha-skill/app.scss')
@@ -19,6 +23,8 @@ Encore
     .addEntry('js/roleplay/map', './assets/js/roleplay/map.js')
     .addEntry('js/roleplay/music', './assets/js/roleplay/music.js')
     .addStyleEntry('css/roleplay/app', './assets/css/roleplay/app.scss')
+    .addEntry('js/combat-tracker-pathfinder/app', './assets/js/combat-tracker-pathfinder/app.js')
+    .addStyleEntry('css/combat-tracker-pathfinder/app', './assets/css/combat-tracker-pathfinder/app.scss')
     .enableSassLoader(function (sassOptions) {
         // https://github.com/sass/node-sass#options
         // options.includePaths = [...]

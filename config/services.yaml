@@ -7,6 +7,7 @@ parameters:
     locale: 'fr'
     file_directory: 'uploads/images'
     file_item_directory: uploads/images/items
+    file_sheet_directory: uploads/images/sheets
     path_file_directory: '%kernel.project_dir%/public/%file_directory%'
     path_easy_admin_file_directory: './'
 

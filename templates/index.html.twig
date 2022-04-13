@@ -17,6 +17,8 @@
         {% if is_granted('ROLE_ADMIN') %}
             <h1><a href="{{ path('public_map') }}">{% trans %}public_map{% endtrans %}</a></h1>
             <hr>
+            <h1><a href="{{ path('combat_tracker_pathfinder') }}">{% trans %}combat_tracker_pathfinder{% endtrans %}</a></h1>
+            <hr>
         {% endif %}
         <h1><a href="{{ path('app_logout') }}">{% trans %}logout{% endtrans %}</a></h1>
     </div>

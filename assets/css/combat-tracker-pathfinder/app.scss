@@ -1,0 +1,64 @@
+@import "~bootstrap-select/sass/bootstrap-select";
+
+body {
+  background-color: #ccc;
+}
+
+a {
+    color: blue;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+a:visited {
+    color: blue;
+}
+
+input[type=number] {
+    width: 70px !important;
+}
+
+.bg-light {
+    background-color: #f8f9fa!important;
+}
+
+.serapateur {
+    border-right-style: solid;
+}
+
+.selected-encounter-item {
+    padding: 5px;
+    padding-bottom: 10px;
+}
+
+.pt-8 {
+    padding-top: 8px !important;
+}
+
+.col-nopadding {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+
+#sheet-bestiary-info-image {
+    max-width: 100%;
+}
+
+#shopping-encounter-info-image {
+    max-width: 100%;
+}
+
+#sheet-bestiary-info-titre {
+    margin-bottom: 10px;
+}
+
+span.type-bestiary {
+    padding: 5px;
+    border: outset;
+    margin: 5px;
+}

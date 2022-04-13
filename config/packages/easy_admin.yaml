@@ -27,6 +27,12 @@ easy_admin:
                 - 'Whisper'
                 - 'Universe'
                 - 'ConfigurationField'
+            - label: 'Pathfinder'
+              children:
+                - 'PathfinderPlayer'
+                - 'PathfinderBestiary'
+                - 'TypeBestiary'
+                - 'CategoryBestiary'
     site_name: 'roleplay by jp'
     entities:
         Skill:
@@ -324,3 +330,82 @@ easy_admin:
                     - { property: 'imageFile', type: 'file', type_options: { required: false} }
         MappingMap:
             class: App\Entity\MappingMap
+        PathfinderPlayer:
+            class: App\Entity\PathfinderPlayer
+            list:
+                fields:
+                    - 'name'
+                    - 'level'
+                    - 'lifePoint'
+                    - 'initiation'
+            form:
+                fields:
+                    - 'name'
+                    - 'level'
+                    - 'lifePoint'
+                    - 'initiation'
+        PathfinderBestiary:
+            class: App\Entity\PathfinderBestiary
+            list:
+                fields:
+                    - 'name'
+                    - 'level'
+                    - 'lifePoint'
+                    - 'initiation'
+                    - 'info'
+                    - { property: 'sheet', type: 'image', base_path: '%path_easy_admin_file_directory%' }
+                    - 'typeBestiarys'
+            form:
+                fields:
+                    - 'name'
+                    - 'level'
+                    - 'lifePoint'
+                    - 'initiation'
+                    - 'info'
+                    - 'typeBestiarys'
+            show:
+                fields:
+                    - 'name'
+                    - 'level'
+                    - 'lifePoint'
+                    - 'initiation'
+                    - 'info'
+                    - { property: 'sheet', type: 'image', base_path: '%path_easy_admin_file_directory%' }
+                    - 'typeBestiarys'
+            new:
+                fields:
+                    - {property: 'imageFile', type: 'file'}
+            edit:
+                fields:
+                    - { property: 'imageFile', type: 'file', type_options: { required: false} }
+        TypeBestiary:
+            class: App\Entity\TypeBestiary
+            list:
+                fields:
+                    - 'name'
+                    - 'categoryBestiary'
+            form:
+                fields:
+                    - 'name'
+                    - { property: 'categoryBestiary', type_options: { required: true } }
+            show:
+                fields:
+                    - 'id'
+                    - 'name'
+                    - 'categoryBestiary'
+        CategoryBestiary:
+            class: App\Entity\CategoryBestiary
+            list:
+                fields:
+                    - 'name'
+            form:
+                fields:
+                    - 'name'
+                    - {property: 'textColor', type: 'color'}
+                    - {property: 'backgroundColor', type: 'color'}
+            show:
+                fields:
+                    - 'id'
+                    - 'name'
+                    - {property: 'textColor', type: 'color'}
+                    - {property: 'backgroundColor', type: 'color'}

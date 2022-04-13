@@ -550,6 +550,74 @@ LOCK TABLES `whisper` WRITE;
 INSERT INTO `whisper` VALUES ('025b72e3-589f-11ea-baf0-8cec4b72a049','aeecfea3-5879-11ea-baf0-8cec4b72a049','1bfa1f09-5245-11ea-be25-8cec4b72a049','test 11',1,'2020-02-26 14:50:00'),('08a345ef-57f1-11ea-baf0-8cec4b72a049','1bfa1f09-5245-11ea-be25-8cec4b72a049','47a63c0d-e5fb-11e9-b542-8cec4b72a049','test6',1,'2020-02-25 18:05:13'),('0b5cf5eb-5407-11ea-8a1d-8cec4b72a049','47a63c0d-e5fb-11e9-b542-8cec4b72a049','1bfa1f09-5245-11ea-be25-8cec4b72a049','test message',1,'2015-01-01 00:00:00'),('0d4bb3d3-587f-11ea-baf0-8cec4b72a049','aeecfea3-5879-11ea-baf0-8cec4b72a049','1bfa1f09-5245-11ea-be25-8cec4b72a049','test 5',1,'2020-02-26 11:01:00'),('17dbd423-5407-11ea-8a1d-8cec4b72a049','1bfa1f09-5245-11ea-be25-8cec4b72a049','47a63c0d-e5fb-11e9-b542-8cec4b72a049','test 2',1,'2015-01-01 00:00:00'),('24a5ce8e-58a6-11ea-baf0-8cec4b72a049','47a63c0d-e5fb-11e9-b542-8cec4b72a049','1bfa1f09-5245-11ea-be25-8cec4b72a049','test fnal',1,'2020-02-26 15:41:00'),('24c95c58-5407-11ea-8a1d-8cec4b72a049','1bfa1f09-5245-11ea-be25-8cec4b72a049','47a63c0d-e5fb-11e9-b542-8cec4b72a049','test 3',1,'2015-01-01 00:00:00'),('3d7124d7-58a6-11ea-baf0-8cec4b72a049','aeecfea3-5879-11ea-baf0-8cec4b72a049','1bfa1f09-5245-11ea-be25-8cec4b72a049','test final 3',1,'2020-02-26 15:41:00'),('540ca8e1-e5fb-11e9-b542-8cec4b72a049','47a63c0d-e5fb-11e9-b542-8cec4b72a049','1d27d31a-e5fb-11e9-b542-8cec4b72a049','test Whisp',1,'2014-01-01 00:00:00'),('64379537-5882-11ea-baf0-8cec4b72a049','1bfa1f09-5245-11ea-be25-8cec4b72a049','aeecfea3-5879-11ea-baf0-8cec4b72a049','test 7',0,'2020-02-26 11:25:36'),('6917c5d4-57eb-11ea-baf0-8cec4b72a049','1bfa1f09-5245-11ea-be25-8cec4b72a049','47a63c0d-e5fb-11e9-b542-8cec4b72a049','test4',1,'2020-02-25 17:24:57'),('6bbd0667-587f-11ea-baf0-8cec4b72a049','aeecfea3-5879-11ea-baf0-8cec4b72a049','1bfa1f09-5245-11ea-be25-8cec4b72a049','test 6',1,'2020-02-26 11:04:00'),('86ee5a49-5958-11ea-baf0-8cec4b72a049','1bfa1f09-5245-11ea-be25-8cec4b72a049','aeecfea3-5879-11ea-baf0-8cec4b72a049','test',0,'2020-02-27 12:58:39'),('92c4bf2d-5884-11ea-baf0-8cec4b72a049','aeecfea3-5879-11ea-baf0-8cec4b72a049','1bfa1f09-5245-11ea-be25-8cec4b72a049','test 9',1,'2020-02-26 11:41:00'),('a6df0d40-57eb-11ea-baf0-8cec4b72a049','1bfa1f09-5245-11ea-be25-8cec4b72a049','47a63c0d-e5fb-11e9-b542-8cec4b72a049','test 5',1,'2020-02-25 17:26:41'),('b7d7f77b-587a-11ea-baf0-8cec4b72a049','aeecfea3-5879-11ea-baf0-8cec4b72a049','1bfa1f09-5245-11ea-be25-8cec4b72a049','test 3',1,'2020-02-26 10:30:00'),('d663cb3c-5879-11ea-baf0-8cec4b72a049','aeecfea3-5879-11ea-baf0-8cec4b72a049','1bfa1f09-5245-11ea-be25-8cec4b72a049','test 1',1,'2020-02-26 10:23:00'),('de76bdc4-5879-11ea-baf0-8cec4b72a049','aeecfea3-5879-11ea-baf0-8cec4b72a049','1bfa1f09-5245-11ea-be25-8cec4b72a049','test 2',1,'2020-02-26 10:24:00'),('e352c6fc-5880-11ea-baf0-8cec4b72a049','1bfa1f09-5245-11ea-be25-8cec4b72a049','aeecfea3-5879-11ea-baf0-8cec4b72a049','test',0,'2020-02-26 11:14:50'),('e388757a-587c-11ea-baf0-8cec4b72a049','aeecfea3-5879-11ea-baf0-8cec4b72a049','1bfa1f09-5245-11ea-be25-8cec4b72a049','test 4',1,'2020-02-26 10:45:00'),('e755de7c-57ea-11ea-baf0-8cec4b72a049','1bfa1f09-5245-11ea-be25-8cec4b72a049','47a63c0d-e5fb-11e9-b542-8cec4b72a049','test',1,'2020-02-25 17:21:20'),('f42ba203-5882-11ea-baf0-8cec4b72a049','aeecfea3-5879-11ea-baf0-8cec4b72a049','1bfa1f09-5245-11ea-be25-8cec4b72a049','test 8',1,'2020-02-26 11:29:00'),('f616dca4-589e-11ea-baf0-8cec4b72a049','1bfa1f09-5245-11ea-be25-8cec4b72a049','aeecfea3-5879-11ea-baf0-8cec4b72a049','test 10',0,'2020-02-26 14:50:07');
 UNLOCK TABLES;
 
+--
+-- Table structure for table `pathfinder_bestiars_type`
+--
+
+DROP TABLE IF EXISTS `pathfinder_bestiars_type`;
+CREATE TABLE `pathfinder_bestiars_type` (
+  `pathfinder_bestiary_id` char(36) NOT NULL COMMENT '(DC2Type:guid)',
+  `type_bestiary_id` char(36) NOT NULL COMMENT '(DC2Type:guid)',
+  PRIMARY KEY (`pathfinder_bestiary_id`,`type_bestiary_id`),
+  KEY `IDX_5E3B5FC7E5439273` (`pathfinder_bestiary_id`),
+  KEY `IDX_5E3B5FC72F7F7398` (`type_bestiary_id`),
+  CONSTRAINT `FK_5E3B5FC72F7F7398` FOREIGN KEY (`type_bestiary_id`) REFERENCES `type_bestiary` (`id`),
+  CONSTRAINT `FK_5E3B5FC7E5439273` FOREIGN KEY (`pathfinder_bestiary_id`) REFERENCES `pathfinder_bestiary` (`id`)
+);
+
+--
+-- Dumping data for table `pathfinder_bestiars_type`
+--
+
+LOCK TABLES `pathfinder_bestiars_type` WRITE;
+INSERT INTO `pathfinder_bestiars_type` VALUES ('94f385e6-8e79-11ec-b36b-080027f5075b','8bc0ad6b-9969-11ec-8a79-080027f5075b'),('94f385e6-8e79-11ec-b36b-080027f5075b','abd0a607-9969-11ec-8a79-080027f5075b'),('aabcb6ad-8e79-11ec-b36b-080027f5075b','abd0a607-9969-11ec-8a79-080027f5075b'),('aabcb6ad-8e79-11ec-b36b-080027f5075b','ef2201cb-9969-11ec-8a79-080027f5075b'),('ceb8c37b-8e79-11ec-b36b-080027f5075b','9a0d1282-9969-11ec-8a79-080027f5075b'),('ceb8c37b-8e79-11ec-b36b-080027f5075b','abd0a607-9969-11ec-8a79-080027f5075b'),('ceb8c37b-8e79-11ec-b36b-080027f5075b','ef2201cb-9969-11ec-8a79-080027f5075b');
+UNLOCK TABLES;
+
+--
+-- Table structure for table `category_bestiary`
+--
+
+DROP TABLE IF EXISTS `category_bestiary`;
+CREATE TABLE `category_bestiary` (
+  `id` char(36) NOT NULL COMMENT '(DC2Type:guid)',
+  `name` varchar(255) NOT NULL,
+  `shortname` varchar(255) NOT NULL,
+  `text_color` varchar(255) NOT NULL,
+  `background_color` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+);
+
+--
+-- Dumping data for table `category_bestiary`
+--
+
+LOCK TABLES `category_bestiary` WRITE;
+INSERT INTO `category_bestiary` VALUES ('2d42ed39-9969-11ec-8a79-080027f5075b','Taille','Taille','#ffffff','#0007d6'),('5788b781-9969-11ec-8a79-080027f5075b','Alignement','Alignement','#ffffff','#0f8500'),('753d0d67-9969-11ec-8a79-080027f5075b','Localisation','Localisation','#ffffff','#ff0000');
+UNLOCK TABLES;
+
+--
+-- Table structure for table `type_bestiary`
+--
+
+DROP TABLE IF EXISTS `type_bestiary`;
+CREATE TABLE `type_bestiary` (
+  `id` char(36) NOT NULL COMMENT '(DC2Type:guid)',
+  `category_bestiary_id` char(36) DEFAULT NULL COMMENT '(DC2Type:guid)',
+  `name` varchar(255) NOT NULL,
+  `shortname` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `IDX_5992CE03D3FDE662` (`category_bestiary_id`),
+  CONSTRAINT `FK_5992CE03D3FDE662` FOREIGN KEY (`category_bestiary_id`) REFERENCES `category_bestiary` (`id`)
+);
+
+--
+-- Dumping data for table `type_bestiary`
+--
+
+LOCK TABLES `type_bestiary` WRITE;
+INSERT INTO `type_bestiary` VALUES ('8bc0ad6b-9969-11ec-8a79-080027f5075b','2d42ed39-9969-11ec-8a79-080027f5075b','Grand','Grand'),('9a0d1282-9969-11ec-8a79-080027f5075b','2d42ed39-9969-11ec-8a79-080027f5075b','Normal','Normal'),('abd0a607-9969-11ec-8a79-080027f5075b','5788b781-9969-11ec-8a79-080027f5075b','CN','CN'),('bba84cc9-9969-11ec-8a79-080027f5075b','753d0d67-9969-11ec-8a79-080027f5075b','Foret','Foret'),('ef2201cb-9969-11ec-8a79-080027f5075b','753d0d67-9969-11ec-8a79-080027f5075b','Plaine','Plaine');
+UNLOCK TABLES;
+
 SET FOREIGN_KEY_CHECKS=1;
 
 --
